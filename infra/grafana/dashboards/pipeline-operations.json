@@ -112,6 +112,30 @@
       "tooltip": "",
       "type": "link",
       "url": "http://localhost:9090/alerts"
+    },
+    {
+      "asDropdown": false,
+      "icon": "bolt",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Nền sáng",
+      "tooltip": "Giao diện sáng",
+      "type": "link",
+      "url": "/d/aiot-pipeline-operations?theme=light"
+    },
+    {
+      "asDropdown": false,
+      "icon": "bolt",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Nền tối",
+      "tooltip": "Giao diện tối",
+      "type": "link",
+      "url": "/d/aiot-pipeline-operations?theme=dark"
     }
   ],
   "annotations": {
@@ -754,7 +778,7 @@
                   "fixed": "Cảm biến + Edge model"
                 },
                 "color": {
-                  "fixed": "#13241f"
+                  "fixed": "text"
                 },
                 "size": 14,
                 "align": "center",
@@ -762,7 +786,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -860,7 +884,7 @@
                   "fixed": "16 kênh → TabM INT8"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -897,7 +921,7 @@
                   "fixed": "MQTT · Mosquitto"
                 },
                 "color": {
-                  "fixed": "#13241f"
+                  "fixed": "text"
                 },
                 "size": 14,
                 "align": "center",
@@ -905,7 +929,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -1003,7 +1027,7 @@
                   "fixed": "aiot/v1/nodes/+/… · QoS 1"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -1040,7 +1064,7 @@
                   "fixed": "Bridge"
                 },
                 "color": {
-                  "fixed": "#13241f"
+                  "fixed": "text"
                 },
                 "size": 14,
                 "align": "center",
@@ -1048,7 +1072,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -1146,7 +1170,7 @@
                   "fixed": "kiểm contract · DLQ"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -1183,7 +1207,7 @@
                   "fixed": "Apache Kafka"
                 },
                 "color": {
-                  "fixed": "#13241f"
+                  "fixed": "text"
                 },
                 "size": 14,
                 "align": "center",
@@ -1191,7 +1215,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -1341,7 +1365,7 @@
                   "fixed": "topic gas.* · replay"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -1378,7 +1402,7 @@
                   "fixed": "Influx sink"
                 },
                 "color": {
-                  "fixed": "#13241f"
+                  "fixed": "text"
                 },
                 "size": 14,
                 "align": "center",
@@ -1386,7 +1410,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -1484,7 +1508,7 @@
                   "fixed": "batch 0.5 s → ghi"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -1521,7 +1545,7 @@
                   "fixed": "InfluxDB"
                 },
                 "color": {
-                  "fixed": "#13241f"
+                  "fixed": "text"
                 },
                 "size": 14,
                 "align": "center",
@@ -1529,7 +1553,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -1627,7 +1651,7 @@
                   "fixed": "lưu time-series"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -1664,7 +1688,7 @@
                   "fixed": "Grafana"
                 },
                 "color": {
-                  "fixed": "#13241f"
+                  "fixed": "text"
                 },
                 "size": 14,
                 "align": "center",
@@ -1672,7 +1696,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -1743,7 +1767,7 @@
                   "fixed": "bạn đang xem"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -1780,7 +1804,7 @@
                   "fixed": "Thiết bị an toàn"
                 },
                 "color": {
-                  "fixed": "#13241f"
+                  "fixed": "text"
                 },
                 "size": 14,
                 "align": "center",
@@ -1788,7 +1812,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -1886,7 +1910,7 @@
                   "fixed": "ACK p95 · quạt/van/còi"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -1923,7 +1947,7 @@
                   "fixed": "Safety Controller"
                 },
                 "color": {
-                  "fixed": "#13241f"
+                  "fixed": "text"
                 },
                 "size": 14,
                 "align": "center",
@@ -1931,7 +1955,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -2029,7 +2053,7 @@
                   "fixed": "alarm hiện tại"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -2066,7 +2090,7 @@
                   "fixed": "Kitchen UI"
                 },
                 "color": {
-                  "fixed": "#13241f"
+                  "fixed": "text"
                 },
                 "size": 14,
                 "align": "center",
@@ -2074,7 +2098,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -2145,7 +2169,7 @@
                   "fixed": "lag consumer · SSE"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -2182,7 +2206,7 @@
                   "fixed": "publish"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -2219,7 +2243,7 @@
                   "fixed": "subscribe"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -2256,7 +2280,7 @@
                   "fixed": "produce"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -2293,7 +2317,7 @@
                   "fixed": "consume"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -2330,7 +2354,7 @@
                   "fixed": "write"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -2367,7 +2391,7 @@
                   "fixed": "query"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -2404,7 +2428,7 @@
                   "fixed": "predictions"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -2515,7 +2539,7 @@
                   "fixed": "live"
                 },
                 "color": {
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 11,
                 "align": "center",
@@ -2562,7 +2586,7 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#ffffff"
+                  "fixed": "transparent"
                 }
               },
               "border": {
@@ -2593,7 +2617,7 @@
                   "fixed": "Cảm biến → InfluxDB · p95"
                 },
                 "color": {
-                  "fixed": "#33463f"
+                  "fixed": "text"
                 },
                 "size": 11,
                 "align": "center",

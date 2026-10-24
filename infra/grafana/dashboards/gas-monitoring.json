@@ -124,6 +124,30 @@
       "tooltip": "",
       "type": "link",
       "url": "http://localhost:9090/alerts"
+    },
+    {
+      "asDropdown": false,
+      "icon": "bolt",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Nền sáng",
+      "tooltip": "Giao diện sáng",
+      "type": "link",
+      "url": "/d/aiot-gas-monitoring?theme=light"
+    },
+    {
+      "asDropdown": false,
+      "icon": "bolt",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Nền tối",
+      "tooltip": "Giao diện tối",
+      "type": "link",
+      "url": "/d/aiot-gas-monitoring?theme=dark"
     }
   ],
   "annotations": {
@@ -1093,7 +1117,7 @@
                 },
                 "color": {
                   "field": "Trạng thái",
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 18,
                 "align": "center",
@@ -1132,7 +1156,7 @@
                 },
                 "color": {
                   "field": "Chuông",
-                  "fixed": "#52665f"
+                  "fixed": "#7f8f8a"
                 },
                 "size": 13,
                 "align": "center",

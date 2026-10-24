@@ -356,12 +356,12 @@ def canvas_map() -> dict:
             "name": name,
             "config": {
                 "text": {"mode": "fixed", "fixed": title},
-                "color": {"fixed": "#13241f"},
+                "color": {"fixed": "text"},
                 "size": 14,
                 "align": "center",
                 "valign": "top",
             },
-            "background": {"color": {"fixed": "#ffffff"}},
+            "background": {"color": {"fixed": "transparent"}},
             "border": {"color": {"field": metric, "fixed": accent}, "width": 3, "radius": 14},
             "constraint": scale,
             "placement": place(left, top, width, height),
@@ -392,7 +392,7 @@ def canvas_map() -> dict:
                 "name": f"{name} · mô tả",
                 "config": {
                     "text": {"mode": "fixed", "fixed": caption},
-                    "color": {"fixed": "#52665f"},
+                    "color": {"fixed": "#7f8f8a"},
                     "size": 11,
                     "align": "center",
                     "valign": "middle",
@@ -404,7 +404,7 @@ def canvas_map() -> dict:
             }
         )
 
-    def label(text, left, top, width=4, height=8, color="#52665f"):
+    def label(text, left, top, width=4, height=8, color="#7f8f8a"):
         elements.append(
             {
                 "type": "text",
@@ -517,13 +517,13 @@ def canvas_map() -> dict:
                 "align": "center",
                 "valign": "middle",
             },
-            "background": {"color": {"fixed": "#ffffff"}},
+            "background": {"color": {"fixed": "transparent"}},
             "border": {"color": {"field": "e2e", "fixed": MINT}, "width": 2, "radius": 12},
             "constraint": scale,
             "placement": place(lefts[5], top_b + 6, 24, 22),
         }
     )
-    label("Cảm biến → InfluxDB · p95", lefts[5], top_b - 2, width=24, height=8, color="#33463f")
+    label("Cảm biến → InfluxDB · p95", lefts[5], top_b - 2, width=24, height=8, color="text")
 
     rate = steps((None, RED), (0.05, MINT))
     overrides = [
@@ -643,7 +643,7 @@ def siren_switch() -> dict:
             "bottom": round(100 - top - height, 2),
         }
 
-    def text(name, value, left, top, width, height, size=12, color="#52665f", field=None):
+    def text(name, value, left, top, width, height, size=12, color="#7f8f8a", field=None):
         return {
             "type": "metric-value" if field else "text",
             "name": name,
@@ -827,7 +827,12 @@ def dashboard(
         "time": {"from": time_from, "to": "now"},
         "timepicker": {"refresh_intervals": ["5s", "10s", "30s", "1m", "5m"]},
         "templating": {"list": variables},
-        "links": links,
+        # Theme switch: reload this dashboard with Grafana's ?theme= parameter, keeping time + vars.
+        "links": [
+            *links,
+            link("Nền sáng", f"/d/{uid}?theme=light", "bolt", tooltip="Giao diện sáng"),
+            link("Nền tối", f"/d/{uid}?theme=dark", "bolt", tooltip="Giao diện tối"),
+        ],
         "annotations": {
             "list": [
                 {
