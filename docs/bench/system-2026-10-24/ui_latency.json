@@ -1,0 +1,65 @@
+{
+ "run_id": "ui_latency-20261023T234214Z-15dfbe",
+ "node": "bench-ui-001",
+ "measured_sequences": [
+  20,
+  139
+ ],
+ "sse_reading": {
+  "n": 121,
+  "mean_ms": 331.68,
+  "p50_ms": 127.27,
+  "p95_ms": 219.52,
+  "p99_ms": 227.93,
+  "max_ms": 24737.99
+ },
+ "sse_prediction": {
+  "n": 121,
+  "mean_ms": 341.72,
+  "p50_ms": 135.96,
+  "p95_ms": 232.41,
+  "p99_ms": 271.31,
+  "max_ms": 24737.99
+ },
+ "dom_reading": {
+  "n": 116,
+  "mean_ms": 539.77,
+  "p50_ms": 261.0,
+  "p95_ms": 1231.0,
+  "p99_ms": 1254.55,
+  "max_ms": 1271.0
+ },
+ "dom_prediction": {
+  "n": 115,
+  "mean_ms": 594.52,
+  "p50_ms": 263.0,
+  "p95_ms": 1252.9,
+  "p99_ms": 1269.6,
+  "max_ms": 1272.0
+ },
+ "frame_reading": {
+  "n": 116,
+  "mean_ms": 2503.83,
+  "p50_ms": 2234.0,
+  "p95_ms": 3210.5,
+  "p99_ms": 3233.8,
+  "max_ms": 3236.0
+ },
+ "frame_prediction": {
+  "n": 115,
+  "mean_ms": 2558.54,
+  "p50_ms": 2237.0,
+  "p95_ms": 3227.0,
+  "p99_ms": 3235.86,
+  "max_ms": 3239.0
+ },
+ "backend_ema_ms_last": {
+  "sensor": 27.8,
+  "prediction": 40.1,
+  "ground_truth": 29.1,
+  "control_request": null,
+  "actuator_command": 7349.4,
+  "actuator_state": 14321.6
+ },
+ "published": 145
+}

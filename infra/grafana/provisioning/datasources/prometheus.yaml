@@ -1,0 +1,12 @@
+apiVersion: 1
+
+prune: true
+datasources:
+  - name: Prometheus-Operations
+    uid: prometheus-operations
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: false
+    jsonData:
+      timeInterval: 5s

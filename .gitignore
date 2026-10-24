@@ -1,0 +1,26 @@
+.env
+.venv/
+.uv-cache/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+# Raw UCI 322 download (327 MB); the 1 Hz replay used by the demo is demo_data/demo_1hz.csv.
+data/
+artifacts/
+.artifacts/
+
+# PlatformIO build output: firmware binaries and object files are rebuilt from source.
+**/.pio/
+.pio/
+
+# Local build products of the C++ host test and of the firmware tooling.
+*.exe
+*.pdb
+*.elf
+*.map
+
+# Personal documents that are not part of the project.
+*.pdf
+
+

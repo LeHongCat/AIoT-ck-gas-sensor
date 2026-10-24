@@ -1,0 +1,52 @@
+{
+ "run_id": "wokwi_device-20261024T072216Z-ff7c5e",
+ "node": "esp32-edge-01",
+ "recorded_s": 3900.6,
+ "readings": 441,
+ "simulated_s_per_wall_s": 0.113,
+ "reading_sequence_gaps": 2,
+ "predictions": 13,
+ "predictions_expected_by_schedule": 89.0,
+ "model": [
+  "tabm-int8/seed42"
+ ],
+ "D08_inference_ms_on_board": {
+  "n": 13,
+  "p50": 37745.82,
+  "p95": 39985.256,
+  "min": 37660.0,
+  "max": 40011.59
+ },
+ "D10_prediction_interval_wall_s": {
+  "n": 12,
+  "p50": 293.631,
+  "p95": 307.061,
+  "min": 261.942,
+  "max": 311.397
+ },
+ "D10_prediction_sequence_step": {
+  "n": 12,
+  "p50": 32.5,
+  "p95": 35.0,
+  "min": 30.0,
+  "max": 35.0
+ },
+ "D11_over_1_5x_period_pct": 100.0,
+ "D11_max_gap_wall_s": 311.4,
+ "D11_skipped_windows_reported": 73,
+ "D07_memory": {
+  "free_heap": 98216,
+  "min_free_heap": 91872,
+  "max_alloc_heap": 53236,
+  "min_free_psram": 0,
+  "inference_stack_free_min": 10516,
+  "loop_stack_free_min": 3528
+ },
+ "D07_static": {
+  "heap_size": 261176,
+  "psram_size": 0,
+  "inference_stack_size": 12288,
+  "cpu_mhz": 240
+ },
+ "diagnostics_messages": 18
+}

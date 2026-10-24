@@ -1,0 +1,4703 @@
+{
+ "run_id": "load_test-20261023T210322Z-b4647b",
+ "steps": [
+  {
+   "run": 1,
+   "nodes": 1,
+   "node_prefix": "bench-r1-n001",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.7,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 105,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 150,
+    "ground-truth": 150
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 3,
+   "gateway_latency": {
+    "n": 121,
+    "mean_ms": 15.34,
+    "p50_ms": 14.13,
+    "p95_ms": 17.86,
+    "p99_ms": 61.09,
+    "max_ms": 62.26
+   },
+   "predictions_mqtt_in_window": 120,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 119,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.0,
+    "p99_s": 1.05,
+    "max_s": 1.05
+   },
+   "prediction_interval_over_1_5x_pct": 0.0,
+   "prediction_max_gap_s": 1.05,
+   "nodes_with_predictions": 1,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 2.0,
+   "inference_mean_ms": 9.68321,
+   "predictions_made": 115.196902,
+   "bridge_msgs_per_s": 3.035099,
+   "controller_sample_age_p50_s": 0.038561,
+   "controller_sample_age_p95_s": 0.068056,
+   "command_ack_p50_s": 0.007521,
+   "command_ack_p95_s": 0.009791,
+   "commands_published": 0.0,
+   "commands_deduplicated": 116.942637,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.023588,
+   "persist_sensor_reading_p50_s": 0.08125,
+   "persist_sensor_reading_p95_s": 0.478409,
+   "persist_gas_ground_truth_p50_s": 0.490911,
+   "persist_gas_ground_truth_p95_s": 0.724091,
+   "persist_gas_prediction_p50_s": 0.50431,
+   "persist_gas_prediction_p95_s": 0.725431,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 0.08,
+     "peak": 2.0,
+     "last": 0.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 9.88,
+     "peak": 12.0,
+     "last": 9.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.17,
+     "peak": 1.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 121,
+      "mean_ms": 25.94,
+      "p50_ms": 25.73,
+      "p95_ms": 28.4,
+      "p99_ms": 29.99,
+      "max_ms": 30.16
+     },
+     "records": 150,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 120,
+      "found": 120,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 121,
+      "mean_ms": 30.03,
+      "p50_ms": 28.23,
+      "p95_ms": 30.63,
+      "p99_ms": 83.21,
+      "max_ms": 83.79
+     },
+     "records": 150,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 120,
+      "found": 120,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 121,
+      "mean_ms": 40.59,
+      "p50_ms": 36.93,
+      "p95_ms": 77.7,
+      "p99_ms": 86.38,
+      "max_ms": 86.56
+     },
+     "records": 150,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 120,
+      "found": 120,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 120,
+     "found": 120,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 120,
+     "found": 120,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 120,
+     "found": 120,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 120,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 221,
+    "edge-inference": 80,
+    "influx-sink": 172,
+    "safety-controller": 88
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.077,
+     "cpu_cores_peak": 0.434,
+     "mem_mib_mean": 176.8,
+     "mem_mib_peak": 188.6
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.037,
+     "cpu_cores_peak": 0.213,
+     "mem_mib_mean": 56.2,
+     "mem_mib_peak": 64.3
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.028,
+     "cpu_cores_peak": 0.047,
+     "mem_mib_mean": 245.9,
+     "mem_mib_peak": 246.7
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.089,
+     "cpu_cores_peak": 0.479,
+     "mem_mib_mean": 51.2,
+     "mem_mib_peak": 62.9
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.017,
+     "cpu_cores_peak": 0.076,
+     "mem_mib_mean": 104.1,
+     "mem_mib_peak": 108.9
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.157,
+     "cpu_cores_peak": 0.223,
+     "mem_mib_mean": 677.9,
+     "mem_mib_peak": 683.4
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.046,
+     "cpu_cores_peak": 0.184,
+     "mem_mib_mean": 11.5,
+     "mem_mib_peak": 12.6
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.008,
+     "cpu_cores_peak": 0.061,
+     "mem_mib_mean": 4.5,
+     "mem_mib_peak": 8.1
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.029,
+     "cpu_cores_peak": 0.285,
+     "mem_mib_mean": 28.1,
+     "mem_mib_peak": 37.6
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.036,
+     "cpu_cores_peak": 0.097,
+     "mem_mib_mean": 179.8,
+     "mem_mib_peak": 184.1
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.03,
+     "cpu_cores_peak": 0.179,
+     "mem_mib_mean": 28.4,
+     "mem_mib_peak": 36.8
+    },
+    "_total": {
+     "cpu_cores_mean": 0.554,
+     "mem_mib_mean": 1564.4
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 29.2,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 1,
+   "nodes": 10,
+   "node_prefix": "bench-r1-n010",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 106,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 1500,
+    "ground-truth": 1500
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 24,
+   "gateway_latency": {
+    "n": 1218,
+    "mean_ms": 103.19,
+    "p50_ms": 86.71,
+    "p95_ms": 275.64,
+    "p99_ms": 459.82,
+    "max_ms": 555.88
+   },
+   "predictions_mqtt_in_window": 1208,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 1198,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.17,
+    "p99_s": 1.3,
+    "max_s": 1.45
+   },
+   "prediction_interval_over_1_5x_pct": 0.0,
+   "prediction_max_gap_s": 1.45,
+   "nodes_with_predictions": 10,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 20.0,
+   "inference_mean_ms": 13.407795,
+   "predictions_made": 1185.07886,
+   "bridge_msgs_per_s": 30.142538,
+   "controller_sample_age_p50_s": 0.162221,
+   "controller_sample_age_p95_s": 0.315,
+   "command_ack_p50_s": 0.004,
+   "command_ack_p95_s": 0.009333,
+   "commands_published": 2.069763,
+   "commands_deduplicated": 1181.834784,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.024625,
+   "persist_sensor_reading_p50_s": 0.416033,
+   "persist_sensor_reading_p95_s": 0.726026,
+   "persist_gas_ground_truth_p50_s": 0.43587,
+   "persist_gas_ground_truth_p95_s": 0.729598,
+   "persist_gas_prediction_p50_s": 0.48801,
+   "persist_gas_prediction_p95_s": 0.811567,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 2.21,
+     "peak": 29.0,
+     "last": 0.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 93.38,
+     "peak": 100.0,
+     "last": 92.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.0,
+     "peak": 0.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 1210,
+      "mean_ms": 27.05,
+      "p50_ms": 25.97,
+      "p95_ms": 33.26,
+      "p99_ms": 57.78,
+      "max_ms": 61.4
+     },
+     "records": 1500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 1200,
+      "found": 1200,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 1210,
+      "mean_ms": 29.07,
+      "p50_ms": 28.54,
+      "p95_ms": 33.86,
+      "p99_ms": 55.98,
+      "max_ms": 62.35
+     },
+     "records": 1500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 1200,
+      "found": 1200,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 1218,
+      "mean_ms": 126.53,
+      "p50_ms": 109.05,
+      "p95_ms": 300.77,
+      "p99_ms": 483.96,
+      "max_ms": 580.65
+     },
+     "records": 1500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 1200,
+      "found": 1200,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 1200,
+     "found": 1200,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 1200,
+     "found": 1200,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 1200,
+     "found": 1200,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 1200,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 582,
+    "edge-inference": 136,
+    "influx-sink": 172,
+    "safety-controller": 216
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.076,
+     "cpu_cores_peak": 0.252,
+     "mem_mib_mean": 177.1,
+     "mem_mib_peak": 184.8
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.144,
+     "cpu_cores_peak": 0.491,
+     "mem_mib_mean": 56.2,
+     "mem_mib_peak": 68.1
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.041,
+     "cpu_cores_peak": 0.087,
+     "mem_mib_mean": 245.6,
+     "mem_mib_peak": 246.3
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.065,
+     "cpu_cores_peak": 0.34,
+     "mem_mib_mean": 51.5,
+     "mem_mib_peak": 61.4
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.016,
+     "cpu_cores_peak": 0.081,
+     "mem_mib_mean": 104.3,
+     "mem_mib_peak": 105.0
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.196,
+     "cpu_cores_peak": 0.316,
+     "mem_mib_mean": 685.0,
+     "mem_mib_peak": 688.9
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.034,
+     "cpu_cores_peak": 0.187,
+     "mem_mib_mean": 11.6,
+     "mem_mib_peak": 12.5
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.012,
+     "cpu_cores_peak": 0.068,
+     "mem_mib_mean": 4.6,
+     "mem_mib_peak": 5.3
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.054,
+     "cpu_cores_peak": 0.522,
+     "mem_mib_mean": 28.1,
+     "mem_mib_peak": 28.9
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.023,
+     "cpu_cores_peak": 0.066,
+     "mem_mib_mean": 189.7,
+     "mem_mib_peak": 190.4
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.05,
+     "cpu_cores_peak": 0.241,
+     "mem_mib_mean": 29.8,
+     "mem_mib_peak": 39.3
+    },
+    "_total": {
+     "cpu_cores_mean": 0.711,
+     "mem_mib_mean": 1583.5
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 27.2,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 1,
+   "nodes": 20,
+   "node_prefix": "bench-r1-n020",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 116,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 3000,
+    "ground-truth": 3000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 44,
+   "gateway_latency": {
+    "n": 2432,
+    "mean_ms": 268.08,
+    "p50_ms": 331.83,
+    "p95_ms": 654.24,
+    "p99_ms": 852.08,
+    "max_ms": 856.85
+   },
+   "predictions_mqtt_in_window": 2395,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 2375,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.25,
+    "p99_s": 1.52,
+    "max_s": 1.57
+   },
+   "prediction_interval_over_1_5x_pct": 2.53,
+   "prediction_max_gap_s": 1.57,
+   "nodes_with_predictions": 20,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 40.0,
+   "inference_mean_ms": 16.929617,
+   "predictions_made": 2372.321852,
+   "bridge_msgs_per_s": 60.284551,
+   "controller_sample_age_p50_s": 0.307352,
+   "controller_sample_age_p95_s": 0.614094,
+   "command_ack_p50_s": 0.002879,
+   "command_ack_p95_s": 0.01435,
+   "commands_published": 4.403987,
+   "commands_deduplicated": 2363.690124,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.024639,
+   "persist_sensor_reading_p50_s": 0.452446,
+   "persist_sensor_reading_p95_s": 0.721193,
+   "persist_gas_ground_truth_p50_s": 0.45462,
+   "persist_gas_ground_truth_p95_s": 0.721655,
+   "persist_gas_prediction_p50_s": 0.67192,
+   "persist_gas_prediction_p95_s": 1.017708,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 8.5,
+     "peak": 48.0,
+     "last": 12.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 195.58,
+     "peak": 240.0,
+     "last": 192.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.08,
+     "peak": 2.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 2420,
+      "mean_ms": 30.24,
+      "p50_ms": 25.8,
+      "p95_ms": 67.58,
+      "p99_ms": 97.91,
+      "max_ms": 180.49
+     },
+     "records": 3000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 2400,
+      "found": 2400,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 2420,
+      "mean_ms": 32.32,
+      "p50_ms": 27.41,
+      "p95_ms": 75.68,
+      "p99_ms": 98.79,
+      "max_ms": 185.51
+     },
+     "records": 3000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 2400,
+      "found": 2400,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 2438,
+      "mean_ms": 295.56,
+      "p50_ms": 356.1,
+      "p95_ms": 678.06,
+      "p99_ms": 874.15,
+      "max_ms": 883.65
+     },
+     "records": 3000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 2400,
+      "found": 2400,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 2400,
+     "found": 2400,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 2400,
+     "found": 2400,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 2400,
+     "found": 2400,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 2400,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 992,
+    "edge-inference": 192,
+    "influx-sink": 172,
+    "safety-controller": 352
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.089,
+     "cpu_cores_peak": 0.309,
+     "mem_mib_mean": 179.6,
+     "mem_mib_peak": 188.5
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.237,
+     "cpu_cores_peak": 0.495,
+     "mem_mib_mean": 57.1,
+     "mem_mib_peak": 67.0
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.031,
+     "cpu_cores_peak": 0.044,
+     "mem_mib_mean": 246.4,
+     "mem_mib_peak": 247.9
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.072,
+     "cpu_cores_peak": 0.365,
+     "mem_mib_mean": 50.8,
+     "mem_mib_peak": 61.0
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.014,
+     "cpu_cores_peak": 0.078,
+     "mem_mib_mean": 108.0,
+     "mem_mib_peak": 109.7
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.234,
+     "cpu_cores_peak": 0.492,
+     "mem_mib_mean": 687.6,
+     "mem_mib_peak": 692.9
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.045,
+     "cpu_cores_peak": 0.179,
+     "mem_mib_mean": 11.4,
+     "mem_mib_peak": 13.6
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.02,
+     "cpu_cores_peak": 0.072,
+     "mem_mib_mean": 5.0,
+     "mem_mib_peak": 9.4
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.073,
+     "cpu_cores_peak": 0.325,
+     "mem_mib_mean": 29.5,
+     "mem_mib_peak": 38.5
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.017,
+     "cpu_cores_peak": 0.032,
+     "mem_mib_mean": 178.8,
+     "mem_mib_peak": 179.4
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.063,
+     "cpu_cores_peak": 0.256,
+     "mem_mib_mean": 29.7,
+     "mem_mib_peak": 39.0
+    },
+    "_total": {
+     "cpu_cores_mean": 0.895,
+     "mem_mib_mean": 1583.9
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 27.6,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 1,
+   "nodes": 40,
+   "node_prefix": "bench-r1-n040",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 136,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 6000,
+    "ground-truth": 6000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 93,
+   "gateway_latency": {
+    "n": 4872,
+    "mean_ms": 618.86,
+    "p50_ms": 557.73,
+    "p95_ms": 1369.16,
+    "p99_ms": 1742.14,
+    "max_ms": 1938.55
+   },
+   "predictions_mqtt_in_window": 4800,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 4760,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.5,
+    "p99_s": 1.88,
+    "max_s": 2.21
+   },
+   "prediction_interval_over_1_5x_pct": 5.06,
+   "prediction_max_gap_s": 2.21,
+   "nodes_with_predictions": 40,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 80.0,
+   "inference_mean_ms": 18.320228,
+   "predictions_made": 4763.313045,
+   "bridge_msgs_per_s": 120.657118,
+   "controller_sample_age_p50_s": 0.632512,
+   "controller_sample_age_p95_s": 1.664616,
+   "command_ack_p50_s": 0.002653,
+   "command_ack_p95_s": 0.028162,
+   "commands_published": 15.950953,
+   "commands_deduplicated": 4759.461857,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.024832,
+   "persist_sensor_reading_p50_s": 0.460142,
+   "persist_sensor_reading_p95_s": 0.729462,
+   "persist_gas_ground_truth_p50_s": 0.463074,
+   "persist_gas_ground_truth_p95_s": 0.730238,
+   "persist_gas_prediction_p50_s": 1.094179,
+   "persist_gas_prediction_p95_s": 1.849613,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 78.21,
+     "peak": 113.0,
+     "last": 58.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 459.12,
+     "peak": 505.0,
+     "last": 440.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.42,
+     "peak": 8.0,
+     "last": 8.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 4840,
+      "mean_ms": 46.66,
+      "p50_ms": 41.2,
+      "p95_ms": 117.26,
+      "p99_ms": 222.94,
+      "max_ms": 252.9
+     },
+     "records": 6000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4800,
+      "found": 4800,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 4840,
+      "mean_ms": 48.52,
+      "p50_ms": 42.66,
+      "p95_ms": 124.19,
+      "p99_ms": 225.63,
+      "max_ms": 255.93
+     },
+     "records": 6000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4800,
+      "found": 4800,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 4872,
+      "mean_ms": 647.81,
+      "p50_ms": 582.8,
+      "p95_ms": 1393.66,
+      "p99_ms": 1768.78,
+      "max_ms": 1963.97
+     },
+     "records": 6000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4800,
+      "found": 4800,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 4800,
+     "found": 4800,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 4800,
+     "found": 4800,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 4800,
+     "found": 4800,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 4800,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1812,
+    "edge-inference": 306,
+    "influx-sink": 172,
+    "safety-controller": 626
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.135,
+     "cpu_cores_peak": 0.483,
+     "mem_mib_mean": 180.5,
+     "mem_mib_peak": 191.1
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.434,
+     "cpu_cores_peak": 0.513,
+     "mem_mib_mean": 57.0,
+     "mem_mib_peak": 69.3
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.038,
+     "cpu_cores_peak": 0.129,
+     "mem_mib_mean": 246.1,
+     "mem_mib_peak": 246.9
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.087,
+     "cpu_cores_peak": 0.421,
+     "mem_mib_mean": 49.9,
+     "mem_mib_peak": 58.5
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.019,
+     "cpu_cores_peak": 0.082,
+     "mem_mib_mean": 117.0,
+     "mem_mib_peak": 117.8
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.271,
+     "cpu_cores_peak": 0.338,
+     "mem_mib_mean": 696.3,
+     "mem_mib_peak": 702.3
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.022,
+     "cpu_cores_peak": 0.13,
+     "mem_mib_mean": 11.6,
+     "mem_mib_peak": 13.4
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.032,
+     "cpu_cores_peak": 0.086,
+     "mem_mib_mean": 5.0,
+     "mem_mib_peak": 5.7
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.14,
+     "cpu_cores_peak": 0.505,
+     "mem_mib_mean": 30.0,
+     "mem_mib_peak": 38.2
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.026,
+     "cpu_cores_peak": 0.079,
+     "mem_mib_mean": 178.9,
+     "mem_mib_peak": 179.5
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.069,
+     "cpu_cores_peak": 0.256,
+     "mem_mib_mean": 29.3,
+     "mem_mib_peak": 41.2
+    },
+    "_total": {
+     "cpu_cores_mean": 1.273,
+     "mem_mib_mean": 1601.6
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 27.1,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 1,
+   "nodes": 60,
+   "node_prefix": "bench-r1-n060",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 176,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 9000,
+    "ground-truth": 9000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 129,
+   "gateway_latency": {
+    "n": 5937,
+    "mean_ms": 17690.42,
+    "p50_ms": 20566.63,
+    "p95_ms": 22773.71,
+    "p99_ms": 23055.26,
+    "max_ms": 23449.02
+   },
+   "predictions_mqtt_in_window": 5596,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 5536,
+    "mean_s": 1.27,
+    "p50_s": 1.19,
+    "p95_s": 2.08,
+    "p99_s": 3.58,
+    "max_s": 15.83
+   },
+   "prediction_interval_over_1_5x_pct": 11.96,
+   "prediction_max_gap_s": 15.83,
+   "nodes_with_predictions": 60,
+   "mosquitto_dropped": 959.0,
+   "events_per_s_published": 120.0,
+   "inference_mean_ms": 18.997451,
+   "predictions_made": 5521.888945,
+   "bridge_msgs_per_s": 167.826208,
+   "controller_sample_age_p50_s": 10.0,
+   "controller_sample_age_p95_s": 10.0,
+   "command_ack_p50_s": 0.002883,
+   "command_ack_p95_s": 0.0925,
+   "commands_published": 14.488468,
+   "commands_deduplicated": 5536.664695,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.035583,
+   "persist_sensor_reading_p50_s": 0.468444,
+   "persist_sensor_reading_p95_s": 0.749367,
+   "persist_gas_ground_truth_p50_s": 0.47062,
+   "persist_gas_ground_truth_p95_s": 0.749462,
+   "persist_gas_prediction_p50_s": 18.456118,
+   "persist_gas_prediction_p95_s": 28.845612,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 111.17,
+     "peak": 159.0,
+     "last": 159.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 642.79,
+     "peak": 670.0,
+     "last": 670.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 2.25,
+     "peak": 10.0,
+     "last": 10.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 7260,
+      "mean_ms": 76.99,
+      "p50_ms": 50.14,
+      "p95_ms": 193.32,
+      "p99_ms": 307.31,
+      "max_ms": 392.55
+     },
+     "records": 9000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 7200,
+      "found": 7200,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 7260,
+      "mean_ms": 79.27,
+      "p50_ms": 58.96,
+      "p95_ms": 195.9,
+      "p99_ms": 307.9,
+      "max_ms": 391.95
+     },
+     "records": 9000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 7200,
+      "found": 7200,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 5937,
+      "mean_ms": 17726.15,
+      "p50_ms": 20594.59,
+      "p95_ms": 22796.69,
+      "p99_ms": 23133.63,
+      "max_ms": 23471.89
+     },
+     "records": 7302,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 7200,
+      "found": 5502,
+      "pct": 76.42
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 7200,
+     "found": 7200,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 7200,
+     "found": 7200,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 7200,
+     "found": 5622,
+     "pct": 78.08
+    }
+   },
+   "predictions_expected_by_schedule": 7200,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 2732,
+    "edge-inference": 424,
+    "influx-sink": 172,
+    "safety-controller": 906
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.183,
+     "cpu_cores_peak": 0.511,
+     "mem_mib_mean": 180.5,
+     "mem_mib_peak": 191.2
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.499,
+     "cpu_cores_peak": 0.515,
+     "mem_mib_mean": 57.1,
+     "mem_mib_peak": 69.0
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.034,
+     "cpu_cores_peak": 0.075,
+     "mem_mib_mean": 246.1,
+     "mem_mib_peak": 247.1
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.099,
+     "cpu_cores_peak": 0.498,
+     "mem_mib_mean": 50.6,
+     "mem_mib_peak": 62.0
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.026,
+     "cpu_cores_peak": 0.092,
+     "mem_mib_mean": 130.3,
+     "mem_mib_peak": 134.4
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.304,
+     "cpu_cores_peak": 0.406,
+     "mem_mib_mean": 693.3,
+     "mem_mib_peak": 698.5
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.037,
+     "cpu_cores_peak": 0.145,
+     "mem_mib_mean": 11.3,
+     "mem_mib_peak": 13.1
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.036,
+     "cpu_cores_peak": 0.096,
+     "mem_mib_mean": 5.9,
+     "mem_mib_peak": 6.6
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.166,
+     "cpu_cores_peak": 0.499,
+     "mem_mib_mean": 30.7,
+     "mem_mib_peak": 42.8
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.021,
+     "cpu_cores_peak": 0.047,
+     "mem_mib_mean": 180.1,
+     "mem_mib_peak": 181.6
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.087,
+     "cpu_cores_peak": 0.256,
+     "mem_mib_mean": 29.5,
+     "mem_mib_peak": 38.0
+    },
+    "_total": {
+     "cpu_cores_mean": 1.492,
+     "mem_mib_mean": 1615.4
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 27.9,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 1,
+   "nodes": 100,
+   "node_prefix": "bench-r1-n100",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.9,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 236,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 15000,
+    "ground-truth": 15000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 179,
+   "gateway_latency": {
+    "n": 5857,
+    "mean_ms": 21929.41,
+    "p50_ms": 21973.89,
+    "p95_ms": 23484.09,
+    "p99_ms": 23709.35,
+    "max_ms": 23996.96
+   },
+   "predictions_mqtt_in_window": 5526,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 5426,
+    "mean_s": 1.47,
+    "p50_s": 1.0,
+    "p95_s": 2.16,
+    "p99_s": 4.39,
+    "max_s": 72.93
+   },
+   "prediction_interval_over_1_5x_pct": 19.96,
+   "prediction_max_gap_s": 109.8,
+   "nodes_with_predictions": 100,
+   "mosquitto_dropped": 7090.0,
+   "events_per_s_published": 200.0,
+   "inference_mean_ms": 19.190289,
+   "predictions_made": 5456.83143,
+   "bridge_msgs_per_s": 247.190603,
+   "controller_sample_age_p50_s": 10.0,
+   "controller_sample_age_p95_s": 10.0,
+   "command_ack_p50_s": 0.002878,
+   "command_ack_p95_s": 0.148543,
+   "commands_published": 12.476219,
+   "commands_deduplicated": 5451.756255,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.046786,
+   "persist_sensor_reading_p50_s": 0.215738,
+   "persist_sensor_reading_p95_s": 0.923758,
+   "persist_gas_ground_truth_p50_s": 0.21703,
+   "persist_gas_ground_truth_p95_s": 0.932141,
+   "persist_gas_prediction_p50_s": 20.0,
+   "persist_gas_prediction_p95_s": 29.0,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 159.21,
+     "peak": 229.0,
+     "last": 197.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 927.71,
+     "peak": 981.0,
+     "last": 970.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 2.5,
+     "peak": 13.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 12100,
+      "mean_ms": 134.12,
+      "p50_ms": 86.57,
+      "p95_ms": 375.51,
+      "p99_ms": 692.52,
+      "max_ms": 1169.95
+     },
+     "records": 15000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 12000,
+      "found": 12000,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 12100,
+      "mean_ms": 136.07,
+      "p50_ms": 88.55,
+      "p95_ms": 378.56,
+      "p99_ms": 677.82,
+      "max_ms": 1173.85
+     },
+     "records": 15000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 12000,
+      "found": 12000,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 5857,
+      "mean_ms": 21997.31,
+      "p50_ms": 22013.23,
+      "p95_ms": 23508.0,
+      "p99_ms": 23734.26,
+      "max_ms": 24022.6
+     },
+     "records": 7161,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 12000,
+      "found": 4797,
+      "pct": 39.98
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 12000,
+     "found": 12000,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 12000,
+     "found": 12000,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 12000,
+     "found": 4927,
+     "pct": 41.06
+    }
+   },
+   "predictions_expected_by_schedule": 12000,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 4448,
+    "edge-inference": 614,
+    "influx-sink": 172,
+    "safety-controller": 1418
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.171,
+     "cpu_cores_peak": 0.472,
+     "mem_mib_mean": 180.3,
+     "mem_mib_peak": 190.2
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.501,
+     "cpu_cores_peak": 0.527,
+     "mem_mib_mean": 58.0,
+     "mem_mib_peak": 68.8
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.028,
+     "cpu_cores_peak": 0.047,
+     "mem_mib_mean": 245.9,
+     "mem_mib_peak": 246.7
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.116,
+     "cpu_cores_peak": 0.407,
+     "mem_mib_mean": 50.4,
+     "mem_mib_peak": 58.1
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.028,
+     "cpu_cores_peak": 0.09,
+     "mem_mib_mean": 153.0,
+     "mem_mib_peak": 160.1
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.356,
+     "cpu_cores_peak": 0.424,
+     "mem_mib_mean": 688.5,
+     "mem_mib_peak": 692.0
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.039,
+     "cpu_cores_peak": 0.196,
+     "mem_mib_mean": 11.5,
+     "mem_mib_peak": 13.7
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.048,
+     "cpu_cores_peak": 0.105,
+     "mem_mib_mean": 6.2,
+     "mem_mib_peak": 7.1
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.211,
+     "cpu_cores_peak": 0.475,
+     "mem_mib_mean": 32.7,
+     "mem_mib_peak": 34.7
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.034,
+     "cpu_cores_peak": 0.118,
+     "mem_mib_mean": 182.1,
+     "mem_mib_peak": 189.0
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.094,
+     "cpu_cores_peak": 0.265,
+     "mem_mib_mean": 30.3,
+     "mem_mib_peak": 41.5
+    },
+    "_total": {
+     "cpu_cores_mean": 1.626,
+     "mem_mib_mean": 1638.9
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 28.7,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 2,
+   "nodes": 1,
+   "node_prefix": "bench-r2-n001",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 336,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 150,
+    "ground-truth": 150
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 3,
+   "gateway_latency": {
+    "n": 121,
+    "mean_ms": 15.13,
+    "p50_ms": 14.17,
+    "p95_ms": 18.14,
+    "p99_ms": 39.49,
+    "max_ms": 39.98
+   },
+   "predictions_mqtt_in_window": 120,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 119,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.01,
+    "p99_s": 1.03,
+    "max_s": 1.03
+   },
+   "prediction_interval_over_1_5x_pct": 0.0,
+   "prediction_max_gap_s": 1.03,
+   "nodes_with_predictions": 1,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 2.0,
+   "inference_mean_ms": 10.731313,
+   "predictions_made": 120.245417,
+   "bridge_msgs_per_s": 3.035099,
+   "controller_sample_age_p50_s": 0.038221,
+   "controller_sample_age_p95_s": 0.054167,
+   "command_ack_p50_s": 0.01,
+   "command_ack_p95_s": 0.0235,
+   "commands_published": 0.0,
+   "commands_deduplicated": 116.848048,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.022529,
+   "persist_sensor_reading_p50_s": 0.082143,
+   "persist_sensor_reading_p95_s": 0.477594,
+   "persist_gas_ground_truth_p50_s": 0.492925,
+   "persist_gas_ground_truth_p95_s": 0.72433,
+   "persist_gas_prediction_p50_s": 0.497642,
+   "persist_gas_prediction_p95_s": 0.724781,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 2.21,
+     "peak": 5.0,
+     "last": 2.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 12.08,
+     "peak": 14.0,
+     "last": 12.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.0,
+     "peak": 0.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 121,
+      "mean_ms": 26.18,
+      "p50_ms": 25.81,
+      "p95_ms": 28.7,
+      "p99_ms": 35.62,
+      "max_ms": 37.47
+     },
+     "records": 150,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 120,
+      "found": 120,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 121,
+      "mean_ms": 28.91,
+      "p50_ms": 28.22,
+      "p95_ms": 31.07,
+      "p99_ms": 70.57,
+      "max_ms": 78.01
+     },
+     "records": 150,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 120,
+      "found": 120,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 121,
+      "mean_ms": 38.32,
+      "p50_ms": 36.92,
+      "p95_ms": 52.12,
+      "p99_ms": 73.75,
+      "max_ms": 76.82
+     },
+     "records": 150,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 120,
+      "found": 120,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 120,
+     "found": 120,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 120,
+     "found": 120,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 120,
+     "found": 120,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 120,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 452,
+    "edge-inference": 80,
+    "influx-sink": 172,
+    "safety-controller": 88
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.016,
+     "cpu_cores_peak": 0.124,
+     "mem_mib_mean": 178.3,
+     "mem_mib_peak": 179.2
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.06,
+     "cpu_cores_peak": 0.464,
+     "mem_mib_mean": 55.9,
+     "mem_mib_peak": 67.8
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.027,
+     "cpu_cores_peak": 0.042,
+     "mem_mib_mean": 246.5,
+     "mem_mib_peak": 247.3
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.036,
+     "cpu_cores_peak": 0.35,
+     "mem_mib_mean": 50.1,
+     "mem_mib_peak": 61.5
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.013,
+     "cpu_cores_peak": 0.083,
+     "mem_mib_mean": 96.7,
+     "mem_mib_peak": 97.7
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.157,
+     "cpu_cores_peak": 0.327,
+     "mem_mib_mean": 683.0,
+     "mem_mib_peak": 683.6
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.032,
+     "cpu_cores_peak": 0.217,
+     "mem_mib_mean": 11.6,
+     "mem_mib_peak": 12.8
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.006,
+     "cpu_cores_peak": 0.063,
+     "mem_mib_mean": 4.7,
+     "mem_mib_peak": 5.3
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.037,
+     "cpu_cores_peak": 0.44,
+     "mem_mib_mean": 28.6,
+     "mem_mib_peak": 41.3
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.025,
+     "cpu_cores_peak": 0.066,
+     "mem_mib_mean": 178.5,
+     "mem_mib_peak": 179.2
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.041,
+     "cpu_cores_peak": 0.216,
+     "mem_mib_mean": 28.3,
+     "mem_mib_peak": 36.5
+    },
+    "_total": {
+     "cpu_cores_mean": 0.45,
+     "mem_mib_mean": 1562.2
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 28.5,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 2,
+   "nodes": 10,
+   "node_prefix": "bench-r2-n010",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 337,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 1500,
+    "ground-truth": 1500
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 24,
+   "gateway_latency": {
+    "n": 1210,
+    "mean_ms": 120.91,
+    "p50_ms": 113.96,
+    "p95_ms": 300.36,
+    "p99_ms": 396.73,
+    "max_ms": 412.51
+   },
+   "predictions_mqtt_in_window": 1198,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 1188,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.12,
+    "p99_s": 1.27,
+    "max_s": 1.29
+   },
+   "prediction_interval_over_1_5x_pct": 0.0,
+   "prediction_max_gap_s": 1.29,
+   "nodes_with_predictions": 10,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 20.0,
+   "inference_mean_ms": 16.023744,
+   "predictions_made": 1188.984668,
+   "bridge_msgs_per_s": 30.148743,
+   "controller_sample_age_p50_s": 0.165936,
+   "controller_sample_age_p95_s": 0.359069,
+   "command_ack_p50_s": 0.003374,
+   "command_ack_p95_s": 0.009035,
+   "commands_published": 2.069763,
+   "commands_deduplicated": 1181.834784,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.024417,
+   "persist_sensor_reading_p50_s": 0.447596,
+   "persist_sensor_reading_p95_s": 0.742577,
+   "persist_gas_ground_truth_p50_s": 0.466346,
+   "persist_gas_ground_truth_p95_s": 0.745879,
+   "persist_gas_prediction_p50_s": 0.491183,
+   "persist_gas_prediction_p95_s": 0.838483,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 22.96,
+     "peak": 31.0,
+     "last": 30.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 120.0,
+     "peak": 126.0,
+     "last": 120.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.0,
+     "peak": 0.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 1210,
+      "mean_ms": 29.51,
+      "p50_ms": 27.21,
+      "p95_ms": 37.08,
+      "p99_ms": 99.32,
+      "max_ms": 107.03
+     },
+     "records": 1500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 1200,
+      "found": 1200,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 1210,
+      "mean_ms": 31.6,
+      "p50_ms": 28.83,
+      "p95_ms": 67.02,
+      "p99_ms": 102.21,
+      "max_ms": 110.4
+     },
+     "records": 1500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 1200,
+      "found": 1200,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 1210,
+      "mean_ms": 146.93,
+      "p50_ms": 137.42,
+      "p95_ms": 324.97,
+      "p99_ms": 419.48,
+      "max_ms": 434.77
+     },
+     "records": 1500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 1200,
+      "found": 1200,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 1200,
+     "found": 1200,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 1200,
+     "found": 1200,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 1200,
+     "found": 1200,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 1200,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 813,
+    "edge-inference": 136,
+    "influx-sink": 172,
+    "safety-controller": 216
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.026,
+     "cpu_cores_peak": 0.038,
+     "mem_mib_mean": 178.0,
+     "mem_mib_peak": 179.0
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.147,
+     "cpu_cores_peak": 0.427,
+     "mem_mib_mean": 56.1,
+     "mem_mib_peak": 66.3
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.043,
+     "cpu_cores_peak": 0.11,
+     "mem_mib_mean": 246.5,
+     "mem_mib_peak": 247.5
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.068,
+     "cpu_cores_peak": 0.435,
+     "mem_mib_mean": 49.6,
+     "mem_mib_peak": 54.1
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.015,
+     "cpu_cores_peak": 0.079,
+     "mem_mib_mean": 97.4,
+     "mem_mib_peak": 98.1
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.196,
+     "cpu_cores_peak": 0.276,
+     "mem_mib_mean": 683.3,
+     "mem_mib_peak": 687.4
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.042,
+     "cpu_cores_peak": 0.187,
+     "mem_mib_mean": 11.5,
+     "mem_mib_peak": 13.6
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.013,
+     "cpu_cores_peak": 0.068,
+     "mem_mib_mean": 5.1,
+     "mem_mib_peak": 5.6
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.054,
+     "cpu_cores_peak": 0.41,
+     "mem_mib_mean": 29.4,
+     "mem_mib_peak": 40.0
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.018,
+     "cpu_cores_peak": 0.038,
+     "mem_mib_mean": 178.2,
+     "mem_mib_peak": 179.0
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.056,
+     "cpu_cores_peak": 0.265,
+     "mem_mib_mean": 28.8,
+     "mem_mib_peak": 41.5
+    },
+    "_total": {
+     "cpu_cores_mean": 0.678,
+     "mem_mib_mean": 1563.9
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 28.0,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 2,
+   "nodes": 20,
+   "node_prefix": "bench-r2-n020",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 347,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 3000,
+    "ground-truth": 3000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 44,
+   "gateway_latency": {
+    "n": 2432,
+    "mean_ms": 266.28,
+    "p50_ms": 308.65,
+    "p95_ms": 580.56,
+    "p99_ms": 793.7,
+    "max_ms": 889.59
+   },
+   "predictions_mqtt_in_window": 2400,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 2380,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.2,
+    "p99_s": 1.47,
+    "max_s": 1.48
+   },
+   "prediction_interval_over_1_5x_pct": 0.0,
+   "prediction_max_gap_s": 1.48,
+   "nodes_with_predictions": 20,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 40.0,
+   "inference_mean_ms": 16.722381,
+   "predictions_made": 2368.65226,
+   "bridge_msgs_per_s": 60.249241,
+   "controller_sample_age_p50_s": 0.307858,
+   "controller_sample_age_p95_s": 0.655689,
+   "command_ack_p50_s": 0.00288,
+   "command_ack_p95_s": 0.008153,
+   "commands_published": 4.397526,
+   "commands_deduplicated": 2363.649013,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.024594,
+   "persist_sensor_reading_p50_s": 0.430263,
+   "persist_sensor_reading_p95_s": 0.726827,
+   "persist_gas_ground_truth_p50_s": 0.432237,
+   "persist_gas_ground_truth_p95_s": 0.72747,
+   "persist_gas_prediction_p50_s": 0.669948,
+   "persist_gas_prediction_p95_s": 1.057115,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 5.17,
+     "peak": 42.0,
+     "last": 0.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 183.17,
+     "peak": 222.0,
+     "last": 184.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.0,
+     "peak": 0.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 2420,
+      "mean_ms": 36.11,
+      "p50_ms": 27.82,
+      "p95_ms": 85.81,
+      "p99_ms": 101.79,
+      "max_ms": 196.72
+     },
+     "records": 3000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 2400,
+      "found": 2400,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 2420,
+      "mean_ms": 37.82,
+      "p50_ms": 29.34,
+      "p95_ms": 85.81,
+      "p99_ms": 103.03,
+      "max_ms": 196.72
+     },
+     "records": 3000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 2400,
+      "found": 2400,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 2432,
+      "mean_ms": 293.21,
+      "p50_ms": 332.79,
+      "p95_ms": 607.36,
+      "p99_ms": 817.89,
+      "max_ms": 914.08
+     },
+     "records": 3000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 2400,
+      "found": 2400,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 2400,
+     "found": 2400,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 2400,
+     "found": 2400,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 2400,
+     "found": 2400,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 2400,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1223,
+    "edge-inference": 192,
+    "influx-sink": 172,
+    "safety-controller": 352
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.084,
+     "cpu_cores_peak": 0.447,
+     "mem_mib_mean": 179.5,
+     "mem_mib_peak": 191.8
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.235,
+     "cpu_cores_peak": 0.511,
+     "mem_mib_mean": 55.1,
+     "mem_mib_peak": 55.7
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.033,
+     "cpu_cores_peak": 0.063,
+     "mem_mib_mean": 246.3,
+     "mem_mib_peak": 247.5
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.081,
+     "cpu_cores_peak": 0.312,
+     "mem_mib_mean": 50.6,
+     "mem_mib_peak": 59.3
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.02,
+     "cpu_cores_peak": 0.086,
+     "mem_mib_mean": 96.4,
+     "mem_mib_peak": 100.2
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.235,
+     "cpu_cores_peak": 0.469,
+     "mem_mib_mean": 682.0,
+     "mem_mib_peak": 685.6
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.053,
+     "cpu_cores_peak": 0.147,
+     "mem_mib_mean": 11.5,
+     "mem_mib_peak": 12.8
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.022,
+     "cpu_cores_peak": 0.077,
+     "mem_mib_mean": 5.2,
+     "mem_mib_peak": 5.7
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.077,
+     "cpu_cores_peak": 0.228,
+     "mem_mib_mean": 29.9,
+     "mem_mib_peak": 37.4
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.021,
+     "cpu_cores_peak": 0.075,
+     "mem_mib_mean": 178.1,
+     "mem_mib_peak": 179.1
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.065,
+     "cpu_cores_peak": 0.26,
+     "mem_mib_mean": 29.5,
+     "mem_mib_peak": 41.8
+    },
+    "_total": {
+     "cpu_cores_mean": 0.926,
+     "mem_mib_mean": 1564.1
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 28.0,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 2,
+   "nodes": 40,
+   "node_prefix": "bench-r2-n040",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 367,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 6000,
+    "ground-truth": 6000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 93,
+   "gateway_latency": {
+    "n": 4872,
+    "mean_ms": 588.97,
+    "p50_ms": 480.57,
+    "p95_ms": 1347.76,
+    "p99_ms": 1600.01,
+    "max_ms": 1952.49
+   },
+   "predictions_mqtt_in_window": 4794,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 4754,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.49,
+    "p99_s": 1.88,
+    "max_s": 2.11
+   },
+   "prediction_interval_over_1_5x_pct": 4.88,
+   "prediction_max_gap_s": 2.11,
+   "nodes_with_predictions": 40,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 80.0,
+   "inference_mean_ms": 17.605681,
+   "predictions_made": 4777.448126,
+   "bridge_msgs_per_s": 120.700785,
+   "controller_sample_age_p50_s": 0.596624,
+   "controller_sample_age_p95_s": 1.63048,
+   "command_ack_p50_s": 0.002764,
+   "command_ack_p95_s": 0.04125,
+   "commands_published": 16.052964,
+   "commands_deduplicated": 4743.77348,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.02875,
+   "persist_sensor_reading_p50_s": 0.497569,
+   "persist_sensor_reading_p95_s": 0.731543,
+   "persist_gas_ground_truth_p50_s": 0.501236,
+   "persist_gas_ground_truth_p95_s": 0.731798,
+   "persist_gas_prediction_p50_s": 1.018611,
+   "persist_gas_prediction_p95_s": 1.804736,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 90.79,
+     "peak": 119.0,
+     "last": 101.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 448.88,
+     "peak": 490.0,
+     "last": 448.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.38,
+     "peak": 8.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 4840,
+      "mean_ms": 49.12,
+      "p50_ms": 41.81,
+      "p95_ms": 81.87,
+      "p99_ms": 267.04,
+      "max_ms": 373.94
+     },
+     "records": 6000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4800,
+      "found": 4800,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 4840,
+      "mean_ms": 50.96,
+      "p50_ms": 43.54,
+      "p95_ms": 108.94,
+      "p99_ms": 272.85,
+      "max_ms": 375.1
+     },
+     "records": 6000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4800,
+      "found": 4800,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 4872,
+      "mean_ms": 617.71,
+      "p50_ms": 510.95,
+      "p95_ms": 1373.67,
+      "p99_ms": 1625.2,
+      "max_ms": 1980.12
+     },
+     "records": 6000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4800,
+      "found": 4800,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 4800,
+     "found": 4800,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 4800,
+     "found": 4800,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 4800,
+     "found": 4800,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 4800,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 2043,
+    "edge-inference": 306,
+    "influx-sink": 172,
+    "safety-controller": 626
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.115,
+     "cpu_cores_peak": 0.449,
+     "mem_mib_mean": 180.8,
+     "mem_mib_peak": 190.6
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.443,
+     "cpu_cores_peak": 0.535,
+     "mem_mib_mean": 56.0,
+     "mem_mib_peak": 64.5
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.041,
+     "cpu_cores_peak": 0.092,
+     "mem_mib_mean": 249.2,
+     "mem_mib_peak": 250.1
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.089,
+     "cpu_cores_peak": 0.43,
+     "mem_mib_mean": 50.0,
+     "mem_mib_peak": 59.7
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.027,
+     "cpu_cores_peak": 0.093,
+     "mem_mib_mean": 103.6,
+     "mem_mib_peak": 105.5
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.275,
+     "cpu_cores_peak": 0.355,
+     "mem_mib_mean": 668.3,
+     "mem_mib_peak": 680.1
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.042,
+     "cpu_cores_peak": 0.189,
+     "mem_mib_mean": 11.5,
+     "mem_mib_peak": 15.6
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.033,
+     "cpu_cores_peak": 0.091,
+     "mem_mib_mean": 5.3,
+     "mem_mib_peak": 6.0
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.135,
+     "cpu_cores_peak": 0.362,
+     "mem_mib_mean": 30.2,
+     "mem_mib_peak": 38.9
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.02,
+     "cpu_cores_peak": 0.04,
+     "mem_mib_mean": 179.8,
+     "mem_mib_peak": 182.4
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.078,
+     "cpu_cores_peak": 0.252,
+     "mem_mib_mean": 29.1,
+     "mem_mib_peak": 38.1
+    },
+    "_total": {
+     "cpu_cores_mean": 1.298,
+     "mem_mib_mean": 1563.8
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 27.4,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 2,
+   "nodes": 60,
+   "node_prefix": "bench-r2-n060",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 407,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 9000,
+    "ground-truth": 9000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 126,
+   "gateway_latency": {
+    "n": 5947,
+    "mean_ms": 17654.01,
+    "p50_ms": 20152.94,
+    "p95_ms": 22969.46,
+    "p99_ms": 23479.54,
+    "max_ms": 23873.49
+   },
+   "predictions_mqtt_in_window": 5606,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 5546,
+    "mean_s": 1.21,
+    "p50_s": 1.18,
+    "p95_s": 2.0,
+    "p99_s": 2.42,
+    "max_s": 6.08
+   },
+   "prediction_interval_over_1_5x_pct": 11.4,
+   "prediction_max_gap_s": 36.08,
+   "nodes_with_predictions": 60,
+   "mosquitto_dropped": 959.0,
+   "events_per_s_published": 120.0,
+   "inference_mean_ms": 18.956257,
+   "predictions_made": 5570.12142,
+   "bridge_msgs_per_s": 167.774029,
+   "controller_sample_age_p50_s": 10.0,
+   "controller_sample_age_p95_s": 10.0,
+   "command_ack_p50_s": 0.002848,
+   "command_ack_p95_s": 0.080833,
+   "commands_published": 15.522819,
+   "commands_deduplicated": 5539.576666,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.024783,
+   "persist_sensor_reading_p50_s": 0.504861,
+   "persist_sensor_reading_p95_s": 0.838409,
+   "persist_gas_ground_truth_p50_s": 0.509247,
+   "persist_gas_ground_truth_p95_s": 0.848987,
+   "persist_gas_prediction_p50_s": 18.807605,
+   "persist_gas_prediction_p95_s": 28.88076,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 25.83,
+     "peak": 163.0,
+     "last": 19.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 865.42,
+     "peak": 3324.0,
+     "last": 523.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 1.58,
+     "peak": 10.0,
+     "last": 10.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 7260,
+      "mean_ms": 93.6,
+      "p50_ms": 58.93,
+      "p95_ms": 234.44,
+      "p99_ms": 458.19,
+      "max_ms": 735.79
+     },
+     "records": 9000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 7200,
+      "found": 7200,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 7260,
+      "mean_ms": 96.53,
+      "p50_ms": 61.13,
+      "p95_ms": 236.03,
+      "p99_ms": 464.09,
+      "max_ms": 810.14
+     },
+     "records": 9000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 7200,
+      "found": 7200,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 5947,
+      "mean_ms": 17696.94,
+      "p50_ms": 20208.68,
+      "p95_ms": 23040.38,
+      "p99_ms": 23507.26,
+      "max_ms": 23895.81
+     },
+     "records": 7302,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 7200,
+      "found": 5502,
+      "pct": 76.42
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 7200,
+     "found": 7200,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 7200,
+     "found": 7200,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 7200,
+     "found": 5631,
+     "pct": 78.21
+    }
+   },
+   "predictions_expected_by_schedule": 7200,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 2971,
+    "edge-inference": 424,
+    "influx-sink": 172,
+    "safety-controller": 904
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.226,
+     "cpu_cores_peak": 0.502,
+     "mem_mib_mean": 183.5,
+     "mem_mib_peak": 192.0
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.496,
+     "cpu_cores_peak": 0.533,
+     "mem_mib_mean": 56.4,
+     "mem_mib_peak": 64.3
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.038,
+     "cpu_cores_peak": 0.081,
+     "mem_mib_mean": 249.0,
+     "mem_mib_peak": 249.6
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.076,
+     "cpu_cores_peak": 0.247,
+     "mem_mib_mean": 49.8,
+     "mem_mib_peak": 57.4
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.024,
+     "cpu_cores_peak": 0.088,
+     "mem_mib_mean": 118.7,
+     "mem_mib_peak": 122.4
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.311,
+     "cpu_cores_peak": 0.392,
+     "mem_mib_mean": 677.1,
+     "mem_mib_peak": 679.3
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.04,
+     "cpu_cores_peak": 0.197,
+     "mem_mib_mean": 11.4,
+     "mem_mib_peak": 13.5
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.038,
+     "cpu_cores_peak": 0.099,
+     "mem_mib_mean": 6.3,
+     "mem_mib_peak": 10.8
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.169,
+     "cpu_cores_peak": 0.421,
+     "mem_mib_mean": 31.6,
+     "mem_mib_peak": 38.0
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.033,
+     "cpu_cores_peak": 0.095,
+     "mem_mib_mean": 182.8,
+     "mem_mib_peak": 183.5
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.09,
+     "cpu_cores_peak": 0.246,
+     "mem_mib_mean": 30.2,
+     "mem_mib_peak": 38.3
+    },
+    "_total": {
+     "cpu_cores_mean": 1.541,
+     "mem_mib_mean": 1596.8
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 28.3,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 2,
+   "nodes": 100,
+   "node_prefix": "bench-r2-n100",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 467,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 15000,
+    "ground-truth": 15000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 173,
+   "gateway_latency": {
+    "n": 5687,
+    "mean_ms": 22486.31,
+    "p50_ms": 22497.22,
+    "p95_ms": 23999.93,
+    "p99_ms": 24276.83,
+    "max_ms": 24592.46
+   },
+   "predictions_mqtt_in_window": 5356,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 5256,
+    "mean_s": 1.27,
+    "p50_s": 1.01,
+    "p95_s": 2.16,
+    "p99_s": 3.5,
+    "max_s": 74.78
+   },
+   "prediction_interval_over_1_5x_pct": 20.49,
+   "prediction_max_gap_s": 110.25,
+   "nodes_with_predictions": 100,
+   "mosquitto_dropped": 7249.0,
+   "events_per_s_published": 200.0,
+   "inference_mean_ms": 19.702978,
+   "predictions_made": 5308.350804,
+   "bridge_msgs_per_s": 245.840907,
+   "controller_sample_age_p50_s": 10.0,
+   "controller_sample_age_p95_s": 10.0,
+   "command_ack_p50_s": 0.002834,
+   "command_ack_p95_s": 0.16,
+   "commands_published": 13.458763,
+   "commands_deduplicated": 5323.477232,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.04745,
+   "persist_sensor_reading_p50_s": 0.369462,
+   "persist_sensor_reading_p95_s": 1.211289,
+   "persist_gas_ground_truth_p50_s": 0.375765,
+   "persist_gas_ground_truth_p95_s": 1.22468,
+   "persist_gas_prediction_p50_s": 20.0,
+   "persist_gas_prediction_p95_s": 29.0,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 86.08,
+     "peak": 192.0,
+     "last": 63.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 776.0,
+     "peak": 846.0,
+     "last": 803.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.71,
+     "peak": 8.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 12162,
+      "mean_ms": 193.68,
+      "p50_ms": 122.33,
+      "p95_ms": 576.69,
+      "p99_ms": 883.08,
+      "max_ms": 1202.19
+     },
+     "records": 15000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 12000,
+      "found": 12000,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 12156,
+      "mean_ms": 197.01,
+      "p50_ms": 125.47,
+      "p95_ms": 578.42,
+      "p99_ms": 886.8,
+      "max_ms": 1205.18
+     },
+     "records": 15000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 12000,
+      "found": 12000,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 5697,
+      "mean_ms": 22569.11,
+      "p50_ms": 22608.83,
+      "p95_ms": 24024.94,
+      "p99_ms": 24418.55,
+      "max_ms": 24616.22
+     },
+     "records": 6992,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 12000,
+      "found": 4627,
+      "pct": 38.56
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 12000,
+     "found": 12000,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 12000,
+     "found": 12000,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 12000,
+     "found": 4757,
+     "pct": 39.64
+    }
+   },
+   "predictions_expected_by_schedule": 12000,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 4627,
+    "edge-inference": 596,
+    "influx-sink": 172,
+    "safety-controller": 1398
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.162,
+     "cpu_cores_peak": 0.465,
+     "mem_mib_mean": 180.7,
+     "mem_mib_peak": 191.9
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.497,
+     "cpu_cores_peak": 0.516,
+     "mem_mib_mean": 57.3,
+     "mem_mib_peak": 68.8
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.036,
+     "cpu_cores_peak": 0.108,
+     "mem_mib_mean": 249.1,
+     "mem_mib_peak": 251.1
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.121,
+     "cpu_cores_peak": 0.52,
+     "mem_mib_mean": 51.7,
+     "mem_mib_peak": 63.2
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.024,
+     "cpu_cores_peak": 0.085,
+     "mem_mib_mean": 140.5,
+     "mem_mib_peak": 148.7
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.33,
+     "cpu_cores_peak": 0.479,
+     "mem_mib_mean": 672.7,
+     "mem_mib_peak": 675.6
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.026,
+     "cpu_cores_peak": 0.201,
+     "mem_mib_mean": 10.9,
+     "mem_mib_peak": 11.9
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.047,
+     "cpu_cores_peak": 0.091,
+     "mem_mib_mean": 6.7,
+     "mem_mib_peak": 11.1
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.249,
+     "cpu_cores_peak": 0.537,
+     "mem_mib_mean": 34.1,
+     "mem_mib_peak": 45.1
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.023,
+     "cpu_cores_peak": 0.048,
+     "mem_mib_mean": 181.6,
+     "mem_mib_peak": 185.4
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.091,
+     "cpu_cores_peak": 0.264,
+     "mem_mib_mean": 30.5,
+     "mem_mib_peak": 42.4
+    },
+    "_total": {
+     "cpu_cores_mean": 1.606,
+     "mem_mib_mean": 1615.8
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 28.2,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 3,
+   "nodes": 1,
+   "node_prefix": "bench-r3-n001",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 567,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 150,
+    "ground-truth": 150
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 3,
+   "gateway_latency": {
+    "n": 121,
+    "mean_ms": 14.46,
+    "p50_ms": 13.97,
+    "p95_ms": 16.96,
+    "p99_ms": 36.6,
+    "max_ms": 37.63
+   },
+   "predictions_mqtt_in_window": 120,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 119,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.0,
+    "p99_s": 1.02,
+    "max_s": 1.02
+   },
+   "prediction_interval_over_1_5x_pct": 0.0,
+   "prediction_max_gap_s": 1.02,
+   "nodes_with_predictions": 1,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 2.0,
+   "inference_mean_ms": 9.666043,
+   "predictions_made": 120.130853,
+   "bridge_msgs_per_s": 3.035099,
+   "controller_sample_age_p50_s": 0.03869,
+   "controller_sample_age_p95_s": 0.07125,
+   "command_ack_p50_s": 0.01045,
+   "command_ack_p95_s": 0.023545,
+   "commands_published": 0.0,
+   "commands_deduplicated": 116.942637,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.022567,
+   "persist_sensor_reading_p50_s": 0.265625,
+   "persist_sensor_reading_p95_s": 0.496652,
+   "persist_gas_ground_truth_p50_s": 0.479911,
+   "persist_gas_ground_truth_p95_s": 0.722877,
+   "persist_gas_prediction_p50_s": 0.502155,
+   "persist_gas_prediction_p95_s": 0.725216,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 0.21,
+     "peak": 2.0,
+     "last": 0.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 9.17,
+     "peak": 13.0,
+     "last": 9.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.0,
+     "peak": 0.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 121,
+      "mean_ms": 26.01,
+      "p50_ms": 25.74,
+      "p95_ms": 28.56,
+      "p99_ms": 29.91,
+      "max_ms": 29.91
+     },
+     "records": 150,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 120,
+      "found": 120,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 121,
+      "mean_ms": 29.41,
+      "p50_ms": 28.27,
+      "p95_ms": 30.59,
+      "p99_ms": 72.74,
+      "max_ms": 73.38
+     },
+     "records": 150,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 120,
+      "found": 120,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 121,
+      "mean_ms": 38.67,
+      "p50_ms": 36.98,
+      "p95_ms": 54.91,
+      "p99_ms": 75.71,
+      "max_ms": 75.78
+     },
+     "records": 150,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 120,
+      "found": 120,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 120,
+     "found": 120,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 120,
+     "found": 120,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 120,
+     "found": 120,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 120,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 683,
+    "edge-inference": 80,
+    "influx-sink": 172,
+    "safety-controller": 88
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.028,
+     "cpu_cores_peak": 0.315,
+     "mem_mib_mean": 177.9,
+     "mem_mib_peak": 178.8
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.036,
+     "cpu_cores_peak": 0.302,
+     "mem_mib_mean": 55.2,
+     "mem_mib_peak": 64.3
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.033,
+     "cpu_cores_peak": 0.112,
+     "mem_mib_mean": 249.3,
+     "mem_mib_peak": 250.3
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.054,
+     "cpu_cores_peak": 0.337,
+     "mem_mib_mean": 50.0,
+     "mem_mib_peak": 58.9
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.024,
+     "cpu_cores_peak": 0.104,
+     "mem_mib_mean": 154.3,
+     "mem_mib_peak": 170.5
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.162,
+     "cpu_cores_peak": 0.265,
+     "mem_mib_mean": 668.6,
+     "mem_mib_peak": 673.2
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.033,
+     "cpu_cores_peak": 0.138,
+     "mem_mib_mean": 11.9,
+     "mem_mib_peak": 12.9
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.01,
+     "cpu_cores_peak": 0.064,
+     "mem_mib_mean": 5.5,
+     "mem_mib_peak": 6.3
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.039,
+     "cpu_cores_peak": 0.504,
+     "mem_mib_mean": 28.1,
+     "mem_mib_peak": 29.1
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.024,
+     "cpu_cores_peak": 0.093,
+     "mem_mib_mean": 180.8,
+     "mem_mib_peak": 182.6
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.029,
+     "cpu_cores_peak": 0.194,
+     "mem_mib_mean": 28.0,
+     "mem_mib_peak": 36.6
+    },
+    "_total": {
+     "cpu_cores_mean": 0.472,
+     "mem_mib_mean": 1609.6
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 27.7,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 3,
+   "nodes": 10,
+   "node_prefix": "bench-r3-n010",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 568,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 1500,
+    "ground-truth": 1500
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 24,
+   "gateway_latency": {
+    "n": 1212,
+    "mean_ms": 105.23,
+    "p50_ms": 91.16,
+    "p95_ms": 362.61,
+    "p99_ms": 465.93,
+    "max_ms": 485.9
+   },
+   "predictions_mqtt_in_window": 1202,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 1192,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.1,
+    "p99_s": 1.28,
+    "max_s": 1.36
+   },
+   "prediction_interval_over_1_5x_pct": 0.0,
+   "prediction_max_gap_s": 1.36,
+   "nodes_with_predictions": 10,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 20.0,
+   "inference_mean_ms": 14.387325,
+   "predictions_made": 1180.554876,
+   "bridge_msgs_per_s": 30.142014,
+   "controller_sample_age_p50_s": 0.16416,
+   "controller_sample_age_p95_s": 0.350329,
+   "command_ack_p50_s": 0.002505,
+   "command_ack_p95_s": 0.00476,
+   "commands_published": 2.069763,
+   "commands_deduplicated": 1181.834784,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.024577,
+   "persist_sensor_reading_p50_s": 0.465461,
+   "persist_sensor_reading_p95_s": 0.738952,
+   "persist_gas_ground_truth_p50_s": 0.486372,
+   "persist_gas_ground_truth_p95_s": 0.741354,
+   "persist_gas_prediction_p50_s": 0.505906,
+   "persist_gas_prediction_p95_s": 0.866848,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 14.42,
+     "peak": 22.0,
+     "last": 0.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 113.58,
+     "peak": 122.0,
+     "last": 108.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 2.33,
+     "peak": 6.0,
+     "last": 6.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 1210,
+      "mean_ms": 34.18,
+      "p50_ms": 26.97,
+      "p95_ms": 33.35,
+      "p99_ms": 58.39,
+      "max_ms": 833.33
+     },
+     "records": 1500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 1200,
+      "found": 1200,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 1210,
+      "mean_ms": 36.09,
+      "p50_ms": 29.24,
+      "p95_ms": 35.2,
+      "p99_ms": 61.75,
+      "max_ms": 833.33
+     },
+     "records": 1500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 1200,
+      "found": 1200,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 1212,
+      "mean_ms": 134.93,
+      "p50_ms": 114.16,
+      "p95_ms": 389.91,
+      "p99_ms": 505.8,
+      "max_ms": 832.77
+     },
+     "records": 1500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 1200,
+      "found": 1200,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 1200,
+     "found": 1200,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 1200,
+     "found": 1200,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 1200,
+     "found": 1200,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 1200,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1044,
+    "edge-inference": 136,
+    "influx-sink": 172,
+    "safety-controller": 216
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.027,
+     "cpu_cores_peak": 0.035,
+     "mem_mib_mean": 178.7,
+     "mem_mib_peak": 179.8
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.145,
+     "cpu_cores_peak": 0.481,
+     "mem_mib_mean": 55.4,
+     "mem_mib_peak": 64.3
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.038,
+     "cpu_cores_peak": 0.077,
+     "mem_mib_mean": 249.6,
+     "mem_mib_peak": 253.7
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.067,
+     "cpu_cores_peak": 0.366,
+     "mem_mib_mean": 50.7,
+     "mem_mib_peak": 61.2
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.012,
+     "cpu_cores_peak": 0.021,
+     "mem_mib_mean": 148.6,
+     "mem_mib_peak": 149.4
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.191,
+     "cpu_cores_peak": 0.303,
+     "mem_mib_mean": 668.8,
+     "mem_mib_peak": 682.3
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.037,
+     "cpu_cores_peak": 0.182,
+     "mem_mib_mean": 11.7,
+     "mem_mib_peak": 13.2
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.017,
+     "cpu_cores_peak": 0.068,
+     "mem_mib_mean": 5.7,
+     "mem_mib_peak": 9.9
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.066,
+     "cpu_cores_peak": 0.434,
+     "mem_mib_mean": 29.8,
+     "mem_mib_peak": 40.6
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.026,
+     "cpu_cores_peak": 0.081,
+     "mem_mib_mean": 181.6,
+     "mem_mib_peak": 182.9
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.052,
+     "cpu_cores_peak": 0.252,
+     "mem_mib_mean": 29.7,
+     "mem_mib_peak": 39.7
+    },
+    "_total": {
+     "cpu_cores_mean": 0.678,
+     "mem_mib_mean": 1610.3
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 27.5,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 3,
+   "nodes": 20,
+   "node_prefix": "bench-r3-n020",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 578,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 3000,
+    "ground-truth": 3000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 44,
+   "gateway_latency": {
+    "n": 2438,
+    "mean_ms": 252.24,
+    "p50_ms": 294.42,
+    "p95_ms": 566.78,
+    "p99_ms": 835.87,
+    "max_ms": 957.32
+   },
+   "predictions_mqtt_in_window": 2406,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 2386,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.19,
+    "p99_s": 1.56,
+    "max_s": 1.66
+   },
+   "prediction_interval_over_1_5x_pct": 1.34,
+   "prediction_max_gap_s": 1.66,
+   "nodes_with_predictions": 20,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 40.0,
+   "inference_mean_ms": 16.062529,
+   "predictions_made": 2379.033817,
+   "bridge_msgs_per_s": 60.284027,
+   "controller_sample_age_p50_s": 0.306186,
+   "controller_sample_age_p95_s": 0.628571,
+   "command_ack_p50_s": 0.003153,
+   "command_ack_p95_s": 0.009102,
+   "commands_published": 4.714728,
+   "commands_deduplicated": 2351.189648,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.024762,
+   "persist_sensor_reading_p50_s": 0.40375,
+   "persist_sensor_reading_p95_s": 0.718716,
+   "persist_gas_ground_truth_p50_s": 0.404167,
+   "persist_gas_ground_truth_p95_s": 0.71875,
+   "persist_gas_prediction_p50_s": 0.696903,
+   "persist_gas_prediction_p95_s": 1.081818,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 6.33,
+     "peak": 19.0,
+     "last": 6.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 180.83,
+     "peak": 192.0,
+     "last": 170.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.0,
+     "peak": 0.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 2420,
+      "mean_ms": 29.89,
+      "p50_ms": 26.95,
+      "p95_ms": 52.65,
+      "p99_ms": 74.55,
+      "max_ms": 152.67
+     },
+     "records": 3000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 2400,
+      "found": 2400,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 2420,
+      "mean_ms": 31.29,
+      "p50_ms": 28.45,
+      "p95_ms": 51.48,
+      "p99_ms": 78.48,
+      "max_ms": 151.65
+     },
+     "records": 3000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 2400,
+      "found": 2400,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 2438,
+      "mean_ms": 279.01,
+      "p50_ms": 319.38,
+      "p95_ms": 601.04,
+      "p99_ms": 859.29,
+      "max_ms": 984.32
+     },
+     "records": 3000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 2400,
+      "found": 2400,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 2400,
+     "found": 2400,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 2400,
+     "found": 2400,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 2400,
+     "found": 2400,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 2400,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1454,
+    "edge-inference": 192,
+    "influx-sink": 172,
+    "safety-controller": 352
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.172,
+     "cpu_cores_peak": 0.5,
+     "mem_mib_mean": 178.9,
+     "mem_mib_peak": 182.6
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.228,
+     "cpu_cores_peak": 0.396,
+     "mem_mib_mean": 55.8,
+     "mem_mib_peak": 64.5
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.032,
+     "cpu_cores_peak": 0.113,
+     "mem_mib_mean": 249.3,
+     "mem_mib_peak": 250.2
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.074,
+     "cpu_cores_peak": 0.433,
+     "mem_mib_mean": 50.2,
+     "mem_mib_peak": 61.8
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.022,
+     "cpu_cores_peak": 0.086,
+     "mem_mib_mean": 160.2,
+     "mem_mib_peak": 167.6
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.217,
+     "cpu_cores_peak": 0.337,
+     "mem_mib_mean": 686.9,
+     "mem_mib_peak": 692.2
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.042,
+     "cpu_cores_peak": 0.2,
+     "mem_mib_mean": 11.4,
+     "mem_mib_peak": 12.7
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.024,
+     "cpu_cores_peak": 0.073,
+     "mem_mib_mean": 5.8,
+     "mem_mib_peak": 6.7
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.07,
+     "cpu_cores_peak": 0.294,
+     "mem_mib_mean": 30.1,
+     "mem_mib_peak": 38.6
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.019,
+     "cpu_cores_peak": 0.042,
+     "mem_mib_mean": 182.5,
+     "mem_mib_peak": 183.9
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.064,
+     "cpu_cores_peak": 0.261,
+     "mem_mib_mean": 29.6,
+     "mem_mib_peak": 38.8
+    },
+    "_total": {
+     "cpu_cores_mean": 0.964,
+     "mem_mib_mean": 1640.7
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 28.0,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 3,
+   "nodes": 40,
+   "node_prefix": "bench-r3-n040",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 598,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 6000,
+    "ground-truth": 6000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 93,
+   "gateway_latency": {
+    "n": 4872,
+    "mean_ms": 629.99,
+    "p50_ms": 591.87,
+    "p95_ms": 1459.75,
+    "p99_ms": 1765.21,
+    "max_ms": 1977.87
+   },
+   "predictions_mqtt_in_window": 4794,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 4754,
+    "mean_s": 0.99,
+    "p50_s": 1.0,
+    "p95_s": 1.41,
+    "p99_s": 1.81,
+    "max_s": 2.3
+   },
+   "prediction_interval_over_1_5x_pct": 4.54,
+   "prediction_max_gap_s": 2.3,
+   "nodes_with_predictions": 40,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 80.0,
+   "inference_mean_ms": 17.848699,
+   "predictions_made": 4707.219851,
+   "bridge_msgs_per_s": 120.984433,
+   "controller_sample_age_p50_s": 0.653052,
+   "controller_sample_age_p95_s": 1.687101,
+   "command_ack_p50_s": 0.003105,
+   "command_ack_p95_s": 0.035132,
+   "commands_published": 15.811798,
+   "commands_deduplicated": 4736.570688,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.029687,
+   "persist_sensor_reading_p50_s": 0.471257,
+   "persist_sensor_reading_p95_s": 0.734375,
+   "persist_gas_ground_truth_p50_s": 0.474974,
+   "persist_gas_ground_truth_p95_s": 0.734484,
+   "persist_gas_prediction_p50_s": 1.042204,
+   "persist_gas_prediction_p95_s": 1.940503,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 57.25,
+     "peak": 119.0,
+     "last": 18.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 361.17,
+     "peak": 396.0,
+     "last": 350.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 2.75,
+     "peak": 10.0,
+     "last": 5.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 4840,
+      "mean_ms": 46.93,
+      "p50_ms": 41.96,
+      "p95_ms": 102.7,
+      "p99_ms": 242.12,
+      "max_ms": 265.77
+     },
+     "records": 6000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4800,
+      "found": 4800,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 4840,
+      "mean_ms": 48.43,
+      "p50_ms": 42.64,
+      "p95_ms": 105.56,
+      "p99_ms": 245.45,
+      "max_ms": 343.8
+     },
+     "records": 6000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4800,
+      "found": 4800,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 4872,
+      "mean_ms": 659.23,
+      "p50_ms": 614.99,
+      "p95_ms": 1480.87,
+      "p99_ms": 1789.82,
+      "max_ms": 2005.46
+     },
+     "records": 6000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4800,
+      "found": 4800,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 4800,
+     "found": 4800,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 4800,
+     "found": 4800,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 4800,
+     "found": 4800,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 4800,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 2274,
+    "edge-inference": 306,
+    "influx-sink": 172,
+    "safety-controller": 626
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.083,
+     "cpu_cores_peak": 0.217,
+     "mem_mib_mean": 179.1,
+     "mem_mib_peak": 179.9
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.437,
+     "cpu_cores_peak": 0.537,
+     "mem_mib_mean": 57.3,
+     "mem_mib_peak": 65.7
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.028,
+     "cpu_cores_peak": 0.049,
+     "mem_mib_mean": 249.0,
+     "mem_mib_peak": 250.2
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.067,
+     "cpu_cores_peak": 0.449,
+     "mem_mib_mean": 50.3,
+     "mem_mib_peak": 50.9
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.023,
+     "cpu_cores_peak": 0.085,
+     "mem_mib_mean": 94.1,
+     "mem_mib_peak": 96.9
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.276,
+     "cpu_cores_peak": 0.354,
+     "mem_mib_mean": 700.9,
+     "mem_mib_peak": 702.1
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.054,
+     "cpu_cores_peak": 0.198,
+     "mem_mib_mean": 11.1,
+     "mem_mib_peak": 12.5
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.029,
+     "cpu_cores_peak": 0.091,
+     "mem_mib_mean": 5.8,
+     "mem_mib_peak": 6.7
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.097,
+     "cpu_cores_peak": 0.216,
+     "mem_mib_mean": 30.8,
+     "mem_mib_peak": 37.5
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.018,
+     "cpu_cores_peak": 0.039,
+     "mem_mib_mean": 182.5,
+     "mem_mib_peak": 183.5
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.076,
+     "cpu_cores_peak": 0.248,
+     "mem_mib_mean": 29.9,
+     "mem_mib_peak": 41.1
+    },
+    "_total": {
+     "cpu_cores_mean": 1.188,
+     "mem_mib_mean": 1590.8
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 27.6,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 3,
+   "nodes": 60,
+   "node_prefix": "bench-r3-n060",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 638,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 9000,
+    "ground-truth": 9000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 131,
+   "gateway_latency": {
+    "n": 5867,
+    "mean_ms": 17869.66,
+    "p50_ms": 20362.22,
+    "p95_ms": 23260.78,
+    "p99_ms": 23662.88,
+    "max_ms": 24072.39
+   },
+   "predictions_mqtt_in_window": 5526,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 5466,
+    "mean_s": 1.28,
+    "p50_s": 1.19,
+    "p95_s": 2.02,
+    "p99_s": 2.8,
+    "max_s": 21.8
+   },
+   "prediction_interval_over_1_5x_pct": 11.31,
+   "prediction_max_gap_s": 21.8,
+   "nodes_with_predictions": 60,
+   "mosquitto_dropped": 1019.0,
+   "events_per_s_published": 120.0,
+   "inference_mean_ms": 19.317795,
+   "predictions_made": 5491.967231,
+   "bridge_msgs_per_s": 167.314532,
+   "controller_sample_age_p50_s": 10.0,
+   "controller_sample_age_p95_s": 10.0,
+   "command_ack_p50_s": 0.003032,
+   "command_ack_p95_s": 0.060833,
+   "commands_published": 17.310507,
+   "commands_deduplicated": 5463.628842,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.032083,
+   "persist_sensor_reading_p50_s": 0.475842,
+   "persist_sensor_reading_p95_s": 0.740037,
+   "persist_gas_ground_truth_p50_s": 0.477715,
+   "persist_gas_ground_truth_p95_s": 0.740017,
+   "persist_gas_prediction_p50_s": 18.635204,
+   "persist_gas_prediction_p95_s": 28.86352,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 123.42,
+     "peak": 161.0,
+     "last": 9.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 909.38,
+     "peak": 4113.0,
+     "last": 4113.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 1.42,
+     "peak": 10.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 7270,
+      "mean_ms": 74.38,
+      "p50_ms": 57.7,
+      "p95_ms": 232.15,
+      "p99_ms": 375.73,
+      "max_ms": 476.48
+     },
+     "records": 9000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 7200,
+      "found": 7200,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 7265,
+      "mean_ms": 76.19,
+      "p50_ms": 59.4,
+      "p95_ms": 244.03,
+      "p99_ms": 378.2,
+      "max_ms": 475.91
+     },
+     "records": 9000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 7200,
+      "found": 7200,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 5877,
+      "mean_ms": 17882.82,
+      "p50_ms": 20384.52,
+      "p95_ms": 23284.18,
+      "p99_ms": 23685.68,
+      "max_ms": 24094.37
+     },
+     "records": 7232,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 7200,
+      "found": 5432,
+      "pct": 75.44
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 7200,
+     "found": 7200,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 7200,
+     "found": 7200,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 7200,
+     "found": 5562,
+     "pct": 77.25
+    }
+   },
+   "predictions_expected_by_schedule": 7200,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 3194,
+    "edge-inference": 422,
+    "influx-sink": 172,
+    "safety-controller": 906
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.247,
+     "cpu_cores_peak": 0.515,
+     "mem_mib_mean": 182.9,
+     "mem_mib_peak": 192.0
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.505,
+     "cpu_cores_peak": 0.523,
+     "mem_mib_mean": 56.9,
+     "mem_mib_peak": 68.3
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.035,
+     "cpu_cores_peak": 0.097,
+     "mem_mib_mean": 249.1,
+     "mem_mib_peak": 250.1
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.1,
+     "cpu_cores_peak": 0.484,
+     "mem_mib_mean": 50.4,
+     "mem_mib_peak": 61.9
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.029,
+     "cpu_cores_peak": 0.09,
+     "mem_mib_mean": 108.9,
+     "mem_mib_peak": 115.2
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.286,
+     "cpu_cores_peak": 0.364,
+     "mem_mib_mean": 698.7,
+     "mem_mib_peak": 702.5
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.044,
+     "cpu_cores_peak": 0.192,
+     "mem_mib_mean": 11.4,
+     "mem_mib_peak": 15.3
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.036,
+     "cpu_cores_peak": 0.094,
+     "mem_mib_mean": 6.5,
+     "mem_mib_peak": 7.3
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.184,
+     "cpu_cores_peak": 0.518,
+     "mem_mib_mean": 31.9,
+     "mem_mib_peak": 43.9
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.026,
+     "cpu_cores_peak": 0.113,
+     "mem_mib_mean": 186.4,
+     "mem_mib_peak": 189.8
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.096,
+     "cpu_cores_peak": 0.258,
+     "mem_mib_mean": 30.6,
+     "mem_mib_peak": 40.6
+    },
+    "_total": {
+     "cpu_cores_mean": 1.588,
+     "mem_mib_mean": 1613.7
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 27.9,
+    "healthy": true
+   },
+   "label": "default"
+  },
+  {
+   "run": 3,
+   "nodes": 100,
+   "node_prefix": "bench-r3-n100",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.8,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 698,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 15000,
+    "ground-truth": 15000
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 185,
+   "gateway_latency": {
+    "n": 5937,
+    "mean_ms": 21515.16,
+    "p50_ms": 21593.97,
+    "p95_ms": 22986.49,
+    "p99_ms": 23266.88,
+    "max_ms": 23473.94
+   },
+   "predictions_mqtt_in_window": 5596,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 5496,
+    "mean_s": 1.5,
+    "p50_s": 1.0,
+    "p95_s": 2.46,
+    "p99_s": 11.86,
+    "max_s": 66.99
+   },
+   "prediction_interval_over_1_5x_pct": 20.56,
+   "prediction_max_gap_s": 109.06,
+   "nodes_with_predictions": 100,
+   "mosquitto_dropped": 6929.0,
+   "events_per_s_published": 200.0,
+   "inference_mean_ms": 18.973832,
+   "predictions_made": 5534.044972,
+   "bridge_msgs_per_s": 247.79984,
+   "controller_sample_age_p50_s": 10.0,
+   "controller_sample_age_p95_s": 10.0,
+   "command_ack_p50_s": 0.002994,
+   "command_ack_p95_s": 0.258333,
+   "commands_published": 16.595981,
+   "commands_deduplicated": 5540.611521,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.049625,
+   "persist_sensor_reading_p50_s": 0.249334,
+   "persist_sensor_reading_p95_s": 1.117813,
+   "persist_gas_ground_truth_p50_s": 0.257339,
+   "persist_gas_ground_truth_p95_s": 1.125748,
+   "persist_gas_prediction_p50_s": 20.0,
+   "persist_gas_prediction_p95_s": 29.0,
+   "consumer_lag": {
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 77.79,
+     "peak": 192.0,
+     "last": 97.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 644.71,
+     "peak": 744.0,
+     "last": 700.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 2.08,
+     "peak": 22.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 12116,
+      "mean_ms": 159.19,
+      "p50_ms": 88.38,
+      "p95_ms": 462.26,
+      "p99_ms": 860.0,
+      "max_ms": 1060.86
+     },
+     "records": 15000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 12000,
+      "found": 12000,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 12117,
+      "mean_ms": 161.46,
+      "p50_ms": 91.79,
+      "p95_ms": 463.67,
+      "p99_ms": 861.23,
+      "max_ms": 1060.34
+     },
+     "records": 15000,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 12000,
+      "found": 12000,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 5947,
+      "mean_ms": 21583.25,
+      "p50_ms": 21667.74,
+      "p95_ms": 23011.65,
+      "p99_ms": 23295.95,
+      "max_ms": 23546.62
+     },
+     "records": 7322,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 12000,
+      "found": 4877,
+      "pct": 40.64
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 12000,
+     "found": 12000,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 12000,
+     "found": 12000,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 12000,
+     "found": 5027,
+     "pct": 41.89
+    }
+   },
+   "predictions_expected_by_schedule": 12000,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 4898,
+    "edge-inference": 614,
+    "influx-sink": 172,
+    "safety-controller": 1418
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.188,
+     "cpu_cores_peak": 0.503,
+     "mem_mib_mean": 180.9,
+     "mem_mib_peak": 191.9
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.501,
+     "cpu_cores_peak": 0.517,
+     "mem_mib_mean": 57.0,
+     "mem_mib_peak": 68.2
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.033,
+     "cpu_cores_peak": 0.096,
+     "mem_mib_mean": 249.3,
+     "mem_mib_peak": 249.8
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.115,
+     "cpu_cores_peak": 0.505,
+     "mem_mib_mean": 51.0,
+     "mem_mib_peak": 59.9
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.025,
+     "cpu_cores_peak": 0.089,
+     "mem_mib_mean": 132.8,
+     "mem_mib_peak": 141.5
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.315,
+     "cpu_cores_peak": 0.466,
+     "mem_mib_mean": 693.5,
+     "mem_mib_peak": 696.1
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.032,
+     "cpu_cores_peak": 0.137,
+     "mem_mib_mean": 11.3,
+     "mem_mib_peak": 15.9
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.049,
+     "cpu_cores_peak": 0.118,
+     "mem_mib_mean": 7.1,
+     "mem_mib_peak": 10.2
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.226,
+     "cpu_cores_peak": 0.513,
+     "mem_mib_mean": 33.1,
+     "mem_mib_peak": 40.5
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.037,
+     "cpu_cores_peak": 0.146,
+     "mem_mib_mean": 187.4,
+     "mem_mib_peak": 188.7
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.097,
+     "cpu_cores_peak": 0.26,
+     "mem_mib_mean": 31.0,
+     "mem_mib_peak": 42.2
+    },
+    "_total": {
+     "cpu_cores_mean": 1.618,
+     "mem_mib_mean": 1634.4
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 28.3,
+    "healthy": true
+   },
+   "label": "default"
+  }
+ ]
+}

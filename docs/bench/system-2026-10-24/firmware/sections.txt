@@ -1,0 +1,28 @@
+.pio/build/esp32s3/firmware.elf  :
+section                    size         addr
+.rtc.text                     0   1611653120
+.rtc.force_fast               0   1611653120
+.rtc_noinit                   0   1342177792
+.rtc.force_slow              32   1342177792
+.rtc_reserved                40   1611661272
+.iram0.vectors             1028   1077362688
+.iram0.text               76459   1077363716
+.dram0.dummy              61184   1070104576
+.dram0.data              105726   1070165760
+.noinit                       2   1070271486
+.dram0.bss                35840   1070271488
+.flash.text              773256   1107296288
+.flash_rodata_dummy      786432   1006632992
+.flash.appdesc              256   1007419424
+.flash.rodata           4111296   1007419680
+.eh_frame                 10796   1011530976
+.flash.rodata_noload      24811   1011541772
+.ext_ram.dummy          4915168   1006632992
+.iram0.text_end              81   1077440175
+.iram0.data                   0   1077440256
+.iram0.bss                    0   1077440256
+.dram0.heap_start             0   1070307328
+.xtensa.info                 56            0
+Total                  23635618
+
+

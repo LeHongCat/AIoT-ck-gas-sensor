@@ -1,0 +1,13 @@
+apiVersion: 1
+
+providers:
+  - name: AIoT Gas Monitoring
+    orgId: 1
+    folder: AIoT
+    type: file
+    disableDeletion: true
+    editable: true
+    updateIntervalSeconds: 30
+    options:
+      path: /var/lib/grafana/dashboards
+

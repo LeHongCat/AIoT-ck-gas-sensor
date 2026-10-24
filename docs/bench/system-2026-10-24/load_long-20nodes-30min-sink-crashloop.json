@@ -1,0 +1,263 @@
+{
+ "run_id": "load_test-20261024T070708Z-10c2ea",
+ "steps": [
+  {
+   "run": 1,
+   "nodes": 20,
+   "node_prefix": "bench-r1-n020",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 1799.9,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 29781.0,
+    "kitchen-demo-ui-v1": 188.0,
+    "safety-controller-v1": 1.0,
+    "bench-rec-db5c03": 369789.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 1035,
+    "edge-inference": 162,
+    "influx-sink": null,
+    "safety-controller": 334
+   },
+   "published": {
+    "readings": 36600,
+    "ground-truth": 36600
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 0,
+   "gateway_latency": {
+    "n": 0
+   },
+   "predictions_mqtt_in_window": 0,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 0
+   },
+   "prediction_interval_over_1_5x_pct": null,
+   "prediction_max_gap_s": 0.0,
+   "nodes_with_predictions": 20,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 40.0,
+   "inference_mean_ms": 19.729326,
+   "predictions_made": 46070.091094,
+   "bridge_msgs_per_s": 80.563896,
+   "controller_sample_age_p50_s": 0.442844,
+   "controller_sample_age_p95_s": 1.861384,
+   "command_ack_p50_s": 0.5,
+   "command_ack_p95_s": 0.95,
+   "commands_published": 6319.978368,
+   "commands_deduplicated": 39803.151265,
+   "errors": {
+    "ack_timeouts": 6371.59785,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 3.235005,
+    "dead_letter_records": 20.046422
+   },
+   "influx_write_p95_s": 0.24125,
+   "persist_sensor_reading_p50_s": null,
+   "persist_sensor_reading_p95_s": null,
+   "persist_gas_ground_truth_p50_s": null,
+   "persist_gas_ground_truth_p95_s": null,
+   "persist_gas_prediction_p50_s": null,
+   "persist_gas_prediction_p95_s": null,
+   "consumer_lag": {
+    "bench-rec-db5c03": {
+     "n": 360,
+     "mean": 439749.86,
+     "peak": 488321.0,
+     "last": 488321.0
+    },
+    "influx-sink-v1": {
+     "n": 360,
+     "mean": 108569.15,
+     "peak": 162517.0,
+     "last": 162517.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 360,
+     "mean": 258.25,
+     "peak": 1631.0,
+     "last": 168.0
+    },
+    "safety-controller-v1": {
+     "n": 360,
+     "mean": 1.24,
+     "peak": 12.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 46151,
+      "mean_ms": 151.06,
+      "p50_ms": 28.47,
+      "p95_ms": 841.53,
+      "p99_ms": 1025.48,
+      "max_ms": 3358.11
+     },
+     "records": 47440,
+     "duplicates": 15,
+     "out_of_order": 5321,
+     "completeness_in_window": {
+      "expected": 36000,
+      "found": 36000,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 46149,
+      "mean_ms": 152.94,
+      "p50_ms": 29.75,
+      "p95_ms": 843.48,
+      "p99_ms": 1027.79,
+      "max_ms": 3361.39
+     },
+     "records": 47440,
+     "duplicates": 12,
+     "out_of_order": 5318,
+     "completeness_in_window": {
+      "expected": 36000,
+      "found": 36000,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 46197,
+      "mean_ms": 634.83,
+      "p50_ms": 422.87,
+      "p95_ms": 1720.54,
+      "p99_ms": 2160.43,
+      "max_ms": 3364.2
+     },
+     "records": 47473,
+     "duplicates": 0,
+     "out_of_order": 5321,
+     "completeness_in_window": {
+      "expected": 36000,
+      "found": 36000,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 36000,
+     "found": 776,
+     "pct": 2.16
+    },
+    "gas_ground_truth": {
+     "expected": 36000,
+     "found": 3383,
+     "pct": 9.4
+    },
+    "gas_prediction": {
+     "expected": 36000,
+     "found": 8,
+     "pct": 0.02
+    }
+   },
+   "predictions_expected_by_schedule": 36000,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1141,
+    "edge-inference": 232,
+    "influx-sink": null,
+    "safety-controller": 406
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 244,
+     "cpu_cores_mean": 0.117,
+     "cpu_cores_peak": 0.523,
+     "mem_mib_mean": 177.7,
+     "mem_mib_peak": 192.0
+    },
+    "edge-inference": {
+     "samples": 244,
+     "cpu_cores_mean": 0.316,
+     "cpu_cores_peak": 0.532,
+     "mem_mib_mean": 56.9,
+     "mem_mib_peak": 69.8
+    },
+    "grafana": {
+     "samples": 244,
+     "cpu_cores_mean": 0.035,
+     "cpu_cores_peak": 0.129,
+     "mem_mib_mean": 257.8,
+     "mem_mib_peak": 262.1
+    },
+    "influx-sink": {
+     "samples": 234,
+     "cpu_cores_mean": 0.045,
+     "cpu_cores_peak": 0.529,
+     "mem_mib_mean": 4.4,
+     "mem_mib_peak": 105.3
+    },
+    "influxdb": {
+     "samples": 244,
+     "cpu_cores_mean": 0.017,
+     "cpu_cores_peak": 0.89,
+     "mem_mib_mean": 120.2,
+     "mem_mib_peak": 165.0
+    },
+    "kafka": {
+     "samples": 244,
+     "cpu_cores_mean": 0.242,
+     "cpu_cores_peak": 0.444,
+     "mem_mib_mean": 679.9,
+     "mem_mib_peak": 726.2
+    },
+    "kafka-exporter": {
+     "samples": 244,
+     "cpu_cores_mean": 0.039,
+     "cpu_cores_peak": 0.257,
+     "mem_mib_mean": 12.2,
+     "mem_mib_peak": 17.4
+    },
+    "mosquitto": {
+     "samples": 244,
+     "cpu_cores_mean": 0.024,
+     "cpu_cores_peak": 0.096,
+     "mem_mib_mean": 5.3,
+     "mem_mib_peak": 9.9
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 244,
+     "cpu_cores_mean": 0.105,
+     "cpu_cores_peak": 0.555,
+     "mem_mib_mean": 30.0,
+     "mem_mib_peak": 42.2
+    },
+    "prometheus": {
+     "samples": 244,
+     "cpu_cores_mean": 0.026,
+     "cpu_cores_peak": 0.113,
+     "mem_mib_mean": 153.4,
+     "mem_mib_peak": 158.5
+    },
+    "safety-controller": {
+     "samples": 244,
+     "cpu_cores_mean": 0.073,
+     "cpu_cores_peak": 0.271,
+     "mem_mib_mean": 30.0,
+     "mem_mib_peak": 42.6
+    },
+    "_total": {
+     "cpu_cores_mean": 1.039,
+     "mem_mib_mean": 1527.8
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 29.2,
+    "healthy": true
+   },
+   "label": "long-20nodes-30min"
+  }
+ ]
+}

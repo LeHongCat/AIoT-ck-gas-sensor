@@ -1,0 +1,457 @@
+{
+ "run_id": "recovery_cases-20261023T230911Z-c4b756",
+ "cases": [
+  {
+   "id": "R01",
+   "scenario": "Stop Influx Sink 60 s",
+   "services": [
+    "influx-sink"
+   ],
+   "hold_s": 60,
+   "fault_issued_at": 1792796993.989603,
+   "stop_calls_s": [
+    0.64
+   ],
+   "start_calls_s": [
+    0.46
+   ],
+   "healthy_after_start_s": {
+    "influx-sink": 6.22
+   },
+   "alerts_first_seen_after_fault_s": {
+    "AiotConsumerLagHigh:pending": 19.4,
+    "AiotServiceDown:firing": 39.9,
+    "AiotServiceDown:pending": 10.2
+   },
+   "prometheus_poll_errors": 0,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": 0.027
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 0.028
+   },
+   "harness_note": "control probes use a fresh node each; the Kafka watcher commits offsets",
+   "kafka": {
+    "readings": {
+     "expected": 480,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.56,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 480,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.56,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 480,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.58,
+     "backlog_drained_after_back_s": 0.0
+    }
+   },
+   "window_seqs": [
+    30,
+    125
+   ],
+   "influx_readings_drained_after_back_s": 46.31,
+   "influx_readings": {
+    "expected": 480,
+    "stored": 480,
+    "missing": 0
+   }
+  },
+  {
+   "id": "R02",
+   "scenario": "Stop Bridge 20 s",
+   "services": [
+    "mqtt-kafka-bridge"
+   ],
+   "hold_s": 20,
+   "fault_issued_at": 1792797125.8056095,
+   "stop_calls_s": [
+    0.75
+   ],
+   "start_calls_s": [
+    0.44
+   ],
+   "healthy_after_start_s": {
+    "mqtt-kafka-bridge": 5.42
+   },
+   "alerts_first_seen_after_fault_s": {
+    "AiotServiceDown:pending": 13.3
+   },
+   "prometheus_poll_errors": 0,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": null
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 0.028
+   },
+   "harness_note": "control probes use a fresh node each; the Kafka watcher commits offsets",
+   "kafka": {
+    "readings": {
+     "expected": 280,
+     "missing": 120,
+     "missing_pct": 42.86,
+     "missing_span_s": 24.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 3.76,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 280,
+     "missing": 120,
+     "missing_pct": 42.86,
+     "missing_span_s": 24.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 3.76,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 280,
+     "missing": 120,
+     "missing_pct": 42.86,
+     "missing_span_s": 24.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 3.8,
+     "backlog_drained_after_back_s": 0.0
+    }
+   },
+   "window_seqs": [
+    162,
+    217
+   ],
+   "influx_readings": {
+    "expected": 280,
+    "stored": 160,
+    "missing": 120
+   }
+  },
+  {
+   "id": "R03",
+   "scenario": "Stop Kafka 30 s",
+   "services": [
+    "kafka"
+   ],
+   "hold_s": 30,
+   "fault_issued_at": 1792797216.7461145,
+   "stop_calls_s": [
+    1.94
+   ],
+   "start_calls_s": [
+    0.53
+   ],
+   "healthy_after_start_s": {
+    "kafka": 18.79
+   },
+   "alerts_first_seen_after_fault_s": {
+    "AiotConsumerLagHigh:pending": 67.3,
+    "AiotServiceDown:firing": 41.7,
+    "AiotServiceDown:pending": 12.2
+   },
+   "prometheus_poll_errors": 0,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": null
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 9.729
+   },
+   "harness_note": "control probes use a fresh node each; the Kafka watcher commits offsets",
+   "kafka": {
+    "readings": {
+     "expected": 330,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 65.06,
+     "backlog_drained_after_back_s": 65.06
+    },
+    "ground-truth": {
+     "expected": 330,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 65.05,
+     "backlog_drained_after_back_s": 65.09
+    },
+    "predictions": {
+     "expected": 330,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 65.05,
+     "backlog_drained_after_back_s": 65.05
+    }
+   },
+   "window_seqs": [
+    253,
+    318
+   ],
+   "influx_readings_drained_after_back_s": 68.56,
+   "influx_readings": {
+    "expected": 330,
+    "stored": 330,
+    "missing": 0
+   }
+  },
+  {
+   "id": "R04",
+   "scenario": "Stop Mosquitto 20 s",
+   "services": [
+    "mosquitto"
+   ],
+   "hold_s": 20,
+   "fault_issued_at": 1792797340.873384,
+   "stop_calls_s": [
+    0.55
+   ],
+   "start_calls_s": [
+    0.6
+   ],
+   "healthy_after_start_s": {
+    "mosquitto": 1.24
+   },
+   "alerts_first_seen_after_fault_s": {
+    "AiotMqttBridgeDisconnected:firing": 27.6,
+    "AiotMqttBridgeDisconnected:pending": 13.3,
+    "AiotSensorStale:firing": 32.7,
+    "AiotSensorStale:pending": 23.5
+   },
+   "prometheus_poll_errors": 0,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": null
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 0.03
+   },
+   "harness_note": "control probes use a fresh node each; the Kafka watcher commits offsets",
+   "kafka": {
+    "readings": {
+     "expected": 280,
+     "missing": 135,
+     "missing_pct": 48.21,
+     "missing_span_s": 27.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 7.56,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 280,
+     "missing": 135,
+     "missing_pct": 48.21,
+     "missing_span_s": 27.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 7.56,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 280,
+     "missing": 138,
+     "missing_pct": 49.29,
+     "missing_span_s": 28.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 7.6,
+     "backlog_drained_after_back_s": 6.6
+    }
+   },
+   "window_seqs": [
+    377,
+    432
+   ],
+   "influx_readings": {
+    "expected": 280,
+    "stored": 145,
+    "missing": 135
+   }
+  },
+  {
+   "id": "R06",
+   "scenario": "Stop edge-inference 60 s",
+   "services": [
+    "edge-inference"
+   ],
+   "hold_s": 60,
+   "fault_issued_at": 1792797427.7796383,
+   "stop_calls_s": [
+    0.55
+   ],
+   "start_calls_s": [
+    0.47
+   ],
+   "healthy_after_start_s": {
+    "edge-inference": 5.83
+   },
+   "alerts_first_seen_after_fault_s": {
+    "AiotEdgeInferenceStale:firing": 30.6,
+    "AiotEdgeInferenceStale:pending": 16.3,
+    "AiotServiceDown:firing": 40.8,
+    "AiotServiceDown:pending": 11.2
+   },
+   "prometheus_poll_errors": 0,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": 0.027
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 0.023
+   },
+   "harness_note": "control probes use a fresh node each; the Kafka watcher commits offsets",
+   "kafka": {
+    "readings": {
+     "expected": 480,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.8,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 480,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.8,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 480,
+     "missing": 323,
+     "missing_pct": 67.29,
+     "missing_span_s": 65.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 3.85,
+     "backlog_drained_after_back_s": 0.0
+    }
+   },
+   "window_seqs": [
+    464,
+    559
+   ],
+   "influx_readings": {
+    "expected": 480,
+    "stored": 480,
+    "missing": 0
+   }
+  },
+  {
+   "id": "R07",
+   "scenario": "Stop Kitchen UI, Grafana and Prometheus 30 s",
+   "services": [
+    "demo-ui",
+    "grafana",
+    "prometheus"
+   ],
+   "hold_s": 30,
+   "fault_issued_at": 1792797559.1609652,
+   "stop_calls_s": [
+    1.1,
+    0.71,
+    0.55
+   ],
+   "start_calls_s": [
+    0.53,
+    0.57,
+    0.56
+   ],
+   "healthy_after_start_s": {
+    "demo-ui": 7.05,
+    "grafana": 0.13,
+    "prometheus": 2.03
+   },
+   "alerts_first_seen_after_fault_s": {},
+   "prometheus_poll_errors": 15,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": 0.027
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 0.02
+   },
+   "harness_note": "control probes use a fresh node each; the Kafka watcher commits offsets",
+   "kafka": {
+    "readings": {
+     "expected": 330,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.25,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 330,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.2,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 330,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.25,
+     "backlog_drained_after_back_s": 0.0
+    }
+   },
+   "window_seqs": [
+    596,
+    661
+   ],
+   "influx_readings": {
+    "expected": 330,
+    "stored": 330,
+    "missing": 0
+   },
+   "observable_again_after_start_s": {
+    "demo-ui": 0.01,
+    "grafana": 0.02,
+    "prometheus": 0.01
+   }
+  },
+  {
+   "id": "R05",
+   "scenario": "Malformed readings, then a valid one",
+   "sent_invalid": 5,
+   "dead_letters": 5,
+   "dead_letter_errors": [
+    "1 validation error for SensorReading\n  Invalid JSON: key must be a string at line 1 column 2 [type=json_invalid, input_value=b'{not json', input_type=bytes]\n   ",
+    "1 validation error for SensorReading\nsensors\n  List should have at least 16 items after validation, not 15 [type=too_short, input_value=[1.0, 1.0, 1.0, 1.0, 1.0",
+    "node_id mismatch: topic='bench-rec-bad', payload='bench-rec-bad-x'",
+    "1 validation error for SensorReading\nobserved_at\n  Value error, observed_at must include a timezone [type=value_error, input_value='2026-10-24T10:00:00', input_",
+    "1 validation error for SensorReading\nextra\n  Extra inputs are not permitted [type=extra_forbidden, input_value=1, input_type=int]\n    For further information vi"
+   ],
+   "valid_after_invalid_reached_kafka": true,
+   "result": "PASS"
+  }
+ ]
+}

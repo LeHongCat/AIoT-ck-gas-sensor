@@ -1,0 +1,1578 @@
+{
+ "data": {
+  "file": "demo_data/demo_1hz.csv",
+  "scope": "last 20 % of the UCI 322 recording, not the notebook's 60-80 % test block",
+  "t_s_range": [
+   33669.0,
+   42087.0
+  ],
+  "rows": 8419,
+  "full_windows": 8360,
+  "startup_windows_excluded": 59
+ },
+ "thresholds": {
+  "presence_truth_ppm": [
+   50.0,
+   1.0
+  ],
+  "presence_tau": [
+   0.4799999999999999,
+   0.4799999999999999
+  ],
+  "alarm": "warning: 5 s mean P(CO) >= 0.48; danger: 5 s mean CO >= 200 ppm; C2H4 never alarms",
+  "picp": "90 % Student-t interval of the DER output (2 alpha dof), on windows where the gas is present"
+ },
+ "four_member_subset": "members 0-3 of 32",
+ "fp32": "not available (no FP32 checkpoint in the repository): D01 / M1 / M4 not measured",
+ "configs": {
+  "INT8-32 ONNX": {
+   "quality": {
+    "windows": 8360,
+    "per_gas": {
+     "CO": {
+      "precision": 0.8845,
+      "recall": 0.9041,
+      "f1": 0.8942,
+      "tp": 2811,
+      "fp": 367,
+      "fn": 298,
+      "tn": 4884,
+      "positives": 3109,
+      "negatives": 5251,
+      "rmse_ppm": 84.723,
+      "mae_ppm": 32.145,
+      "picp90": 0.9688,
+      "interval90_mean_width_ppm": 210.759,
+      "picp90_windows": 3109
+     },
+     "C2H4": {
+      "precision": 0.9499,
+      "recall": 0.7942,
+      "f1": 0.8651,
+      "tp": 3964,
+      "fp": 209,
+      "fn": 1027,
+      "tn": 3160,
+      "positives": 4991,
+      "negatives": 3369,
+      "rmse_ppm": 3.545,
+      "mae_ppm": 1.63,
+      "picp90": 0.9924,
+      "interval90_mean_width_ppm": 11.237,
+      "picp90_windows": 4991
+     }
+    },
+    "four_state": {
+     "confusion_rows_true_cols_pred": [
+      [
+       1785,
+       165,
+       121,
+       0
+      ],
+      [
+       125,
+       1085,
+       0,
+       88
+      ],
+      [
+       952,
+       0,
+       2026,
+       202
+      ],
+      [
+       27,
+       48,
+       146,
+       1590
+      ]
+     ],
+     "states": [
+      "không khí",
+      "chỉ CO",
+      "chỉ C2H4",
+      "hỗn hợp"
+     ],
+     "per_state": {
+      "không khí": {
+       "f1": 0.7198,
+       "support": 2071
+      },
+      "chỉ CO": {
+       "f1": 0.8359,
+       "support": 1298
+      },
+      "chỉ C2H4": {
+       "f1": 0.7404,
+       "support": 3180
+      },
+      "hỗn hợp": {
+       "f1": 0.8616,
+       "support": 1811
+      }
+     },
+     "f1_macro_present_states": 0.7894,
+     "states_absent_from_data": []
+    }
+   },
+   "alarms": {
+    "every_1s": {
+     "duration_h": 2.322,
+     "co_episodes": 17,
+     "episodes_detected": 17,
+     "episodes_missed": 0,
+     "delay_warning_s": {
+      "n": 17,
+      "min": 18,
+      "median": 19,
+      "max": 21
+     },
+     "danger_episodes": 17,
+     "danger_reached": 17,
+     "delay_danger_s": {
+      "n": 17,
+      "min": 19,
+      "median": 20,
+      "max": 22
+     },
+     "Q10_false_signal_onsets": 0,
+     "Q10_fa_per_h": 0.0,
+     "Q13_false_level_onsets": 0,
+     "Q13_fa_per_h": 0.0,
+     "warning_to_danger_escalations": 16,
+     "alarm_events": 17,
+     "seconds_by_level": {
+      "normal": 5179,
+      "warning": 220,
+      "danger": 2961
+     },
+     "episodes": [
+      {
+       "start_index": 39,
+       "duration_s": 206,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 433,
+       "duration_s": 109,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 648,
+       "duration_s": 91,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 924,
+       "duration_s": 274,
+       "peak_ppm": 293.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 1312,
+       "duration_s": 118,
+       "peak_ppm": 240.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 18,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 1511,
+       "duration_s": 168,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 18,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 1881,
+       "duration_s": 108,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 2919,
+       "duration_s": 918,
+       "peak_ppm": 253.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 4141,
+       "duration_s": 112,
+       "peak_ppm": 226.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 4858,
+       "duration_s": 113,
+       "peak_ppm": 280.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 5200,
+       "duration_s": 292,
+       "peak_ppm": 320.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 6405,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 6605,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 6805,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 7705,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 7905,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 8105,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      }
+     ]
+    },
+    "every_5s": {
+     "duration_h": 2.322,
+     "co_episodes": 17,
+     "episodes_detected": 17,
+     "episodes_missed": 0,
+     "delay_warning_s": {
+      "n": 17,
+      "min": 17,
+      "median": 20,
+      "max": 22
+     },
+     "danger_episodes": 17,
+     "danger_reached": 17,
+     "delay_danger_s": {
+      "n": 17,
+      "min": 17,
+      "median": 20,
+      "max": 22
+     },
+     "Q10_false_signal_onsets": 0,
+     "Q10_fa_per_h": 0.0,
+     "Q13_false_level_onsets": 0,
+     "Q13_fa_per_h": 0.0,
+     "warning_to_danger_escalations": 3,
+     "alarm_events": 17,
+     "seconds_by_level": {
+      "normal": 5185,
+      "warning": 180,
+      "danger": 2995
+     },
+     "episodes": [
+      {
+       "start_index": 39,
+       "duration_s": 206,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 433,
+       "duration_s": 109,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 17,
+       "danger_expected": true,
+       "delay_danger_s": 17
+      },
+      {
+       "start_index": 648,
+       "duration_s": 91,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 17,
+       "danger_expected": true,
+       "delay_danger_s": 17
+      },
+      {
+       "start_index": 924,
+       "duration_s": 274,
+       "peak_ppm": 293.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 1312,
+       "duration_s": 118,
+       "peak_ppm": 240.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 18,
+       "danger_expected": true,
+       "delay_danger_s": 18
+      },
+      {
+       "start_index": 1511,
+       "duration_s": 168,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 1881,
+       "duration_s": 108,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 2919,
+       "duration_s": 918,
+       "peak_ppm": 253.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 4141,
+       "duration_s": 112,
+       "peak_ppm": 226.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 4858,
+       "duration_s": 113,
+       "peak_ppm": 280.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 22,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 5200,
+       "duration_s": 292,
+       "peak_ppm": 320.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 6405,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 6605,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 6805,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 7705,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 7905,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 8105,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      }
+     ]
+    }
+   }
+  },
+  "INT8-32 int": {
+   "quality": {
+    "windows": 8360,
+    "per_gas": {
+     "CO": {
+      "precision": 0.8845,
+      "recall": 0.9041,
+      "f1": 0.8942,
+      "tp": 2811,
+      "fp": 367,
+      "fn": 298,
+      "tn": 4884,
+      "positives": 3109,
+      "negatives": 5251,
+      "rmse_ppm": 84.723,
+      "mae_ppm": 32.145,
+      "picp90": 0.9688,
+      "interval90_mean_width_ppm": 210.759,
+      "picp90_windows": 3109
+     },
+     "C2H4": {
+      "precision": 0.9499,
+      "recall": 0.7942,
+      "f1": 0.8651,
+      "tp": 3964,
+      "fp": 209,
+      "fn": 1027,
+      "tn": 3160,
+      "positives": 4991,
+      "negatives": 3369,
+      "rmse_ppm": 3.545,
+      "mae_ppm": 1.63,
+      "picp90": 0.9924,
+      "interval90_mean_width_ppm": 11.237,
+      "picp90_windows": 4991
+     }
+    },
+    "four_state": {
+     "confusion_rows_true_cols_pred": [
+      [
+       1785,
+       165,
+       121,
+       0
+      ],
+      [
+       125,
+       1085,
+       0,
+       88
+      ],
+      [
+       952,
+       0,
+       2026,
+       202
+      ],
+      [
+       27,
+       48,
+       146,
+       1590
+      ]
+     ],
+     "states": [
+      "không khí",
+      "chỉ CO",
+      "chỉ C2H4",
+      "hỗn hợp"
+     ],
+     "per_state": {
+      "không khí": {
+       "f1": 0.7198,
+       "support": 2071
+      },
+      "chỉ CO": {
+       "f1": 0.8359,
+       "support": 1298
+      },
+      "chỉ C2H4": {
+       "f1": 0.7404,
+       "support": 3180
+      },
+      "hỗn hợp": {
+       "f1": 0.8616,
+       "support": 1811
+      }
+     },
+     "f1_macro_present_states": 0.7894,
+     "states_absent_from_data": []
+    }
+   },
+   "alarms": {
+    "every_1s": {
+     "duration_h": 2.322,
+     "co_episodes": 17,
+     "episodes_detected": 17,
+     "episodes_missed": 0,
+     "delay_warning_s": {
+      "n": 17,
+      "min": 18,
+      "median": 19,
+      "max": 21
+     },
+     "danger_episodes": 17,
+     "danger_reached": 17,
+     "delay_danger_s": {
+      "n": 17,
+      "min": 19,
+      "median": 20,
+      "max": 22
+     },
+     "Q10_false_signal_onsets": 0,
+     "Q10_fa_per_h": 0.0,
+     "Q13_false_level_onsets": 0,
+     "Q13_fa_per_h": 0.0,
+     "warning_to_danger_escalations": 16,
+     "alarm_events": 17,
+     "seconds_by_level": {
+      "normal": 5179,
+      "warning": 220,
+      "danger": 2961
+     },
+     "episodes": [
+      {
+       "start_index": 39,
+       "duration_s": 206,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 433,
+       "duration_s": 109,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 648,
+       "duration_s": 91,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 924,
+       "duration_s": 274,
+       "peak_ppm": 293.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 1312,
+       "duration_s": 118,
+       "peak_ppm": 240.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 18,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 1511,
+       "duration_s": 168,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 18,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 1881,
+       "duration_s": 108,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 2919,
+       "duration_s": 918,
+       "peak_ppm": 253.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 4141,
+       "duration_s": 112,
+       "peak_ppm": 226.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 4858,
+       "duration_s": 113,
+       "peak_ppm": 280.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 5200,
+       "duration_s": 292,
+       "peak_ppm": 320.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 6405,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 6605,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 6805,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 7705,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 7905,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 8105,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      }
+     ]
+    },
+    "every_5s": {
+     "duration_h": 2.322,
+     "co_episodes": 17,
+     "episodes_detected": 17,
+     "episodes_missed": 0,
+     "delay_warning_s": {
+      "n": 17,
+      "min": 17,
+      "median": 20,
+      "max": 22
+     },
+     "danger_episodes": 17,
+     "danger_reached": 17,
+     "delay_danger_s": {
+      "n": 17,
+      "min": 17,
+      "median": 20,
+      "max": 22
+     },
+     "Q10_false_signal_onsets": 0,
+     "Q10_fa_per_h": 0.0,
+     "Q13_false_level_onsets": 0,
+     "Q13_fa_per_h": 0.0,
+     "warning_to_danger_escalations": 3,
+     "alarm_events": 17,
+     "seconds_by_level": {
+      "normal": 5185,
+      "warning": 180,
+      "danger": 2995
+     },
+     "episodes": [
+      {
+       "start_index": 39,
+       "duration_s": 206,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 433,
+       "duration_s": 109,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 17,
+       "danger_expected": true,
+       "delay_danger_s": 17
+      },
+      {
+       "start_index": 648,
+       "duration_s": 91,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 17,
+       "danger_expected": true,
+       "delay_danger_s": 17
+      },
+      {
+       "start_index": 924,
+       "duration_s": 274,
+       "peak_ppm": 293.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 1312,
+       "duration_s": 118,
+       "peak_ppm": 240.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 18,
+       "danger_expected": true,
+       "delay_danger_s": 18
+      },
+      {
+       "start_index": 1511,
+       "duration_s": 168,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 1881,
+       "duration_s": 108,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 2919,
+       "duration_s": 918,
+       "peak_ppm": 253.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 4141,
+       "duration_s": 112,
+       "peak_ppm": 226.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 4858,
+       "duration_s": 113,
+       "peak_ppm": 280.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 22,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 5200,
+       "duration_s": 292,
+       "peak_ppm": 320.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 6405,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 6605,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 6805,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 7705,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 7905,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 8105,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      }
+     ]
+    }
+   }
+  },
+  "INT8-4 int": {
+   "quality": {
+    "windows": 8360,
+    "per_gas": {
+     "CO": {
+      "precision": 0.8854,
+      "recall": 0.9045,
+      "f1": 0.8948,
+      "tp": 2812,
+      "fp": 364,
+      "fn": 297,
+      "tn": 4887,
+      "positives": 3109,
+      "negatives": 5251,
+      "rmse_ppm": 85.015,
+      "mae_ppm": 32.408,
+      "picp90": 0.9682,
+      "interval90_mean_width_ppm": 214.539,
+      "picp90_windows": 3109
+     },
+     "C2H4": {
+      "precision": 0.9425,
+      "recall": 0.7842,
+      "f1": 0.8561,
+      "tp": 3914,
+      "fp": 239,
+      "fn": 1077,
+      "tn": 3130,
+      "positives": 4991,
+      "negatives": 3369,
+      "rmse_ppm": 3.648,
+      "mae_ppm": 1.725,
+      "picp90": 0.9932,
+      "interval90_mean_width_ppm": 11.418,
+      "picp90_windows": 4991
+     }
+    },
+    "four_state": {
+     "confusion_rows_true_cols_pred": [
+      [
+       1788,
+       163,
+       119,
+       1
+      ],
+      [
+       122,
+       1057,
+       4,
+       115
+      ],
+      [
+       1002,
+       1,
+       1978,
+       199
+      ],
+      [
+       27,
+       47,
+       144,
+       1593
+      ]
+     ],
+     "states": [
+      "không khí",
+      "chỉ CO",
+      "chỉ C2H4",
+      "hỗn hợp"
+     ],
+     "per_state": {
+      "không khí": {
+       "f1": 0.7138,
+       "support": 2071
+      },
+      "chỉ CO": {
+       "f1": 0.8239,
+       "support": 1298
+      },
+      "chỉ C2H4": {
+       "f1": 0.7292,
+       "support": 3180
+      },
+      "hỗn hợp": {
+       "f1": 0.8567,
+       "support": 1811
+      }
+     },
+     "f1_macro_present_states": 0.7809,
+     "states_absent_from_data": []
+    }
+   },
+   "alarms": {
+    "every_1s": {
+     "duration_h": 2.322,
+     "co_episodes": 17,
+     "episodes_detected": 17,
+     "episodes_missed": 0,
+     "delay_warning_s": {
+      "n": 17,
+      "min": 18,
+      "median": 19,
+      "max": 21
+     },
+     "danger_episodes": 17,
+     "danger_reached": 17,
+     "delay_danger_s": {
+      "n": 17,
+      "min": 19,
+      "median": 20,
+      "max": 22
+     },
+     "Q10_false_signal_onsets": 0,
+     "Q10_fa_per_h": 0.0,
+     "Q13_false_level_onsets": 0,
+     "Q13_fa_per_h": 0.0,
+     "warning_to_danger_escalations": 16,
+     "alarm_events": 17,
+     "seconds_by_level": {
+      "normal": 5185,
+      "warning": 122,
+      "danger": 3053
+     },
+     "episodes": [
+      {
+       "start_index": 39,
+       "duration_s": 206,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 433,
+       "duration_s": 109,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 648,
+       "duration_s": 91,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 924,
+       "duration_s": 274,
+       "peak_ppm": 293.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 1312,
+       "duration_s": 118,
+       "peak_ppm": 240.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 18,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 1511,
+       "duration_s": 168,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 18,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 1881,
+       "duration_s": 108,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 2919,
+       "duration_s": 918,
+       "peak_ppm": 253.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 4141,
+       "duration_s": 112,
+       "peak_ppm": 226.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 4858,
+       "duration_s": 113,
+       "peak_ppm": 280.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 5200,
+       "duration_s": 292,
+       "peak_ppm": 320.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 6405,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 6605,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 6805,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 7705,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 7905,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 8105,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      }
+     ]
+    },
+    "every_5s": {
+     "duration_h": 2.322,
+     "co_episodes": 17,
+     "episodes_detected": 17,
+     "episodes_missed": 0,
+     "delay_warning_s": {
+      "n": 17,
+      "min": 17,
+      "median": 20,
+      "max": 22
+     },
+     "danger_episodes": 17,
+     "danger_reached": 17,
+     "delay_danger_s": {
+      "n": 17,
+      "min": 17,
+      "median": 20,
+      "max": 22
+     },
+     "Q10_false_signal_onsets": 0,
+     "Q10_fa_per_h": 0.0,
+     "Q13_false_level_onsets": 0,
+     "Q13_fa_per_h": 0.0,
+     "warning_to_danger_escalations": 5,
+     "alarm_events": 17,
+     "seconds_by_level": {
+      "normal": 5185,
+      "warning": 60,
+      "danger": 3115
+     },
+     "episodes": [
+      {
+       "start_index": 39,
+       "duration_s": 206,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 433,
+       "duration_s": 109,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 17,
+       "danger_expected": true,
+       "delay_danger_s": 17
+      },
+      {
+       "start_index": 648,
+       "duration_s": 91,
+       "peak_ppm": 346.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 17,
+       "danger_expected": true,
+       "delay_danger_s": 17
+      },
+      {
+       "start_index": 924,
+       "duration_s": 274,
+       "peak_ppm": 293.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 1312,
+       "duration_s": 118,
+       "peak_ppm": 240.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 18,
+       "danger_expected": true,
+       "delay_danger_s": 18
+      },
+      {
+       "start_index": 1511,
+       "duration_s": 168,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 1881,
+       "duration_s": 108,
+       "peak_ppm": 213.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 2919,
+       "duration_s": 918,
+       "peak_ppm": 253.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 21,
+       "danger_expected": true,
+       "delay_danger_s": 21
+      },
+      {
+       "start_index": 4141,
+       "duration_s": 112,
+       "peak_ppm": 226.67,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 19,
+       "danger_expected": true,
+       "delay_danger_s": 19
+      },
+      {
+       "start_index": 4858,
+       "duration_s": 113,
+       "peak_ppm": 280.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 22,
+       "danger_expected": true,
+       "delay_danger_s": 22
+      },
+      {
+       "start_index": 5200,
+       "duration_s": 292,
+       "peak_ppm": 320.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 6405,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 6605,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 6805,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 7705,
+       "duration_s": 100,
+       "peak_ppm": 200.0,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 7905,
+       "duration_s": 100,
+       "peak_ppm": 333.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      },
+      {
+       "start_index": 8105,
+       "duration_s": 100,
+       "peak_ppm": 533.33,
+       "alarm_already_on_at_start": false,
+       "detected": true,
+       "delay_warning_s": 20,
+       "danger_expected": true,
+       "delay_danger_s": 20
+      }
+     ]
+    }
+   }
+  }
+ },
+ "consistency_python": {
+  "D03_features_ref_vs_int_max_abs": 0.0,
+  "D03_features_ref_vs_int_mean_abs": 0.0,
+  "D04_raw_onnx_vs_int_max_abs": 0.0018277168273925781,
+  "D04_raw_onnx_vs_int_mean_abs": 4.020923825009959e-07,
+  "D04_prob_max_abs": 2.9257785589688334e-05,
+  "D04_ppm_max_abs": [
+   0.00015894473108346574,
+   7.152557373046875e-06
+  ],
+  "D04_presence_decisions_differ": [
+   0,
+   0
+  ],
+  "D04_windows_near_tau_pm0.02": [
+   7,
+   126
+  ],
+  "D04_decisions_differ_near_tau": [
+   0,
+   0
+  ]
+ },
+ "startup_padded_windows": {
+  "windows": 59,
+  "presence_agreement_CO": 1.0,
+  "presence_agreement_C2H4": 1.0,
+  "note": "reported apart from the full windows (padded with the oldest reading, as the gateway does)"
+ },
+ "D08_host": {
+  "blas_threads": "1",
+  "scope": "features + integer forward of one window, host CPU, one thread",
+  "INT8-32 int": {
+   "n": 8360,
+   "p50_ms": 9.263,
+   "p95_ms": 16.777,
+   "windows_per_s": 1.6
+  },
+  "INT8-4 int": {
+   "n": 8360,
+   "p50_ms": 3.268,
+   "p95_ms": 4.752,
+   "windows_per_s": 291.9
+  },
+  "INT8-32 ONNX batched_windows_per_s": 2005.5
+ }
+}

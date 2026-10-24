@@ -1,0 +1,27 @@
+{
+ "D05_files_bytes": {
+  "model/TabM_seed42_int8_static.onnx (ONNX QDQ INT8, 32 members)": 4017090,
+  "tabm_int8.bin (INT8 weights embedded in the firmware)": 3986240,
+  "tabm_int8.json (descriptor)": 11182,
+  "firmware.bin (app image)": 5081152
+ },
+ "D05_note": "FP32 model not in the repository; the 4-member configuration uses the same blob (members 0-3 are read at run time).",
+ "D06_build": {
+  "board": "esp32-s3-devkitc-1, 16 MB flash, default_16MB.csv",
+  "framework": "arduino (espressif32)",
+  "flags": "-O2",
+  "ram_static_bytes": 141576,
+  "ram_total_bytes": 327680,
+  "ram_pct": 43.2,
+  "flash_app_bytes": 5069785,
+  "flash_app_partition_bytes": 6553600,
+  "flash_pct": 77.4,
+  "sections_bytes": {
+   ".iram0.text": 76495,
+   ".dram0.data": 105726,
+   ".dram0.bss": 35848,
+   ".flash.text": 775020,
+   ".flash.rodata": 4111516
+  }
+ }
+}

@@ -1,0 +1,111 @@
+groups:
+  # Pre-computed series keep Grafana panels cheap: each dashboard refresh reads one series
+  # instead of re-aggregating raw histograms and per-partition offsets.
+  - name: aiot-pipeline-recording
+    interval: 5s
+    rules:
+      - record: aiot:mqtt_ingress:rate1m
+        expr: sum(rate(aiot_mqtt_messages_received_total{job="mqtt-kafka-bridge"}[1m]))
+      - record: aiot:kafka_produced:rate1m
+        expr: sum(rate(aiot_kafka_messages_produced_total{job="mqtt-kafka-bridge"}[1m]))
+      - record: aiot:kafka_appended:rate1m
+        expr: sum(rate(kafka_topic_partition_current_offset{topic=~"gas[.].*"}[1m]))
+      - record: aiot:sink_consumed:rate1m
+        expr: sum(rate(aiot_kafka_messages_consumed_total{job="influx-sink"}[1m]))
+      - record: aiot:influx_written:rate1m
+        expr: sum(rate(aiot_influx_points_written_total{job="influx-sink"}[1m]))
+      # kafka-exporter reports -1 for partitions without a committed offset; clamp per
+      # partition before summing so empty partitions do not hide real lag.
+      - record: aiot:consumer_lag:sum
+        expr: sum by (consumergroup) (clamp_min(kafka_consumergroup_lag, 0))
+      - record: aiot:sensor_age:max
+        expr: time() - max by (node_id) (aiot_last_event_timestamp_seconds{event_type="readings"})
+      - record: aiot:pipeline_latency:p95
+        expr: histogram_quantile(0.95, sum by (le, measurement) (rate(aiot_pipeline_latency_seconds_bucket[1m])))
+      - record: aiot:pipeline_latency:p50
+        expr: histogram_quantile(0.50, sum by (le, measurement) (rate(aiot_pipeline_latency_seconds_bucket[1m])))
+      - record: aiot:ack_latency:p95
+        expr: histogram_quantile(0.95, sum by (le) (rate(aiot_actuator_ack_latency_seconds_bucket[5m])))
+      - record: aiot:control_loop_lag:p95
+        expr: histogram_quantile(0.95, sum by (le) (rate(aiot_control_loop_lag_seconds_bucket[1m])))
+      - record: aiot:bridge_event_age:p95
+        expr: histogram_quantile(0.95, sum by (le) (rate(aiot_event_age_seconds_bucket{event_type="readings"}[1m])))
+      - record: aiot:influx_write:p95
+        expr: histogram_quantile(0.95, sum by (le) (rate(aiot_influx_write_duration_seconds_bucket[1m])))
+      - record: aiot:inference:p95
+        expr: histogram_quantile(0.95, sum by (le) (rate(aiot_inference_seconds_bucket[1m])))
+      - record: aiot:dead_letter:increase5m
+        expr: sum(increase(kafka_topic_partition_current_offset{topic="gas.dead-letter.v1"}[5m]))
+
+  - name: aiot-pipeline-alerts
+    rules:
+      - alert: AiotServiceDown
+        expr: up{job=~"mqtt-kafka-bridge|edge-inference|influx-sink|safety-controller|kafka-exporter|influxdb"} == 0
+        for: 30s
+        labels: {severity: critical, plane: data}
+        annotations:
+          summary: "{{ $labels.job }} không phản hồi scrape"
+      - alert: AiotMqttBridgeDisconnected
+        expr: aiot_mqtt_connected{job="mqtt-kafka-bridge"} == 0
+        for: 15s
+        labels: {severity: critical, plane: data}
+        annotations:
+          summary: Bridge mất kết nối Mosquitto
+      - alert: AiotSensorStale
+        expr: aiot:sensor_age:max > 10
+        for: 10s
+        labels: {severity: warning, plane: data}
+        annotations:
+          summary: "Node {{ $labels.node_id }} không gửi sensor reading trong {{ $value | humanizeDuration }}"
+      - alert: AiotEdgeInferenceStale
+        expr: |
+          (time() - max by (node_id) (aiot_last_event_timestamp_seconds{event_type="predictions"}) > 10)
+          and on (node_id) (aiot:sensor_age:max < 10)
+        for: 15s
+        labels: {severity: critical, plane: safety}
+        annotations:
+          summary: "Node {{ $labels.node_id }} vẫn gửi 16 kênh nhưng edge model không còn dự đoán"
+      - alert: AiotConsumerLagHigh
+        expr: aiot:consumer_lag:sum{consumergroup=~"influx-sink-v1|safety-controller-v1"} > 100
+        for: 1m
+        labels: {severity: warning, plane: data}
+        annotations:
+          summary: "Consumer {{ $labels.consumergroup }} chậm {{ $value }} record"
+      - alert: AiotPipelineLatencyHigh
+        expr: aiot:pipeline_latency:p95{measurement="sensor_reading"} > 3
+        for: 1m
+        labels: {severity: warning, plane: data}
+        annotations:
+          summary: "Latency sensor → InfluxDB p95 = {{ $value | humanizeDuration }}"
+      - alert: AiotDeadLetterEvents
+        expr: aiot:dead_letter:increase5m > 0
+        labels: {severity: warning, plane: data}
+        annotations:
+          summary: "{{ $value }} payload sai contract bị đẩy vào DLQ trong 5 phút"
+      - alert: AiotInfluxWriteFailures
+        expr: increase(aiot_influx_write_failures_total[5m]) > 0
+        labels: {severity: critical, plane: storage}
+        annotations:
+          summary: InfluxDB từ chối batch ghi
+      - alert: AiotActuatorAckTimeout
+        expr: increase(aiot_actuator_ack_timeouts_total[5m]) > 0
+        labels: {severity: critical, plane: control}
+        annotations:
+          summary: "Thiết bị {{ $labels.node_id }} không ACK lệnh actuator"
+      - alert: AiotGasDanger
+        expr: aiot_alarm_level == 2
+        labels: {severity: critical, plane: safety}
+        annotations:
+          summary: "Node {{ $labels.node_id }} ở mức DANGER — van gas khóa, bật xả khí"
+      - alert: AiotGasWarning
+        expr: aiot_alarm_level == 1
+        for: 2m
+        labels: {severity: warning, plane: safety}
+        annotations:
+          summary: "Node {{ $labels.node_id }} ở mức WARNING kéo dài"
+      - alert: AiotSirenMuted
+        expr: aiot_siren_muted == 1
+        for: 10m
+        labels: {severity: warning, plane: safety}
+        annotations:
+          summary: "Chuông cảnh báo của node {{ $labels.node_id }} bị tắt tay hơn 10 phút"

@@ -1,0 +1,10 @@
+96 golden windows
+  features     max |C - numpy|        1.91e-06
+  raw outputs  max |C - onnxruntime|  0.0018 (same features)
+  raw outputs  max |C - onnxruntime|  0.0018 (C features)
+  presence decisions that differ      0 / 192
+  forward pass on this PC             21.64 ms
+   4 members: max |C - numpy int|    0.0000, decisions that differ 0 / 192
+   4 members: forward pass on this PC 2.75 ms
+  alarm filter (dense, sparse, C2H4)  ok
+PASS

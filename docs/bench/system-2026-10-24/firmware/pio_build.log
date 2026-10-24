@@ -1,0 +1,46 @@
+Processing esp32s3 (platform: espressif32; board: esp32-s3-devkitc-1; framework: arduino)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-s3-devkitc-1.html
+PLATFORM: Espressif 32 (8.0.0) > Espressif ESP32-S3-DevKitC-1-N8 (8 MB QD, No PSRAM)
+HARDWARE: ESP32S3 240MHz, 320KB RAM, 16MB Flash
+DEBUG: Current (esp-builtin) On-board (esp-builtin) External (cmsis-dap, esp-bridge, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - framework-arduinoespressif32 @ 4.30312.261016 (3.3.12) 
+ - framework-arduinoespressif32-esp32s3-libs @ 3.3.12 
+ - tool-esptool @ 2.50400.0 (5.4.0) 
+ - tool-riscv32-esp-elf-gdb @ 11.2.0+20220823 
+ - tool-xtensa-esp-elf-gdb @ 11.2.0+20230208 
+ - toolchain-riscv32-esp @ 14.2.0+20260121 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 46 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- ArduinoJson @ 7.4.3
+|-- PubSubClient @ 2.8.0
+|-- SD @ 3.3.12
+|-- SPI @ 3.3.12
+|-- WiFi @ 3.3.12
+Building in release mode
+Compiling .pio\build\esp32s3\src\main.cpp.o
+Linking .pio\build\esp32s3\firmware.elf
+Retrieving maximum program size .pio\build\esp32s3\firmware.elf
+Checking size .pio\build\esp32s3\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [====      ]  43.2% (used 141608 bytes from 327680 bytes)
+Flash: [========  ]  77.4% (used 5070053 bytes from 6553600 bytes)
+Building .pio\build\esp32s3\firmware.bin
+esptool v5.4.0
+Creating ESP32-S3 image...
+Merged 3 ELF sections.
+Successfully created ESP32-S3 image.
+merge_bin([".pio\build\esp32s3\firmware.bin"], [".pio\build\esp32s3\firmware.elf"])
+"C:\Users\xiaoxin\.platformio\packages\tool-esptool\esptool.exe" --chip esp32s3 merge_bin --fill-flash-size 16MB -o "D:\DATA\AIoT\CK\wokwi\esp32-replay\esp32-replay\.pio\build\esp32s3/firmware_merged.bin" "0x0000" "D:\DATA\AIoT\CK\wokwi\esp32-replay\esp32-replay\.pio\build\esp32s3\bootloader.bin" "0x8000" "D:\DATA\AIoT\CK\wokwi\esp32-replay\esp32-replay\.pio\build\esp32s3\partitions.bin" "0xe000" "C:\Users\xiaoxin\.platformio\packages\framework-arduinoespressif32\tools\partitions\boot_app0.bin" "0x10000" "D:\DATA\AIoT\CK\wokwi\esp32-replay\esp32-replay\.pio\build\esp32s3/firmware.bin"
+WARNING: Deprecated: Option '--fill-flash-size' is deprecated. Use '--pad-to-size' instead.
+WARNING: Deprecated: Command 'merge_bin' is deprecated. Use 'merge-bin' instead.
+esptool v5.4.0
+HINT: Consider using --format hex to avoid flashing unused 0xFF padding between input regions.
+Wrote 0x1000000 bytes to file 'D:\DATA\AIoT\CK\wokwi\esp32-replay\esp32-replay\.pio\build\esp32s3/firmware_merged.bin', ready to flash to offset 0x0.
+========================= [SUCCESS] Took 33.51 seconds =========================

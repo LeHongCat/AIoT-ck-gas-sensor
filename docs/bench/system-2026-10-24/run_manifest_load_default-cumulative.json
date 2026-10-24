@@ -1,0 +1,169 @@
+{
+ "run_id": "load_test-20261023T200236Z-1f6628",
+ "started_utc": "2026-10-23T20:02:36.614055+00:00",
+ "tool": "load_test",
+ "parameters": {
+  "nodes": "1,10,20,40,60,100",
+  "repeat": 3,
+  "warmup": 30,
+  "step": 120,
+  "rest": 30,
+  "drain": 5,
+  "infer_every": 1,
+  "label": "default",
+  "csv": "demo_data/demo_1hz.csv",
+  "mqtt_host": "localhost",
+  "mqtt_port": 1883,
+  "kafka": "localhost:29092",
+  "out_dir": "docs/bench/system-2026-10-24"
+ },
+ "code": {
+  "commit": "fb739ea2db4884d885e95babcae80de3035fc191",
+  "branch": "updated",
+  "uncommitted_files": [
+   "M  README.md",
+   "A  docs/bench/inference.jsonl",
+   "A  docs/bench/load.json",
+   "A  docs/bench/load_100_nodes_4_members.json",
+   "A  docs/bench/load_100_nodes_every_5s.json",
+   "A  docs/bench/load_before_nolocal_fix.json",
+   "A  docs/benchmark.md",
+   "A  scripts/bench/inference_bench.py",
+   "AM scripts/bench/load_test.py",
+   "M  src/aiot_pipeline/edge_inference.py",
+   "M  tests/test_edge_model.py",
+   "?? danh_muc_can_benchmark.md",
+   "?? docs/bench/system-2026-10-24/",
+   "?? scripts/bench/common.py"
+  ]
+ },
+ "model": {
+  "model\\TabM_seed42_int8_static.onnx": {
+   "sha256": "f107fa9c4af418b6ef78ad1e9c93f4f4c72d25281870e44d39db69facfe00051",
+   "bytes": 4017090
+  },
+  "model\\preprocessing.json": {
+   "sha256": "ada088834a3be466c3d9955ec81c67a8e49d7c09bc8c192fe77686e5227e6e45",
+   "bytes": 8725
+  },
+  "model\\thresholds.json": {
+   "sha256": "4cbbbfc5fc51285ae6a4533830c26cdc4f5b1f3c1f6f210c5e89997a977e7c19",
+   "bytes": 1885
+  },
+  "wokwi\\esp32-replay\\esp32-replay\\model\\tabm_int8.bin": {
+   "sha256": "ed401e674fb77b3e7bde83416dab432d0dff535047b68c534394c12befdfa39d",
+   "bytes": 3986240
+  },
+  "wokwi\\esp32-replay\\esp32-replay\\model\\tabm_int8.json": {
+   "sha256": "cf4b7798004b5e08a831b812a9a70ab89a6e783d319201563a29094687a74e90",
+   "bytes": 11182
+  }
+ },
+ "dataset": {
+  "path": "demo_data/demo_1hz.csv",
+  "sha256": "4edb6a9f9c290a189c48468a61c9c4cb0164ad7f20feb33ec20ed69e6dcafbfe"
+ },
+ "machine": {
+  "host_platform": "Windows-11-10.0.26200-SP0",
+  "host_python": "3.12.13",
+  "docker_server": "29.8.0",
+  "docker_os": "Docker Desktop",
+  "docker_kernel": "6.18.33.2-microsoft-standard-WSL2",
+  "docker_cpus": 20,
+  "docker_mem_gib": 15.28
+ },
+ "clock_offset": {
+  "method": "Prometheus time() over HTTP",
+  "offset_ms": 1.2,
+  "uncertainty_ms": 2.4
+ },
+ "containers": {
+  "demo-ui": {
+   "image": "aiot-gas-pipeline:local",
+   "cpus": 0.5,
+   "memory_mib": 192.0,
+   "env": {
+    "DEMO_NODE_ID": "",
+    "DEMO_CONTROLS_ENABLED": "true",
+    "EDGE_MODEL": "tabm"
+   }
+  },
+  "edge-inference": {
+   "image": "aiot-gas-pipeline:local",
+   "cpus": 0.5,
+   "memory_mib": 192.0,
+   "env": {
+    "EDGE_MODEL": "tabm",
+    "EDGE_ON_DEVICE_TIMEOUT_S": "30",
+    "TABM_MODEL_DIR": "/model",
+    "EDGE_SKIP_NODES": "esp32-edge-01",
+    "TABM_INFER_EVERY_S": "1",
+    "TABM_MEMBERS": "32"
+   }
+  },
+  "grafana": {
+   "image": "grafana/grafana:13.2.1",
+   "cpus": 1.0,
+   "memory_mib": 640.0,
+   "env": {}
+  },
+  "influx-sink": {
+   "image": "aiot-gas-pipeline:local",
+   "cpus": 0.5,
+   "memory_mib": 160.0,
+   "env": {
+    "INFLUX_BATCH_SIZE": "200",
+    "INFLUX_FLUSH_SECONDS": "0.5"
+   }
+  },
+  "influxdb": {
+   "image": "influxdb:2.9.1",
+   "cpus": 1.0,
+   "memory_mib": 512.0,
+   "env": {}
+  },
+  "kafka": {
+   "image": "apache/kafka:4.3.1",
+   "cpus": 1.0,
+   "memory_mib": 768.0,
+   "env": {}
+  },
+  "kafka-exporter": {
+   "image": "danielqsj/kafka-exporter:v1.9.0",
+   "cpus": 0.25,
+   "memory_mib": 64.0,
+   "env": {}
+  },
+  "mosquitto": {
+   "image": "eclipse-mosquitto:2.1.2-alpine",
+   "cpus": 0.25,
+   "memory_mib": 64.0,
+   "env": {}
+  },
+  "mqtt-kafka-bridge": {
+   "image": "aiot-gas-pipeline:local",
+   "cpus": 0.5,
+   "memory_mib": 128.0,
+   "env": {}
+  },
+  "prometheus": {
+   "image": "prom/prometheus:v3.14.0",
+   "cpus": 0.5,
+   "memory_mib": 384.0,
+   "env": {}
+  },
+  "safety-controller": {
+   "image": "aiot-gas-pipeline:local",
+   "cpus": 0.25,
+   "memory_mib": 128.0,
+   "env": {
+    "DIRECT_OVERRIDE_SECONDS": "30"
+   }
+  }
+ },
+ "notes": [
+  "Latencies measured by the harness use the host clock that also stamps observed_at.",
+  "Histograms exported by containers subtract observed_at from the container clock; see clock_offset.",
+  "docker stats CPUPerc/100 = cores; memory = container working set reported by docker."
+ ]
+}

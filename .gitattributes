@@ -1,0 +1,19 @@
+# Files read inside Linux containers must keep LF even on Windows checkouts
+# (a CRLF create-topics.sh makes bash fail with "$'\r': command not found").
+*.sh          text eol=lf
+*.conf        text eol=lf
+*.yml         text eol=lf
+*.yaml        text eol=lf
+Dockerfile    text eol=lf
+*.py          text eol=lf
+*.json        text eol=lf
+*.js          text eol=lf
+*.css         text eol=lf
+*.html        text eol=lf
+*.md          text eol=lf
+*.toml        text eol=lf
+
+*.ipynb       -text
+*.jpg         binary
+*.png         binary
+*.ps1         text eol=crlf

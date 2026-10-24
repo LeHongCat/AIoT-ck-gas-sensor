@@ -1,0 +1,451 @@
+{
+ "run_id": "recovery_cases-20261023T225601Z-dd5e4e",
+ "cases": [
+  {
+   "id": "R01",
+   "scenario": "Stop Influx Sink 60 s",
+   "services": [
+    "influx-sink"
+   ],
+   "hold_s": 60,
+   "fault_issued_at": 1792796204.400502,
+   "stop_calls_s": [
+    0.85
+   ],
+   "start_calls_s": [
+    0.46
+   ],
+   "healthy_after_start_s": {
+    "influx-sink": 6.18
+   },
+   "alerts_first_seen_after_fault_s": {
+    "AiotConsumerLagHigh:pending": 18.4,
+    "AiotServiceDown:firing": 38.8,
+    "AiotServiceDown:pending": 8.2
+   },
+   "prometheus_poll_errors": 0,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": 0.027
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 0.027
+   },
+   "kafka": {
+    "readings": {
+     "expected": 480,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.56,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 480,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.56,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 480,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.58,
+     "backlog_drained_after_back_s": 0.0
+    }
+   },
+   "window_seqs": [
+    30,
+    125
+   ],
+   "influx_readings_drained_after_back_s": 46.26,
+   "influx_readings": {
+    "expected": 480,
+    "stored": 480,
+    "missing": 0
+   }
+  },
+  {
+   "id": "R02",
+   "scenario": "Stop Bridge 20 s",
+   "services": [
+    "mqtt-kafka-bridge"
+   ],
+   "hold_s": 20,
+   "fault_issued_at": 1792796336.1690168,
+   "stop_calls_s": [
+    0.52
+   ],
+   "start_calls_s": [
+    0.48
+   ],
+   "healthy_after_start_s": {
+    "mqtt-kafka-bridge": 3.19
+   },
+   "alerts_first_seen_after_fault_s": {
+    "AiotServiceDown:pending": 7.2
+   },
+   "prometheus_poll_errors": 0,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": null
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": null
+   },
+   "kafka": {
+    "readings": {
+     "expected": 280,
+     "missing": 120,
+     "missing_pct": 42.86,
+     "missing_span_s": 24.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 3.78,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 280,
+     "missing": 120,
+     "missing_pct": 42.86,
+     "missing_span_s": 24.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 3.78,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 280,
+     "missing": 120,
+     "missing_pct": 42.86,
+     "missing_span_s": 24.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 3.79,
+     "backlog_drained_after_back_s": 0.0
+    }
+   },
+   "window_seqs": [
+    162,
+    217
+   ],
+   "influx_readings": {
+    "expected": 280,
+    "stored": 160,
+    "missing": 120
+   }
+  },
+  {
+   "id": "R03",
+   "scenario": "Stop Kafka 30 s",
+   "services": [
+    "kafka"
+   ],
+   "hold_s": 30,
+   "fault_issued_at": 1792796439.8894632,
+   "stop_calls_s": [
+    2.51
+   ],
+   "start_calls_s": [
+    0.54
+   ],
+   "healthy_after_start_s": {
+    "kafka": 18.37
+   },
+   "alerts_first_seen_after_fault_s": {
+    "AiotConsumerLagHigh:pending": 63.2,
+    "AiotServiceDown:firing": 42.8,
+    "AiotServiceDown:pending": 13.3
+   },
+   "prometheus_poll_errors": 0,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": null
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 10.475
+   },
+   "kafka": {
+    "readings": {
+     "expected": 330,
+     "missing": 280,
+     "missing_pct": 84.85,
+     "missing_span_s": 56.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": null,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 330,
+     "missing": 280,
+     "missing_pct": 84.85,
+     "missing_span_s": 56.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": null,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 330,
+     "missing": 280,
+     "missing_pct": 84.85,
+     "missing_span_s": 56.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": null,
+     "backlog_drained_after_back_s": 0.0
+    }
+   },
+   "window_seqs": [
+    266,
+    331
+   ],
+   "influx_readings_drained_after_back_s": 68.9,
+   "influx_readings": {
+    "expected": 330,
+    "stored": 330,
+    "missing": 0
+   }
+  },
+  {
+   "id": "R04",
+   "scenario": "Stop Mosquitto 20 s",
+   "services": [
+    "mosquitto"
+   ],
+   "hold_s": 20,
+   "fault_issued_at": 1792796564.3810334,
+   "stop_calls_s": [
+    0.59
+   ],
+   "start_calls_s": [
+    0.56
+   ],
+   "healthy_after_start_s": {
+    "mosquitto": 1.26
+   },
+   "alerts_first_seen_after_fault_s": {
+    "AiotMqttBridgeDisconnected:firing": 23.5,
+    "AiotMqttBridgeDisconnected:pending": 8.2,
+    "AiotSensorStale:firing": 28.6,
+    "AiotSensorStale:pending": 18.4
+   },
+   "prometheus_poll_errors": 0,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": null
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 0.029
+   },
+   "kafka": {
+    "readings": {
+     "expected": 280,
+     "missing": 135,
+     "missing_pct": 48.21,
+     "missing_span_s": 27.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 7.52,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 280,
+     "missing": 135,
+     "missing_pct": 48.21,
+     "missing_span_s": 27.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 7.52,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 280,
+     "missing": 135,
+     "missing_pct": 48.21,
+     "missing_span_s": 27.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 7.52,
+     "backlog_drained_after_back_s": 0.0
+    }
+   },
+   "window_seqs": [
+    390,
+    445
+   ],
+   "influx_readings": {
+    "expected": 280,
+    "stored": 145,
+    "missing": 135
+   }
+  },
+  {
+   "id": "R06",
+   "scenario": "Stop edge-inference 60 s",
+   "services": [
+    "edge-inference"
+   ],
+   "hold_s": 60,
+   "fault_issued_at": 1792796651.2821248,
+   "stop_calls_s": [
+    0.6
+   ],
+   "start_calls_s": [
+    0.46
+   ],
+   "healthy_after_start_s": {
+    "edge-inference": 5.42
+   },
+   "alerts_first_seen_after_fault_s": {
+    "AiotEdgeInferenceStale:firing": 31.6,
+    "AiotEdgeInferenceStale:pending": 16.3,
+    "AiotServiceDown:firing": 41.8,
+    "AiotServiceDown:pending": 11.2
+   },
+   "prometheus_poll_errors": 0,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": 0.105
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 0.028
+   },
+   "kafka": {
+    "readings": {
+     "expected": 480,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.71,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 480,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.71,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 480,
+     "missing": 318,
+     "missing_pct": 66.25,
+     "missing_span_s": 64.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 3.72,
+     "backlog_drained_after_back_s": 0.0
+    }
+   },
+   "window_seqs": [
+    477,
+    572
+   ],
+   "influx_readings": {
+    "expected": 480,
+    "stored": 480,
+    "missing": 0
+   }
+  },
+  {
+   "id": "R07",
+   "scenario": "Stop Kitchen UI, Grafana and Prometheus 30 s",
+   "services": [
+    "demo-ui",
+    "grafana",
+    "prometheus"
+   ],
+   "hold_s": 30,
+   "fault_issued_at": 1792796782.247233,
+   "stop_calls_s": [
+    2.92,
+    0.99,
+    0.59
+   ],
+   "start_calls_s": [
+    0.53,
+    0.56,
+    0.55
+   ],
+   "healthy_after_start_s": {
+    "demo-ui": 7.05,
+    "grafana": 0.12,
+    "prometheus": 3.57
+   },
+   "alerts_first_seen_after_fault_s": {},
+   "prometheus_poll_errors": 15,
+   "control_probe_during_fault": {
+    "level": "warning",
+    "command_after_s": 0.026
+   },
+   "control_probe_after": {
+    "level": "normal",
+    "command_after_s": 0.028
+   },
+   "kafka": {
+    "readings": {
+     "expected": 335,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.54,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "ground-truth": {
+     "expected": 335,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.54,
+     "backlog_drained_after_back_s": 0.0
+    },
+    "predictions": {
+     "expected": 335,
+     "missing": 0,
+     "missing_pct": 0.0,
+     "missing_span_s": 0.0,
+     "duplicates": 0,
+     "first_new_record_after_back_s": 0.59,
+     "backlog_drained_after_back_s": 0.0
+    }
+   },
+   "window_seqs": [
+    608,
+    674
+   ],
+   "influx_readings": {
+    "expected": 335,
+    "stored": 335,
+    "missing": 0
+   },
+   "observable_again_after_start_s": {
+    "demo-ui": 0.01,
+    "grafana": 0.02,
+    "prometheus": 0.01
+   }
+  },
+  {
+   "id": "R05",
+   "scenario": "Malformed readings, then a valid one",
+   "sent_invalid": 5,
+   "dead_letters": 5,
+   "dead_letter_errors": [
+    "1 validation error for SensorReading\n  Invalid JSON: key must be a string at line 1 column 2 [type=json_invalid, input_value=b'{not json', input_type=bytes]\n   ",
+    "1 validation error for SensorReading\nsensors\n  List should have at least 16 items after validation, not 15 [type=too_short, input_value=[1.0, 1.0, 1.0, 1.0, 1.0",
+    "node_id mismatch: topic='bench-rec-bad', payload='bench-rec-bad-x'",
+    "1 validation error for SensorReading\nobserved_at\n  Value error, observed_at must include a timezone [type=value_error, input_value='2026-10-24T10:00:00', input_",
+    "1 validation error for SensorReading\nextra\n  Extra inputs are not permitted [type=extra_forbidden, input_value=1, input_type=int]\n    For further information vi"
+   ],
+   "valid_after_invalid_reached_kafka": true,
+   "result": "PASS"
+  }
+ ]
+}

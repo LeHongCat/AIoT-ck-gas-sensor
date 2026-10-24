@@ -1,0 +1,26 @@
+{
+ "run_id": "startup-20261023T235123Z-b1d354",
+ "runs": [
+  {
+   "run": 1,
+   "compose_ready": 33.83,
+   "first_reading_ui": 36.04,
+   "first_prediction_ui": 36.04,
+   "first_reading_influx": 283.97
+  },
+  {
+   "run": 2,
+   "compose_ready": 36.81,
+   "first_reading_ui": 37.04,
+   "first_prediction_ui": 37.04,
+   "first_reading_influx": 37.08
+  },
+  {
+   "run": 3,
+   "compose_ready": 33.5,
+   "first_reading_ui": 35.0,
+   "first_prediction_ui": 35.0,
+   "first_reading_influx": 35.06
+  }
+ ]
+}

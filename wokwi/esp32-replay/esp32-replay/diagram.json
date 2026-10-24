@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "author": "AIoT gas pipeline",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": { "flashSize": "16" } },
+    { "type": "wokwi-microsd-card", "id": "sd", "top": -36, "left": 270, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 178, "left": 249, "attrs": { "value": "220" } },
+    { "type": "wokwi-led", "id": "led", "top": 166, "left": 317, "attrs": { "color": "red", "label": "Alarm" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:12", "sd:SCK", "green", [] ],
+    [ "esp:13", "sd:DO", "blue", [] ],
+    [ "esp:11", "sd:DI", "orange", [] ],
+    [ "esp:10", "sd:CS", "purple", [] ],
+    [ "esp:3V3.1", "sd:VCC", "red", [] ],
+    [ "esp:GND.1", "sd:GND", "black", [] ],
+    [ "esp:2", "r1:1", "red", [] ],
+    [ "r1:2", "led:A", "red", [] ],
+    [ "led:C", "esp:GND.2", "black", [] ]
+  ]
+}

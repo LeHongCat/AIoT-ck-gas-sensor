@@ -1,0 +1,4 @@
+14:07:39 [long-20nodes-30min] run 1: 20 nodes, 30+1800 s, reset={'seconds': 29.2, 'healthy': True}
+14:38:43 {"run": 1, "nodes": 20, "events/s": 40.0, "pred_made": 46070.091094, "gw_p95_ms": null, "kafka_p95_ms": 841.53, "persist_p95_s": null, "stored_read_%": 2.16, "stored_pred_%": 0.02, "dropped": 0, "edge_cpu": 0.316}
+14:38:44 done; cleared 20 retained ACK topics
+d ACK topics

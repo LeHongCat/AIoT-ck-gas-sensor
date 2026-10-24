@@ -1,0 +1,27 @@
+{
+  "written_utc": "2026-10-23T21:05:00Z",
+  "written_before": "the clean load runs (load_default.json with --reset-services), the control, recovery, UI and startup runs",
+  "status": "Proposed by the benchmark author for the prototype; not a certified safety requirement. The report owner may replace them; results are reported against these values only.",
+  "S17_load_level_meets_requirements_if_all": {
+    "readings_stored_in_influxdb_pct_min": 99.9,
+    "predictions_stored_vs_schedule_pct_min": 99.9,
+    "gateway_latency_p95_s_max": 1.0,
+    "influx_persistence_p95_s_max": 2.0,
+    "mosquitto_dropped_max": 0,
+    "dead_letter_records_max": 0,
+    "ack_timeouts_max": 0,
+    "rule": "a node count passes only if all 3 independent runs pass"
+  },
+  "D11_prediction_cadence": {
+    "intervals_over_1_5x_period_pct_max": 1.0
+  },
+  "control_cases": "each step must match the expected output written in scripts/bench/control_cases.py before the run",
+  "recovery_cases": {
+    "R01_influx_sink_stop": "no reading lost in InfluxDB after catch-up",
+    "R03_kafka_stop": "report loss; no acceptance value set (Kafka is the single durable store)",
+    "R02_R04": "report loss and reconnect time; no acceptance value set",
+    "R05_malformed": "every malformed message in the DLQ and the next valid message delivered",
+    "R06_inference_stop": "AiotEdgeInferenceStale pending within 30 s of the stop",
+    "R07_ui_grafana_prometheus_stop": "readings stored and control commands still issued during the outage"
+  }
+}

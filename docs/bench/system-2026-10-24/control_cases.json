@@ -1,0 +1,761 @@
+{
+ "run_id": "control_cases-20261023T224959Z-1bd2d5",
+ "timings": {
+  "S09_prediction_published_to_command_at_device": {
+   "n": 60,
+   "mean_ms": 29.33,
+   "p50_ms": 27.18,
+   "p95_ms": 44.55,
+   "p99_ms": 67.27,
+   "max_ms": 88.74
+  },
+  "S11_prediction_published_to_ack_published": {
+   "n": 60,
+   "mean_ms": 29.8,
+   "p50_ms": 27.73,
+   "p95_ms": 45.54,
+   "p99_ms": 67.88,
+   "max_ms": 88.74
+  },
+  "request_published_to_command_at_device": {
+   "n": 9,
+   "mean_ms": 37.97,
+   "p50_ms": 27.35,
+   "p95_ms": 64.19,
+   "p99_ms": 71.05,
+   "max_ms": 72.76
+  },
+  "loop": {
+   "node": "bench-ctl-bd48-c00",
+   "level_changes": 40,
+   "missing_commands": 0
+  },
+  "raw_seconds": {
+   "prediction_to_command": [
+    0.02674,
+    0.02685,
+    0.02634,
+    0.02697,
+    0.02667,
+    0.02838,
+    0.02757,
+    0.02933,
+    0.02699,
+    0.0268,
+    0.02659,
+    0.02475,
+    0.02683,
+    0.02523,
+    0.02822,
+    0.02717,
+    0.02858,
+    0.02751,
+    0.02863,
+    0.02924,
+    0.02575,
+    0.0266,
+    0.02718,
+    0.02736,
+    0.03215,
+    0.0278,
+    0.02878,
+    0.02779,
+    0.08874,
+    0.02592,
+    0.02663,
+    0.02579,
+    0.02658,
+    0.0258,
+    0.0268,
+    0.02692,
+    0.02768,
+    0.04687,
+    0.02677,
+    0.02663,
+    0.02774,
+    0.02701,
+    0.02737,
+    0.02724,
+    0.02675,
+    0.02718,
+    0.02792,
+    0.02659,
+    0.02821,
+    0.04443,
+    0.02703,
+    0.02771,
+    0.02771,
+    0.05235,
+    0.02709,
+    0.02762,
+    0.02864,
+    0.02659,
+    0.02632,
+    0.02863
+   ],
+   "prediction_to_ack": [
+    0.02774,
+    0.02685,
+    0.02735,
+    0.02697,
+    0.02667,
+    0.02838,
+    0.02757,
+    0.02933,
+    0.02812,
+    0.0268,
+    0.02659,
+    0.02575,
+    0.02783,
+    0.02626,
+    0.02822,
+    0.02817,
+    0.02957,
+    0.0285,
+    0.02922,
+    0.02924,
+    0.02575,
+    0.02759,
+    0.02817,
+    0.02736,
+    0.03315,
+    0.0278,
+    0.02878,
+    0.02888,
+    0.08874,
+    0.02713,
+    0.02663,
+    0.02579,
+    0.02762,
+    0.0258,
+    0.0268,
+    0.02692,
+    0.02869,
+    0.04743,
+    0.02828,
+    0.02663,
+    0.02774,
+    0.02701,
+    0.02737,
+    0.02724,
+    0.02675,
+    0.02819,
+    0.02892,
+    0.02659,
+    0.02821,
+    0.04544,
+    0.02802,
+    0.02771,
+    0.02771,
+    0.05338,
+    0.02809,
+    0.02762,
+    0.02864,
+    0.02659,
+    0.02732,
+    0.03014
+   ],
+   "request_to_command": [
+    0.03962,
+    0.02618,
+    0.02603,
+    0.02496,
+    0.02611,
+    0.04742,
+    0.02735,
+    0.05133,
+    0.07276
+   ]
+  }
+ },
+ "cases": [
+  {
+   "id": "C01a",
+   "scenario": "Edge alarm filter at the boundaries (τ = 0.4800, danger = 200 ppm, mean of 5 s)",
+   "result": "FAIL",
+   "steps": [
+    {
+     "step": "P(CO) = τ − 1e-6, CO 0",
+     "expected": "normal",
+     "actual": "normal",
+     "pass": true
+    },
+    {
+     "step": "P(CO) = τ, CO 0",
+     "expected": "warning",
+     "actual": "normal",
+     "pass": false
+    },
+    {
+     "step": "P(CO) = τ + 1e-6, CO 0",
+     "expected": "warning",
+     "actual": "warning",
+     "pass": true
+    },
+    {
+     "step": "P(CO) ≥ τ, CO 199.99 ppm",
+     "expected": "warning",
+     "actual": "warning",
+     "pass": true
+    },
+    {
+     "step": "P(CO) ≥ τ, CO 200 ppm",
+     "expected": "danger",
+     "actual": "danger",
+     "pass": true
+    },
+    {
+     "step": "P(CO) ≥ τ, CO 200.01 ppm",
+     "expected": "danger",
+     "actual": "danger",
+     "pass": true
+    },
+    {
+     "step": "P(CO) < τ, CO 250 ppm (danger first)",
+     "expected": "danger",
+     "actual": "danger",
+     "pass": true
+    }
+   ]
+  },
+  {
+   "id": "C02",
+   "scenario": "Oscillation around the threshold and step response, 1 s vs 5 s cadence",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "P(CO) = τ ± 0.05 alternating every 2 s, cadence 1 s",
+     "expected": "recorded",
+     "actual": "57 level changes in 120 predictions",
+     "pass": true,
+     "flips": 57,
+     "predictions": 120
+    },
+    {
+     "step": "P(CO) step 0.1 → 0.9 at s=30, back at s=90, cadence 1 s",
+     "expected": "warning after the step, normal after the drop",
+     "actual": "warning at s=32, normal at s=92",
+     "pass": true,
+     "rise_delay_s": 2,
+     "fall_delay_s": 2
+    },
+    {
+     "step": "P(CO) = τ ± 0.05 alternating every 2 s, cadence 5 s",
+     "expected": "recorded",
+     "actual": "11 level changes in 24 predictions",
+     "pass": true,
+     "flips": 11,
+     "predictions": 24
+    },
+    {
+     "step": "P(CO) step 0.1 → 0.9 at s=30, back at s=90, cadence 5 s",
+     "expected": "warning after the step, normal after the drop",
+     "actual": "warning at s=30, normal at s=90",
+     "pass": true,
+     "rise_delay_s": 0,
+     "fall_delay_s": 0
+    }
+   ]
+  },
+  {
+   "id": "C03",
+   "scenario": "Only C2H4 present (P(C2H4) = 0.99, P(CO) = 0.01)",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "30 predictions",
+     "expected": "normal (C2H4 shown but no alarm)",
+     "actual": [
+      "normal"
+     ],
+     "pass": true
+    }
+   ]
+  },
+  {
+   "id": "C01b",
+   "scenario": "Safety Controller output for each alarm level (policy table)",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "prediction normal",
+     "expected": {
+      "fan_on": false,
+      "exhaust_on": false,
+      "gas_valve_closed": false,
+      "alarm_on": false,
+      "suppression_on": false
+     },
+     "actual": {
+      "fan_on": false,
+      "exhaust_on": false,
+      "gas_valve_closed": false,
+      "alarm_on": false,
+      "suppression_on": false
+     },
+     "pass": true,
+     "command_s": 0.0267,
+     "ack_s": 0.0277
+    },
+    {
+     "step": "prediction warning",
+     "expected": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": false,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "actual": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": false,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "pass": true,
+     "command_s": 0.0269,
+     "ack_s": 0.0269
+    },
+    {
+     "step": "prediction danger",
+     "expected": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "actual": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "pass": true,
+     "command_s": 0.0263,
+     "ack_s": 0.0273
+    },
+    {
+     "step": "prediction warning",
+     "expected": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": false,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "actual": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": false,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "pass": true,
+     "command_s": 0.027,
+     "ack_s": 0.027
+    },
+    {
+     "step": "prediction normal",
+     "expected": {
+      "fan_on": false,
+      "exhaust_on": false,
+      "gas_valve_closed": false,
+      "alarm_on": false,
+      "suppression_on": false
+     },
+     "actual": {
+      "fan_on": false,
+      "exhaust_on": false,
+      "gas_valve_closed": false,
+      "alarm_on": false,
+      "suppression_on": false
+     },
+     "pass": true,
+     "command_s": 0.0267,
+     "ack_s": 0.0267
+    }
+   ]
+  },
+  {
+   "id": "C04",
+   "scenario": "Direct override, its expiry, and expiry while predictions stop",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "manual request: only the hood fan",
+     "expected": {
+      "mode": "manual",
+      "fan_on": true,
+      "exhaust_on": false,
+      "gas_valve_closed": false,
+      "alarm_on": false,
+      "suppression_on": false
+     },
+     "actual": {
+      "mode": "manual",
+      "fan_on": true,
+      "exhaust_on": false,
+      "gas_valve_closed": false,
+      "alarm_on": false,
+      "suppression_on": false
+     },
+     "pass": true,
+     "command_s": 0.0396,
+     "ack_s": 0.0396
+    },
+    {
+     "step": "warning every 1 s during the override (TTL 30 s)",
+     "expected": "auto command ≈ 30–31 s after the request",
+     "actual": "auto after 30.08 s",
+     "pass": true,
+     "takeover_s": 30.08
+    },
+    {
+     "step": "no prediction for 40 s after the request",
+     "expected": "no auto command while no prediction arrives",
+     "actual": "0 commands",
+     "pass": true
+    },
+    {
+     "step": "first prediction after the TTL",
+     "expected": {
+      "mode": "auto",
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": false,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "actual": {
+      "mode": "auto",
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": false,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "pass": true,
+     "command_s": 0.0293
+    }
+   ]
+  },
+  {
+   "id": "C05",
+   "scenario": "Danger during a direct override",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "danger prediction while the override (all off) runs",
+     "expected": {
+      "mode": "auto",
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "actual": {
+      "mode": "auto",
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "pass": true,
+     "command_s": 0.0268,
+     "ack_s": 0.0268
+    }
+   ]
+  },
+  {
+   "id": "C06",
+   "scenario": "Fire suppression on request, interlock (valve + siren), kept through danger",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "manual suppression request",
+     "expected": {
+      "fan_on": false,
+      "exhaust_on": false,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": true
+     },
+     "actual": {
+      "fan_on": false,
+      "exhaust_on": false,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": true
+     },
+     "pass": true,
+     "command_s": 0.025
+    },
+    {
+     "step": "danger while the discharge runs",
+     "expected": {
+      "mode": "auto",
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": true
+     },
+     "actual": {
+      "mode": "auto",
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": true
+     },
+     "pass": true,
+     "command_s": 0.0247
+    },
+    {
+     "step": "danger after the discharge deadline",
+     "expected": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "actual": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "pass": true
+    }
+   ]
+  },
+  {
+   "id": "C07",
+   "scenario": "Siren mute, re-arm by a new danger, mute during danger, unmute",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "mute during warning",
+     "expected": {
+      "mode": "auto",
+      "alarm_muted": true,
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": false,
+      "alarm_on": false,
+      "suppression_on": false
+     },
+     "actual": {
+      "mode": "auto",
+      "alarm_muted": true,
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": false,
+      "alarm_on": false,
+      "suppression_on": false
+     },
+     "pass": true,
+     "command_s": 0.0261
+    },
+    {
+     "step": "three more warnings while muted",
+     "expected": "no new command",
+     "actual": "0 commands",
+     "pass": true
+    },
+    {
+     "step": "new danger",
+     "expected": {
+      "alarm_muted": false,
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "actual": {
+      "alarm_muted": false,
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "pass": true,
+     "command_s": 0.0282,
+     "reason": "new danger re-armed the siren; prediction alarm level is danger"
+    },
+    {
+     "step": "mute during danger",
+     "expected": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": false,
+      "suppression_on": false
+     },
+     "actual": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": false,
+      "suppression_on": false
+     },
+     "pass": true
+    },
+    {
+     "step": "same danger continues",
+     "expected": "no new command (still muted)",
+     "actual": "0 commands",
+     "pass": true
+    },
+    {
+     "step": "unmute",
+     "expected": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "actual": {
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": true,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "pass": true
+    }
+   ]
+  },
+  {
+   "id": "C08",
+   "scenario": "Unchanged desired state and command-ACK pairing",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "20 identical warning predictions",
+     "expected": "1 command, 19 deduplicated",
+     "actual": "1 commands, 19 deduplicated",
+     "pass": true
+    },
+    {
+     "step": "every command ACKed by the same node with its command_id (all cases so far)",
+     "expected": "24 / 24",
+     "actual": "24 / 24",
+     "pass": true
+    }
+   ]
+  },
+  {
+   "id": "C09",
+   "scenario": "Missing, late, wrong-id and wrong-node ACKs",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "device silent",
+     "expected": "ACK timeout counted (after the 5 s deadline + one scrape)",
+     "actual": "timeout seen after 6.2 s",
+     "pass": true,
+     "detection_s": 6.21
+    },
+    {
+     "step": "device late (7 s)",
+     "expected": "ACK timeout counted (after the 5 s deadline + one scrape)",
+     "actual": "timeout seen after 8.2 s",
+     "pass": true,
+     "detection_s": 8.24
+    },
+    {
+     "step": "device wrong_id",
+     "expected": "ACK timeout counted (after the 5 s deadline + one scrape)",
+     "actual": "timeout seen after 8.3 s",
+     "pass": true,
+     "detection_s": 8.29
+    },
+    {
+     "step": "device wrong_node",
+     "expected": "matched by command_id",
+     "actual": "no timeout counted",
+     "pass": true,
+     "detection_s": null
+    }
+   ],
+   "note": "The bridge matches an ACK by command_id only; an ACK published under another node id still counts as the commanded node's ACK (wrong_node row)."
+  },
+  {
+   "id": "C11",
+   "scenario": "Gateway hand-over to a node that predicts on its own",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "readings only, 20 s",
+     "expected": "gateway predicts every second",
+     "actual": "20 gateway predictions",
+     "pass": true
+    },
+    {
+     "step": "device publishes its own predictions",
+     "expected": "gateway steps aside (no duplicate predictions)",
+     "actual": "0 gateway predictions",
+     "pass": true
+    },
+    {
+     "step": "device stops predicting",
+     "expected": "gateway resumes after ≈ 30 s",
+     "actual": "resumed after 25.0 s",
+     "pass": true,
+     "resume_s": 25.0
+    }
+   ],
+   "note": "The gateway ignoring its own echo (MQTT 5 No Local) is covered by the load test: predictions stored 100 % up to 40 nodes."
+  },
+  {
+   "id": "C10",
+   "scenario": "Controller restart (state is in memory: fail-safe) and retained ACK",
+   "result": "PASS",
+   "steps": [
+    {
+     "step": "warning after the controller restarted (it had mute + override)",
+     "expected": {
+      "mode": "auto",
+      "alarm_muted": false,
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": false,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "actual": {
+      "mode": "auto",
+      "alarm_muted": false,
+      "fan_on": true,
+      "exhaust_on": true,
+      "gas_valve_closed": false,
+      "alarm_on": true,
+      "suppression_on": false
+     },
+     "pass": true,
+     "restart_call_s": 1.29,
+     "first_command_after_restart_s": 8.53
+    },
+    {
+     "step": "new subscriber to an idle node's actuator-state",
+     "expected": "receives the retained (old) ACK, with its observed_at",
+     "actual": "retained=True, age 352 s",
+     "pass": true,
+     "retained_age_s": 351.7
+    }
+   ],
+   "note": "A retained ACK only shows the last acknowledged state and when it was acknowledged; it is not evidence that the device is online."
+  }
+ ]
+}

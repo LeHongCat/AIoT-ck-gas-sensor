@@ -1,0 +1,427 @@
+name: aiot-gas-monitoring
+
+# ---------------------------------------------------------------------------------------------
+# Resource budget (demo on one machine). Measured idle usage → limit:
+#   kafka ~0.5 GiB heap+native → 768M · grafana ~0.45 GiB → 640M · influxdb ~0.12 GiB → 512M
+#   prometheus ~0.1 GiB → 384M · python services 25–45 MiB → 128–192M · mosquitto ~8 MiB → 64M
+# Total hard limit ≈ 3.2 GiB, typical use ≈ 1.3 GiB. See docs/architecture.md § Tài nguyên.
+#
+# Two demo modes (README § Chạy demo), both replaying demo_data/demo_1hz.csv:
+#   docker compose --profile demo  up -d --wait   edge AI in Docker: simulator → TabM gateway
+#   docker compose --profile esp32 up -d --wait   edge AI on the ESP32-S3 (Wokwi): no simulator
+# `--wait` returns once every service is healthy; data flows within seconds of that.
+# ---------------------------------------------------------------------------------------------
+
+# Every container keeps at most 3 × 10 MB of logs.
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+# Every Python service runs the same image; only the command differs.
+x-python-service: &python-service
+  image: aiot-gas-pipeline:local
+  build:
+    context: .
+  restart: unless-stopped
+  logging: *logging
+  networks: [aiot]
+
+# Python services expose Prometheus metrics on :8000; that doubles as their health signal.
+# start_interval: probe every second while starting, so dependants (and `up --wait`) go on
+# as soon as a service is ready instead of at the next 15 s tick.
+x-metrics-healthcheck: &metrics-healthcheck
+  test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/metrics', timeout=3)"]
+  interval: 15s
+  timeout: 5s
+  retries: 5
+  start_period: 60s
+  start_interval: 1s
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.1.2-alpine
+    restart: unless-stopped
+    logging: *logging
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./infra/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto_data:/mosquitto/data
+    healthcheck:
+      test: ["CMD", "mosquitto_pub", "-h", "127.0.0.1", "-t", "health/check", "-m", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+      start_interval: 1s
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 64M }
+    networks: [aiot]
+
+  kafka:
+    image: apache/kafka:4.3.1
+    restart: unless-stopped
+    logging: *logging
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,PLAINTEXT_HOST://:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      # A few events per second need neither a 1 GiB heap nor 8 I/O threads.
+      KAFKA_HEAP_OPTS: ${KAFKA_HEAP_OPTS:--Xms256m -Xmx512m}
+      KAFKA_NUM_NETWORK_THREADS: 2
+      KAFKA_NUM_IO_THREADS: 2
+      # 64 MiB segments let time/size retention free disk in small steps.
+      KAFKA_LOG_SEGMENT_BYTES: 67108864
+      # Disk cap per partition (≈ 5 GiB worst case for all 19 partitions).
+      KAFKA_LOG_RETENTION_BYTES: 268435456
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    # A port probe, not kafka-broker-api-versions.sh: that starts a JVM (~2 s of CPU) on every
+    # probe, right while the broker itself is starting. kafka-init checks real readiness.
+    healthcheck:
+      test: ["CMD", "nc", "-z", "127.0.0.1", "9092"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 60s
+      start_interval: 1s
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 768M }
+    networks: [aiot]
+
+  # One-shot: waits for the broker and creates the missing topics in one admin request
+  # (aiot_pipeline/kafka_topics.py, under a second; the JVM script it replaces took ~45 s).
+  kafka-init:
+    <<: *python-service
+    command: ["python", "-m", "aiot_pipeline.kafka_topics"]
+    restart: "no"
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    depends_on:
+      kafka:
+        condition: service_started
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 96M }
+
+  kafka-exporter:
+    image: danielqsj/kafka-exporter:v1.9.0
+    restart: unless-stopped
+    logging: *logging
+    command: ["--kafka.server=kafka:9092"]
+    depends_on:
+      kafka-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:9308/metrics"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+      start_interval: 1s
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 64M }
+    networks: [aiot]
+
+  influxdb:
+    image: influxdb:2.9.1
+    restart: unless-stopped
+    logging: *logging
+    ports:
+      - "8086:8086"
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: ${INFLUXDB_USERNAME:-admin}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUXDB_PASSWORD:-change-me-now}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUXDB_TOKEN:-dev-super-secret-token-change-me}
+      DOCKER_INFLUXDB_INIT_ORG: ${INFLUXDB_ORG:-aiot}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUXDB_BUCKET:-gas_monitoring}
+      DOCKER_INFLUXDB_INIT_RETENTION: 30d
+      # Write cache and query memory sized for ~5 points/s instead of the 1 GiB defaults.
+      INFLUXD_STORAGE_CACHE_MAX_MEMORY_SIZE: 67108864
+      INFLUXD_STORAGE_CACHE_SNAPSHOT_MEMORY_SIZE: 16777216
+      INFLUXD_QUERY_CONCURRENCY: 8
+      INFLUXD_QUERY_QUEUE_SIZE: 32
+      INFLUXD_QUERY_MEMORY_BYTES: 67108864
+      INFLUXD_REPORTING_DISABLED: "true"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 60s
+      start_interval: 1s
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 512M }
+    networks: [aiot]
+
+  mqtt-kafka-bridge:
+    <<: *python-service
+    command: ["python", "-m", "aiot_pipeline.mqtt_kafka_bridge"]
+    environment:
+      MQTT_HOST: mosquitto
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    depends_on:
+      mosquitto:
+        condition: service_healthy
+      kafka-init:
+        condition: service_completed_successfully
+    # Healthy = subscribed to Mosquitto, so the first readings of the simulator reach Kafka.
+    healthcheck:
+      <<: *metrics-healthcheck
+      test: ["CMD", "python", "-c", "import urllib.request as u; assert b'aiot_mqtt_connected 1.0' in u.urlopen('http://localhost:8000/metrics', timeout=3).read()"]
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 128M }
+
+  # 16 sensor channels (MQTT readings) → 60 s window → TabM INT8 → MQTT predictions + log.
+  edge-inference:
+    <<: *python-service
+    command: ["python", "-m", "aiot_pipeline.edge_inference"]
+    environment:
+      MQTT_HOST: mosquitto
+      PREDICTION_LOG: /logs/predictions.jsonl
+      # tabm (default): the INT8 TabM runs in this container on the same blob and integer kernels
+      # the ESP32 firmware embeds. ridge: the original pure-Python model.
+      EDGE_MODEL: ${EDGE_MODEL:-tabm}
+      TABM_MODEL_DIR: /model
+      TABM_MEMBERS: ${TABM_MEMBERS:-32}
+      # One 32-member pass takes ~10 ms here (float32 BLAS, exact): predict every second. The
+      # ESP32 keeps its own 5 s cadence (4 members take ~4.4 s in Wokwi).
+      TABM_INFER_EVERY_S: ${TABM_INFER_EVERY_S:-1}
+      # Automatic mode switch: while a node publishes its own predictions (the Wokwi ESP32-S3),
+      # the gateway only keeps that node's window warm; it resumes by itself after this many
+      # seconds without device predictions. EDGE_SKIP_NODES pins nodes permanently: the ESP32
+      # board (esp32-edge-01) always runs TabM on the chip, so the gateway never predicts for it.
+      EDGE_ON_DEVICE_TIMEOUT_S: ${EDGE_ON_DEVICE_TIMEOUT_S:-30}
+      EDGE_SKIP_NODES: ${EDGE_SKIP_NODES:-esp32-edge-01}
+    volumes:
+      - edge_logs:/logs
+      # model/tabm_int8.bin + tabm_int8.json, shared with the firmware
+      - ./wokwi/esp32-replay/esp32-replay/model:/model:ro
+    depends_on:
+      mosquitto:
+        condition: service_healthy
+    healthcheck: *metrics-healthcheck
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 192M }
+
+  influx-sink:
+    <<: *python-service
+    command: ["python", "-m", "aiot_pipeline.influx_sink"]
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      INFLUXDB_URL: http://influxdb:8086
+      INFLUXDB_TOKEN: ${INFLUXDB_TOKEN:-dev-super-secret-token-change-me}
+      INFLUXDB_ORG: ${INFLUXDB_ORG:-aiot}
+      INFLUXDB_BUCKET: ${INFLUXDB_BUCKET:-gas_monitoring}
+      INFLUX_BATCH_SIZE: ${INFLUX_BATCH_SIZE:-200}
+      INFLUX_FLUSH_SECONDS: ${INFLUX_FLUSH_SECONDS:-0.5}
+    depends_on:
+      kafka-init:
+        condition: service_completed_successfully
+      influxdb:
+        condition: service_healthy
+    healthcheck: *metrics-healthcheck
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 160M }
+
+  safety-controller:
+    <<: *python-service
+    command: ["python", "-m", "aiot_pipeline.safety_controller"]
+    environment:
+      MQTT_HOST: mosquitto
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      DIRECT_OVERRIDE_SECONDS: ${DIRECT_OVERRIDE_SECONDS:-30}
+    depends_on:
+      mosquitto:
+        condition: service_healthy
+      kafka-init:
+        condition: service_completed_successfully
+    healthcheck: *metrics-healthcheck
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 128M }
+
+  prometheus:
+    image: prom/prometheus:v3.14.0
+    restart: unless-stopped
+    logging: *logging
+    ports:
+      - "9090:9090"
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=15d
+      # Whichever comes first: 15 days or 1 GiB on disk.
+      - --storage.tsdb.retention.size=1GB
+      - --query.max-concurrency=8
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./infra/prometheus/rules:/etc/prometheus/rules:ro
+      - prometheus_data:/prometheus
+    depends_on:
+      - mqtt-kafka-bridge
+      - edge-inference
+      - influx-sink
+      - safety-controller
+      - kafka-exporter
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:9090/-/ready"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+      start_interval: 1s
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 384M }
+    networks: [aiot]
+
+  # Mode "demo" only: replays demo_1hz.csv as node virtual-gas-01. It starts once the bridge,
+  # the edge model and the controller are ready, so its very first reading travels the whole
+  # pipeline (prediction + command + ACK) instead of being dropped by a service still starting.
+  simulator:
+    <<: *python-service
+    profiles: [demo]
+    command: ["python", "-m", "aiot_pipeline.simulator"]
+    environment:
+      MQTT_HOST: mosquitto
+      # The single demo dataset: the real UCI 322 recording at 1 Hz, mounted read-only below.
+      DATASET_PATH: ${DATASET_PATH:-/demo_data/demo_1hz.csv}
+      SIMULATOR_NODE_ID: ${SIMULATOR_NODE_ID:-virtual-gas-01}
+      SIMULATOR_INTERVAL_SECONDS: ${SIMULATOR_INTERVAL_SECONDS:-1.0}
+      SIMULATOR_LOOP: ${SIMULATOR_LOOP:-true}
+      # The CSV's CO / C2H4 columns as gas.ground-truth.v1: reference only, never a model input.
+      SIMULATOR_PUBLISH_GROUND_TRUTH: ${SIMULATOR_PUBLISH_GROUND_TRUTH:-true}
+      SIMULATOR_LEAK_EVERY_EVENTS: ${SIMULATOR_LEAK_EVERY_EVENTS:-420}
+    volumes:
+      - ./data:/data:ro
+      - ./demo_data:/demo_data:ro
+    depends_on:
+      mosquitto:
+        condition: service_healthy
+      mqtt-kafka-bridge:
+        condition: service_healthy
+      edge-inference:
+        condition: service_healthy
+      safety-controller:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits: { cpus: "0.25", memory: 128M }
+
+  demo-ui:
+    <<: *python-service
+    profiles: [demo, esp32]
+    command: ["python", "-m", "aiot_pipeline.demo_ui"]
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      MQTT_HOST: mosquitto
+      PROMETHEUS_URL: http://prometheus:9090
+      GRAFANA_PUBLIC_URL: ${GRAFANA_PUBLIC_URL:-http://localhost:3000}
+      DEMO_CONTROLS_ENABLED: ${DEMO_CONTROLS_ENABLED:-true}
+      # Same as edge-inference: the screen describes the model that predicts.
+      EDGE_MODEL: ${EDGE_MODEL:-tabm}
+      # Optional: show only this node (empty: follow whichever node streams).
+      DEMO_NODE_ID: ${DEMO_NODE_ID:-}
+    depends_on:
+      kafka-init:
+        condition: service_completed_successfully
+      prometheus:
+        condition: service_started
+      grafana:
+        condition: service_started
+      mosquitto:
+        condition: service_healthy
+      safety-controller:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+      start_interval: 1s
+    deploy:
+      resources:
+        limits: { cpus: "0.5", memory: 192M }
+
+  grafana:
+    image: grafana/grafana:13.2.1
+    restart: unless-stopped
+    logging: *logging
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-change-me-now}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      # Open Grafana straight on the live pipeline map.
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/pipeline-operations.json
+      # No phone-home, update checks or news feed: less background work and memory.
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: "false"
+      GF_NEWS_NEWS_FEED_ENABLED: "false"
+      INFLUXDB_URL: http://influxdb:8086
+      INFLUXDB_TOKEN: ${INFLUXDB_TOKEN:-dev-super-secret-token-change-me}
+      INFLUXDB_ORG: ${INFLUXDB_ORG:-aiot}
+      INFLUXDB_BUCKET: ${INFLUXDB_BUCKET:-gas_monitoring}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./infra/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infra/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      influxdb:
+        condition: service_healthy
+      prometheus:
+        condition: service_started
+    # `up --wait` returns only when the dashboards answer (first start runs DB migrations).
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 120s
+      start_interval: 1s
+    deploy:
+      resources:
+        limits: { cpus: "1.0", memory: 640M }
+    networks: [aiot]
+
+networks:
+  aiot:
+
+volumes:
+  mosquitto_data:
+  kafka_data:
+  influxdb_data:
+  grafana_data:
+  prometheus_data:
+  edge_logs:

@@ -1,0 +1,49 @@
+06:09:13 warm-up 40 s
+06:09:53 R01: Stop Influx Sink 60 s
+06:11:45 R01: {"alerts_first_seen_after_fault_s": {"AiotConsumerLagHigh:pending": 19.4, "AiotServiceDown:firing": 39.9, "AiotServiceDown:pending": 10.2}, "control_probe_during_fault": {"level": "warning", "command_after_s": 0.027}}
+06:12:05 R02: Stop Bridge 20 s
+06:13:16 R02: {"alerts_first_seen_after_fault_s": {"AiotServiceDown:pending": 13.3}, "control_probe_during_fault": {"level": "warning", "command_after_s": null}}
+06:13:36 R03: Stop Kafka 30 s
+%6|1792797217.188|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Disconnected: connection closed by peer: POLLHUP (after 263441ms in state UP)
+%6|1792797217.188|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/1]: localhost:29092/1: Disconnected: connection closed by peer: POLLHUP (after 263452ms in state UP)
+%6|1792797217.194|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/1]: localhost:29092/1: Disconnected: connection closed by peer: POLLHUP (after 3ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+%6|1792797217.194|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Disconnected: connection closed by peer: POLLHUP (after 3ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+%6|1792797217.248|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Disconnected: connection closed by peer: POLLHUP (after 2ms in state APIVERSION_QUERY)
+%6|1792797217.558|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Disconnected: connection closed by peer: POLLHUP (after 4ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+%3|1792797220.925|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Connect to ipv4#127.0.0.1:29092 failed: Unknown error (after 2030ms in state CONNECT)
+%3|1792797221.715|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/1]: localhost:29092/1: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2041ms in state CONNECT)
+%3|1792797222.404|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Connect to ipv4#127.0.0.1:29092 failed: Unknown error (after 2028ms in state CONNECT)
+%3|1792797223.008|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2036ms in state CONNECT)
+%3|1792797223.755|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/1]: localhost:29092/1: Connect to ipv4#127.0.0.1:29092 failed: Unknown error (after 2039ms in state CONNECT)
+%3|1792797224.550|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2053ms in state CONNECT)
+%3|1792797226.579|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Connect to ipv4#127.0.0.1:29092 failed: Unknown error (after 2029ms in state CONNECT)
+%3|1792797227.121|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Connect to ipv4#127.0.0.1:29092 failed: Unknown error (after 2042ms in state CONNECT)
+%3|1792797231.239|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2040ms in state CONNECT)
+%3|1792797232.982|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2053ms in state CONNECT)
+%3|1792797233.297|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Connect to ipv4#127.0.0.1:29092 failed: Unknown error (after 2042ms in state CONNECT)
+%3|1792797235.366|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2054ms in state CONNECT)
+%3|1792797237.237|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Connect to ipv4#127.0.0.1:29092 failed: Unknown error (after 2058ms in state CONNECT)
+%3|1792797237.472|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Connect to ipv4#127.0.0.1:29092 failed: Unknown error (after 2044ms in state CONNECT)
+%3|1792797239.275|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2037ms in state CONNECT)
+%3|1792797241.580|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2039ms in state CONNECT)
+%3|1792797243.512|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Connect to ipv4#127.0.0.1:29092 failed: Unknown error (after 2055ms in state CONNECT)
+%3|1792797243.651|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Connect to ipv4#127.0.0.1:29092 failed: Unknown error (after 2054ms in state CONNECT)
+%3|1792797244.788|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/1]: localhost:29092/1: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2038ms in state CONNECT)
+%3|1792797245.661|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2058ms in state CONNECT)
+%3|1792797245.770|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Connect to ipv6#[::1]:29092 failed: Unknown error (after 2058ms in state CONNECT)
+%6|1792797247.374|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Disconnected: connection closed by peer: POLLHUP (after 2ms in state APIVERSION_QUERY)
+%6|1792797247.437|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/1]: localhost:29092/1: Disconnected: connection closed by peer: POLLHUP (after 2ms in state APIVERSION_QUERY)
+%6|1792797247.690|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/1]: localhost:29092/1: Disconnected: connection closed by peer: POLLHUP (after 4ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+%6|1792797247.718|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Disconnected: connection closed by peer: POLLHUP (after 2ms in state APIVERSION_QUERY)
+%6|1792797247.782|FAIL|rdkafka#consumer-1| [thrd:localhost:29092/bootstrap]: localhost:29092/bootstrap: Disconnected: connection closed by peer: POLLHUP (after 3ms in state APIVERSION_QUERY, 2 identical error(s) suppressed)
+%6|1792797247.845|FAIL|rdkafka#consumer-1| [thrd:GroupCoordinator]: GroupCoordinator: localhost:29092: Disconnected: connection closed by peer: POLLHUP (after 4ms in state APIVERSION_QUERY, 1 identical error(s) suppressed)
+%4|1792797259.556|SESSTMOUT|rdkafka#consumer-1| [thrd:main]: Consumer group session timed out (in join-state steady) after 45040 ms without a successful response from the group coordinator (broker 1, last error was Success): revoking assignment and rejoining group
+06:15:20 R03: {"alerts_first_seen_after_fault_s": {"AiotConsumerLagHigh:pending": 67.3, "AiotServiceDown:firing": 41.7, "AiotServiceDown:pending": 12.2}, "control_probe_during_fault": {"level": "warning", "command_after_s": null}}
+06:15:40 R04: Stop Mosquitto 20 s
+06:16:47 R04: {"alerts_first_seen_after_fault_s": {"AiotMqttBridgeDisconnected:firing": 27.6, "AiotMqttBridgeDisconnected:pending": 13.3, "AiotSensorStale:firing": 32.7, "AiotSensorStale:pending": 23.5}, "control_probe_during_fault": {"level": "warning", "command_after_s": null}}
+06:17:07 R06: Stop edge-inference 60 s
+06:18:59 R06: {"alerts_first_seen_after_fault_s": {"AiotEdgeInferenceStale:firing": 30.6, "AiotEdgeInferenceStale:pending": 16.3, "AiotServiceDown:firing": 40.8, "AiotServiceDown:pending": 11.2}, "control_probe_during_fault": {"level": "warning", "command_after_s": 0.027}}
+06:19:19 R07: Stop Kitchen UI, Grafana and Prometheus 30 s
+06:20:45 R07: {"alerts_first_seen_after_fault_s": {}, "control_probe_during_fault": {"level": "warning", "command_after_s": 0.027}}
+06:21:05 R05: malformed messages
+06:21:16 done

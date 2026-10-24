@@ -1,0 +1,19 @@
+15:36:57 [staggered] run 1: 20 nodes, 30+120 s, reset={'seconds': 30.0, 'healthy': True}
+15:39:58 {"run": 1, "nodes": 20, "events/s": 40.0, "pred_made": 2388.408908, "gw_p95_ms": 11463.82, "kafka_p95_ms": 1933.51, "persist_p95_s": 0.68143, "stored_read_%": 99.75, "stored_pred_%": 99.75, "dropped": 0, "edge_cpu": 0.297}
+15:40:57 [staggered] run 1: 40 nodes, 30+120 s, reset={'seconds': 29.3, 'healthy': True}
+15:43:59 {"run": 1, "nodes": 40, "events/s": 80.0, "pred_made": 4792.99722, "gw_p95_ms": 2469.25, "kafka_p95_ms": 49.28, "persist_p95_s": 0.70823, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.504}
+15:44:59 [staggered] run 1: 60 nodes, 30+120 s, reset={'seconds': 29.6, 'healthy': True}
+15:48:03 {"run": 1, "nodes": 60, "events/s": 120.0, "pred_made": 5097.706628, "gw_p95_ms": 25484.96, "kafka_p95_ms": 68.48, "persist_p95_s": 0.712981, "stored_read_%": 100.0, "stored_pred_%": 68.19, "dropped": 1676.0, "edge_cpu": 0.5}
+15:49:02 [staggered] run 2: 20 nodes, 30+120 s, reset={'seconds': 29.2, 'healthy': True}
+15:52:05 {"run": 2, "nodes": 20, "events/s": 40.0, "pred_made": 2390.799981, "gw_p95_ms": 52.74, "kafka_p95_ms": 32.75, "persist_p95_s": 0.718092, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.277}
+15:53:05 [staggered] run 2: 40 nodes, 30+120 s, reset={'seconds': 30.1, 'healthy': True}
+15:56:10 {"run": 2, "nodes": 40, "events/s": 80.0, "pred_made": 4775.561476, "gw_p95_ms": 1160.86, "kafka_p95_ms": 57.83, "persist_p95_s": 0.711132, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.488}
+15:57:10 [staggered] run 2: 60 nodes, 30+120 s, reset={'seconds': 30.2, 'healthy': True}
+16:00:19 {"run": 2, "nodes": 60, "events/s": 120.0, "pred_made": 4918.503837, "gw_p95_ms": 29067.28, "kafka_p95_ms": 75.32, "persist_p95_s": 0.717892, "stored_read_%": 100.0, "stored_pred_%": 66.75, "dropped": 1787.0, "edge_cpu": 0.5}
+16:01:19 [staggered] run 3: 20 nodes, 30+120 s, reset={'seconds': 30.2, 'healthy': True}
+16:04:22 {"run": 3, "nodes": 20, "events/s": 40.0, "pred_made": 2399.296569, "gw_p95_ms": 209.64, "kafka_p95_ms": 33.11, "persist_p95_s": 0.688179, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.296}
+16:05:23 [staggered] run 3: 40 nodes, 30+120 s, reset={'seconds': 31.7, 'healthy': True}
+16:08:26 {"run": 3, "nodes": 40, "events/s": 80.0, "pred_made": 4803.379533, "gw_p95_ms": 2661.48, "kafka_p95_ms": 54.15, "persist_p95_s": 0.696992, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.498}
+16:09:26 [staggered] run 3: 60 nodes, 30+120 s, reset={'seconds': 30.5, 'healthy': True}
+16:12:32 {"run": 3, "nodes": 60, "events/s": 120.0, "pred_made": 4394.330235, "gw_p95_ms": 30555.64, "kafka_p95_ms": 83.91, "persist_p95_s": 0.717754, "stored_read_%": 100.0, "stored_pred_%": 57.56, "dropped": 2391.0, "edge_cpu": 0.499}
+16:12:34 done; cleared 360 retained ACK topics

@@ -1,0 +1,2417 @@
+{
+ "run_id": "load_test-20261024T040522Z-165c87",
+ "steps": [
+  {
+   "run": 1,
+   "nodes": 25,
+   "node_prefix": "bench-r1-n025",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 120.1,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0,
+    "bench-rec-db5c03": 4532.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 120,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 3750,
+    "ground-truth": 3750
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 58,
+   "gateway_latency": {
+    "n": 3048,
+    "mean_ms": 468.9,
+    "p50_ms": 510.38,
+    "p95_ms": 1007.51,
+    "p99_ms": 1249.89,
+    "max_ms": 1895.47
+   },
+   "predictions_mqtt_in_window": 3006,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 2981,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.32,
+    "p99_s": 1.61,
+    "max_s": 1.82
+   },
+   "prediction_interval_over_1_5x_pct": 2.35,
+   "prediction_max_gap_s": 1.82,
+   "nodes_with_predictions": 25,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 50.0,
+   "inference_mean_ms": 21.060423,
+   "predictions_made": 2979.84685,
+   "bridge_msgs_per_s": 75.165672,
+   "controller_sample_age_p50_s": 0.582647,
+   "controller_sample_age_p95_s": 0.989899,
+   "command_ack_p50_s": 0.002504,
+   "command_ack_p95_s": 0.004758,
+   "commands_published": 6.928265,
+   "commands_deduplicated": 2961.751865,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.09915,
+   "persist_sensor_reading_p50_s": 0.534091,
+   "persist_sensor_reading_p95_s": 0.931571,
+   "persist_gas_ground_truth_p50_s": 0.541433,
+   "persist_gas_ground_truth_p95_s": 0.933938,
+   "persist_gas_prediction_p50_s": 0.979559,
+   "persist_gas_prediction_p95_s": 1.532072,
+   "consumer_lag": {
+    "bench-rec-db5c03": {
+     "n": 25,
+     "mean": 9762.08,
+     "peak": 13413.0,
+     "last": 13413.0
+    },
+    "influx-sink-v1": {
+     "n": 25,
+     "mean": 52.84,
+     "peak": 91.0,
+     "last": 67.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 25,
+     "mean": 351.6,
+     "peak": 398.0,
+     "last": 352.0
+    },
+    "safety-controller-v1": {
+     "n": 25,
+     "mean": 4.12,
+     "peak": 17.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 3025,
+      "mean_ms": 39.54,
+      "p50_ms": 30.35,
+      "p95_ms": 85.79,
+      "p99_ms": 179.15,
+      "max_ms": 259.72
+     },
+     "records": 3750,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3000,
+      "found": 3000,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 3025,
+      "mean_ms": 41.81,
+      "p50_ms": 31.87,
+      "p95_ms": 86.85,
+      "p99_ms": 178.11,
+      "max_ms": 252.91
+     },
+     "records": 3750,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3000,
+      "found": 3000,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 3048,
+      "mean_ms": 497.92,
+      "p50_ms": 536.9,
+      "p95_ms": 1049.01,
+      "p99_ms": 1275.03,
+      "max_ms": 1923.12
+     },
+     "records": 3750,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3000,
+      "found": 3000,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 3000,
+     "found": 3000,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 3000,
+     "found": 3000,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 3000,
+     "found": 3000,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 3000,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1196,
+    "edge-inference": 224,
+    "influx-sink": 172,
+    "safety-controller": 424
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.068,
+     "cpu_cores_peak": 0.181,
+     "mem_mib_mean": 48.1,
+     "mem_mib_peak": 56.8
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.33,
+     "cpu_cores_peak": 0.502,
+     "mem_mib_mean": 56.7,
+     "mem_mib_peak": 67.6
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.055,
+     "cpu_cores_peak": 0.346,
+     "mem_mib_mean": 240.5,
+     "mem_mib_peak": 241.9
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.057,
+     "cpu_cores_peak": 0.366,
+     "mem_mib_mean": 50.1,
+     "mem_mib_peak": 59.5
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.02,
+     "cpu_cores_peak": 0.089,
+     "mem_mib_mean": 79.4,
+     "mem_mib_peak": 82.2
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.321,
+     "cpu_cores_peak": 0.464,
+     "mem_mib_mean": 439.0,
+     "mem_mib_peak": 458.0
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.041,
+     "cpu_cores_peak": 0.164,
+     "mem_mib_mean": 10.3,
+     "mem_mib_peak": 16.9
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.024,
+     "cpu_cores_peak": 0.083,
+     "mem_mib_mean": 4.6,
+     "mem_mib_peak": 7.8
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.092,
+     "cpu_cores_peak": 0.392,
+     "mem_mib_mean": 29.6,
+     "mem_mib_peak": 38.8
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.021,
+     "cpu_cores_peak": 0.041,
+     "mem_mib_mean": 58.8,
+     "mem_mib_peak": 62.4
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.07,
+     "cpu_cores_peak": 0.264,
+     "mem_mib_mean": 30.0,
+     "mem_mib_peak": 41.1
+    },
+    "_total": {
+     "cpu_cores_mean": 1.099,
+     "mem_mib_mean": 1047.1
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 30.5,
+    "healthy": true
+   },
+   "label": "near-saturation"
+  },
+  {
+   "run": 1,
+   "nodes": 30,
+   "node_prefix": "bench-r1-n030",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 120.1,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0,
+    "bench-rec-db5c03": 13682.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 145,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 4500,
+    "ground-truth": 4500
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 68,
+   "gateway_latency": {
+    "n": 3674,
+    "mean_ms": 544.17,
+    "p50_ms": 544.75,
+    "p95_ms": 1256.69,
+    "p99_ms": 1659.35,
+    "max_ms": 1875.5
+   },
+   "predictions_mqtt_in_window": 3622,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 3592,
+    "mean_s": 0.99,
+    "p50_s": 1.0,
+    "p95_s": 1.31,
+    "p99_s": 1.62,
+    "max_s": 2.07
+   },
+   "prediction_interval_over_1_5x_pct": 2.76,
+   "prediction_max_gap_s": 2.07,
+   "nodes_with_predictions": 30,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 60.0,
+   "inference_mean_ms": 20.563714,
+   "predictions_made": 3594.879111,
+   "bridge_msgs_per_s": 90.541457,
+   "controller_sample_age_p50_s": 0.656808,
+   "controller_sample_age_p95_s": 1.551295,
+   "command_ack_p50_s": 0.002539,
+   "command_ack_p95_s": 0.004824,
+   "commands_published": 8.892836,
+   "commands_deduplicated": 3592.120711,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.095485,
+   "persist_sensor_reading_p50_s": 0.509144,
+   "persist_sensor_reading_p95_s": 0.843149,
+   "persist_gas_ground_truth_p50_s": 0.516528,
+   "persist_gas_ground_truth_p95_s": 0.860795,
+   "persist_gas_prediction_p50_s": 0.993333,
+   "persist_gas_prediction_p95_s": 1.880798,
+   "consumer_lag": {
+    "bench-rec-db5c03": {
+     "n": 25,
+     "mean": 19763.0,
+     "peak": 23968.0,
+     "last": 23968.0
+    },
+    "influx-sink-v1": {
+     "n": 25,
+     "mean": 40.16,
+     "peak": 86.0,
+     "last": 23.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 25,
+     "mean": 448.84,
+     "peak": 483.0,
+     "last": 453.0
+    },
+    "safety-controller-v1": {
+     "n": 25,
+     "mean": 1.28,
+     "peak": 10.0,
+     "last": 1.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 3640,
+      "mean_ms": 50.71,
+      "p50_ms": 38.27,
+      "p95_ms": 147.94,
+      "p99_ms": 296.65,
+      "max_ms": 478.34
+     },
+     "records": 4500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3600,
+      "found": 3600,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 3640,
+      "mean_ms": 53.26,
+      "p50_ms": 39.36,
+      "p95_ms": 175.5,
+      "p99_ms": 300.66,
+      "max_ms": 483.43
+     },
+     "records": 4500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3600,
+      "found": 3600,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 3674,
+      "mean_ms": 575.78,
+      "p50_ms": 569.61,
+      "p95_ms": 1281.5,
+      "p99_ms": 1684.36,
+      "max_ms": 1900.11
+     },
+     "records": 4500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3600,
+      "found": 3600,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 3600,
+     "found": 3600,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 3600,
+     "found": 3600,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 3600,
+     "found": 3600,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 3600,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1421,
+    "edge-inference": 250,
+    "influx-sink": 172,
+    "safety-controller": 490
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.113,
+     "cpu_cores_peak": 0.501,
+     "mem_mib_mean": 52.6,
+     "mem_mib_peak": 61.5
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.392,
+     "cpu_cores_peak": 0.513,
+     "mem_mib_mean": 56.6,
+     "mem_mib_peak": 66.9
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.044,
+     "cpu_cores_peak": 0.101,
+     "mem_mib_mean": 240.7,
+     "mem_mib_peak": 241.4
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.091,
+     "cpu_cores_peak": 0.383,
+     "mem_mib_mean": 50.7,
+     "mem_mib_peak": 59.2
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.026,
+     "cpu_cores_peak": 0.094,
+     "mem_mib_mean": 94.9,
+     "mem_mib_peak": 98.0
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.297,
+     "cpu_cores_peak": 0.411,
+     "mem_mib_mean": 463.6,
+     "mem_mib_peak": 469.7
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.039,
+     "cpu_cores_peak": 0.167,
+     "mem_mib_mean": 10.6,
+     "mem_mib_peak": 11.7
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.033,
+     "cpu_cores_peak": 0.11,
+     "mem_mib_mean": 4.9,
+     "mem_mib_peak": 9.2
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.119,
+     "cpu_cores_peak": 0.475,
+     "mem_mib_mean": 30.6,
+     "mem_mib_peak": 39.8
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.035,
+     "cpu_cores_peak": 0.091,
+     "mem_mib_mean": 66.7,
+     "mem_mib_peak": 67.8
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.094,
+     "cpu_cores_peak": 0.24,
+     "mem_mib_mean": 30.9,
+     "mem_mib_peak": 41.6
+    },
+    "_total": {
+     "cpu_cores_mean": 1.283,
+     "mem_mib_mean": 1102.8
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 30.8,
+    "healthy": true
+   },
+   "label": "near-saturation"
+  },
+  {
+   "run": 1,
+   "nodes": 35,
+   "node_prefix": "bench-r1-n035",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 120.1,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0,
+    "bench-rec-db5c03": 24182.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 175,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 5250,
+    "ground-truth": 5250
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 77,
+   "gateway_latency": {
+    "n": 4301,
+    "mean_ms": 1603.06,
+    "p50_ms": 908.16,
+    "p95_ms": 4793.4,
+    "p99_ms": 5324.8,
+    "max_ms": 5879.7
+   },
+   "predictions_mqtt_in_window": 4182,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 4147,
+    "mean_s": 1.01,
+    "p50_s": 0.97,
+    "p95_s": 1.71,
+    "p99_s": 2.28,
+    "max_s": 2.91
+   },
+   "prediction_interval_over_1_5x_pct": 8.97,
+   "prediction_max_gap_s": 2.91,
+   "nodes_with_predictions": 35,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 70.0,
+   "inference_mean_ms": 23.163764,
+   "predictions_made": 4080.563048,
+   "bridge_msgs_per_s": 104.81276,
+   "controller_sample_age_p50_s": 0.926362,
+   "controller_sample_age_p95_s": 4.805319,
+   "command_ack_p50_s": 0.00299,
+   "command_ack_p95_s": 0.093836,
+   "commands_published": 9.123901,
+   "commands_deduplicated": 4084.706701,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.099209,
+   "persist_sensor_reading_p50_s": 0.536657,
+   "persist_sensor_reading_p95_s": 0.946,
+   "persist_gas_ground_truth_p50_s": 0.545928,
+   "persist_gas_ground_truth_p95_s": 0.950738,
+   "persist_gas_prediction_p50_s": 1.392059,
+   "persist_gas_prediction_p95_s": 7.141715,
+   "consumer_lag": {
+    "bench-rec-db5c03": {
+     "n": 25,
+     "mean": 31769.44,
+     "peak": 37157.0,
+     "last": 37157.0
+    },
+    "influx-sink-v1": {
+     "n": 25,
+     "mean": 64.48,
+     "peak": 112.0,
+     "last": 99.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 25,
+     "mean": 491.68,
+     "peak": 563.0,
+     "last": 563.0
+    },
+    "safety-controller-v1": {
+     "n": 25,
+     "mean": 1.92,
+     "peak": 18.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 4235,
+      "mean_ms": 69.39,
+      "p50_ms": 42.7,
+      "p95_ms": 205.8,
+      "p99_ms": 317.53,
+      "max_ms": 812.15
+     },
+     "records": 5250,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4200,
+      "found": 4200,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 4235,
+      "mean_ms": 71.89,
+      "p50_ms": 44.56,
+      "p95_ms": 208.77,
+      "p99_ms": 317.53,
+      "max_ms": 820.42
+     },
+     "records": 5250,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4200,
+      "found": 4200,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 4301,
+      "mean_ms": 1636.57,
+      "p50_ms": 931.35,
+      "p95_ms": 4817.65,
+      "p99_ms": 5350.11,
+      "max_ms": 5908.47
+     },
+     "records": 5250,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4200,
+      "found": 4200,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 4200,
+     "found": 4200,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 4200,
+     "found": 4200,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 4200,
+     "found": 4200,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 4200,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1651,
+    "edge-inference": 278,
+    "influx-sink": 172,
+    "safety-controller": 558
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.093,
+     "cpu_cores_peak": 0.442,
+     "mem_mib_mean": 58.5,
+     "mem_mib_peak": 62.1
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.452,
+     "cpu_cores_peak": 0.52,
+     "mem_mib_mean": 56.3,
+     "mem_mib_peak": 65.8
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.035,
+     "cpu_cores_peak": 0.093,
+     "mem_mib_mean": 241.0,
+     "mem_mib_peak": 241.6
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.095,
+     "cpu_cores_peak": 0.466,
+     "mem_mib_mean": 50.7,
+     "mem_mib_peak": 61.0
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.016,
+     "cpu_cores_peak": 0.027,
+     "mem_mib_mean": 106.1,
+     "mem_mib_peak": 109.0
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.263,
+     "cpu_cores_peak": 0.343,
+     "mem_mib_mean": 483.6,
+     "mem_mib_peak": 489.8
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.01,
+     "cpu_cores_peak": 0.147,
+     "mem_mib_mean": 10.7,
+     "mem_mib_peak": 13.3
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.036,
+     "cpu_cores_peak": 0.096,
+     "mem_mib_mean": 4.9,
+     "mem_mib_peak": 5.8
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.144,
+     "cpu_cores_peak": 0.479,
+     "mem_mib_mean": 30.5,
+     "mem_mib_peak": 42.2
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.024,
+     "cpu_cores_peak": 0.069,
+     "mem_mib_mean": 74.6,
+     "mem_mib_peak": 76.2
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.089,
+     "cpu_cores_peak": 0.258,
+     "mem_mib_mean": 30.8,
+     "mem_mib_peak": 41.5
+    },
+    "_total": {
+     "cpu_cores_mean": 1.257,
+     "mem_mib_mean": 1147.7
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 30.8,
+    "healthy": true
+   },
+   "label": "near-saturation"
+  },
+  {
+   "run": 2,
+   "nodes": 25,
+   "node_prefix": "bench-r2-n025",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 120.1,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0,
+    "bench-rec-db5c03": 37832.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 210,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 3750,
+    "ground-truth": 3750
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 58,
+   "gateway_latency": {
+    "n": 3061,
+    "mean_ms": 514.01,
+    "p50_ms": 487.23,
+    "p95_ms": 1205.81,
+    "p99_ms": 1566.89,
+    "max_ms": 1899.07
+   },
+   "predictions_mqtt_in_window": 3013,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 2988,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.4,
+    "p99_s": 1.73,
+    "max_s": 2.04
+   },
+   "prediction_interval_over_1_5x_pct": 3.68,
+   "prediction_max_gap_s": 2.04,
+   "nodes_with_predictions": 25,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 50.0,
+   "inference_mean_ms": 22.222971,
+   "predictions_made": 3008.284205,
+   "bridge_msgs_per_s": 75.355689,
+   "controller_sample_age_p50_s": 0.646493,
+   "controller_sample_age_p95_s": 1.507241,
+   "command_ack_p50_s": 0.002803,
+   "command_ack_p95_s": 0.027091,
+   "commands_published": 6.521636,
+   "commands_deduplicated": 2961.700351,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.099226,
+   "persist_sensor_reading_p50_s": 0.502848,
+   "persist_sensor_reading_p95_s": 0.941374,
+   "persist_gas_ground_truth_p50_s": 0.50997,
+   "persist_gas_ground_truth_p95_s": 0.943047,
+   "persist_gas_prediction_p50_s": 1.038898,
+   "persist_gas_prediction_p95_s": 1.802401,
+   "consumer_lag": {
+    "bench-rec-db5c03": {
+     "n": 25,
+     "mean": 42829.84,
+     "peak": 46370.0,
+     "last": 46370.0
+    },
+    "influx-sink-v1": {
+     "n": 25,
+     "mean": 45.76,
+     "peak": 75.0,
+     "last": 74.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 25,
+     "mean": 363.48,
+     "peak": 388.0,
+     "last": 360.0
+    },
+    "safety-controller-v1": {
+     "n": 25,
+     "mean": 0.72,
+     "peak": 9.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 3025,
+      "mean_ms": 39.78,
+      "p50_ms": 30.5,
+      "p95_ms": 104.68,
+      "p99_ms": 203.79,
+      "max_ms": 271.47
+     },
+     "records": 3750,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3000,
+      "found": 3000,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 3025,
+      "mean_ms": 42.18,
+      "p50_ms": 32.17,
+      "p95_ms": 106.09,
+      "p99_ms": 202.15,
+      "max_ms": 293.71
+     },
+     "records": 3750,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3000,
+      "found": 3000,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 3061,
+      "mean_ms": 541.85,
+      "p50_ms": 510.78,
+      "p95_ms": 1229.5,
+      "p99_ms": 1590.56,
+      "max_ms": 1925.27
+     },
+     "records": 3750,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3000,
+      "found": 3000,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 3000,
+     "found": 3000,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 3000,
+     "found": 3000,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 3000,
+     "found": 3000,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 3000,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1286,
+    "edge-inference": 224,
+    "influx-sink": 172,
+    "safety-controller": 424
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.097,
+     "cpu_cores_peak": 0.394,
+     "mem_mib_mean": 64.5,
+     "mem_mib_peak": 74.7
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.365,
+     "cpu_cores_peak": 0.505,
+     "mem_mib_mean": 57.2,
+     "mem_mib_peak": 68.2
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.029,
+     "cpu_cores_peak": 0.053,
+     "mem_mib_mean": 241.4,
+     "mem_mib_peak": 242.8
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.066,
+     "cpu_cores_peak": 0.479,
+     "mem_mib_mean": 50.2,
+     "mem_mib_peak": 63.3
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.034,
+     "cpu_cores_peak": 0.214,
+     "mem_mib_mean": 120.3,
+     "mem_mib_peak": 120.8
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.297,
+     "cpu_cores_peak": 0.779,
+     "mem_mib_mean": 502.1,
+     "mem_mib_peak": 514.3
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.058,
+     "cpu_cores_peak": 0.194,
+     "mem_mib_mean": 10.6,
+     "mem_mib_peak": 13.3
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.022,
+     "cpu_cores_peak": 0.078,
+     "mem_mib_mean": 4.8,
+     "mem_mib_peak": 5.5
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.088,
+     "cpu_cores_peak": 0.469,
+     "mem_mib_mean": 29.4,
+     "mem_mib_peak": 38.9
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.021,
+     "cpu_cores_peak": 0.039,
+     "mem_mib_mean": 86.4,
+     "mem_mib_peak": 87.2
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.061,
+     "cpu_cores_peak": 0.242,
+     "mem_mib_mean": 29.2,
+     "mem_mib_peak": 41.2
+    },
+    "_total": {
+     "cpu_cores_mean": 1.138,
+     "mem_mib_mean": 1196.1
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 31.0,
+    "healthy": true
+   },
+   "label": "near-saturation"
+  },
+  {
+   "run": 2,
+   "nodes": 30,
+   "node_prefix": "bench-r2-n030",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 120.0,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0,
+    "bench-rec-db5c03": 46682.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 235,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 4500,
+    "ground-truth": 4500
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 68,
+   "gateway_latency": {
+    "n": 3674,
+    "mean_ms": 630.3,
+    "p50_ms": 534.48,
+    "p95_ms": 1725.35,
+    "p99_ms": 2242.33,
+    "max_ms": 2613.74
+   },
+   "predictions_mqtt_in_window": 3600,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 3570,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.54,
+    "p99_s": 2.29,
+    "max_s": 2.8
+   },
+   "prediction_interval_over_1_5x_pct": 5.46,
+   "prediction_max_gap_s": 2.8,
+   "nodes_with_predictions": 30,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 60.0,
+   "inference_mean_ms": 21.874752,
+   "predictions_made": 3587.826072,
+   "bridge_msgs_per_s": 90.513793,
+   "controller_sample_age_p50_s": 0.661827,
+   "controller_sample_age_p95_s": 1.679736,
+   "command_ack_p50_s": 0.0025,
+   "command_ack_p95_s": 0.004751,
+   "commands_published": 8.861074,
+   "commands_deduplicated": 3578.491482,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.101667,
+   "persist_sensor_reading_p50_s": 0.524413,
+   "persist_sensor_reading_p95_s": 0.862776,
+   "persist_gas_ground_truth_p50_s": 0.528997,
+   "persist_gas_ground_truth_p95_s": 0.868182,
+   "persist_gas_prediction_p50_s": 1.05044,
+   "persist_gas_prediction_p95_s": 2.102406,
+   "consumer_lag": {
+    "bench-rec-db5c03": {
+     "n": 25,
+     "mean": 53119.04,
+     "peak": 57569.0,
+     "last": 57569.0
+    },
+    "influx-sink-v1": {
+     "n": 25,
+     "mean": 21.64,
+     "peak": 79.0,
+     "last": 3.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 25,
+     "mean": 397.56,
+     "peak": 444.0,
+     "last": 436.0
+    },
+    "safety-controller-v1": {
+     "n": 25,
+     "mean": 0.4,
+     "peak": 7.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 3630,
+      "mean_ms": 44.24,
+      "p50_ms": 34.59,
+      "p95_ms": 99.82,
+      "p99_ms": 187.61,
+      "max_ms": 293.7
+     },
+     "records": 4500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3600,
+      "found": 3600,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 3630,
+      "mean_ms": 46.65,
+      "p50_ms": 35.81,
+      "p95_ms": 104.51,
+      "p99_ms": 189.98,
+      "max_ms": 293.13
+     },
+     "records": 4500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3600,
+      "found": 3600,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 3674,
+      "mean_ms": 658.88,
+      "p50_ms": 560.46,
+      "p95_ms": 1750.2,
+      "p99_ms": 2267.21,
+      "max_ms": 2640.51
+     },
+     "records": 4500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3600,
+      "found": 3600,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 3600,
+     "found": 3600,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 3600,
+     "found": 3600,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 3600,
+     "found": 3600,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 3600,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1511,
+    "edge-inference": 250,
+    "influx-sink": 172,
+    "safety-controller": 490
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.093,
+     "cpu_cores_peak": 0.361,
+     "mem_mib_mean": 69.2,
+     "mem_mib_peak": 71.6
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.398,
+     "cpu_cores_peak": 0.526,
+     "mem_mib_mean": 56.7,
+     "mem_mib_peak": 69.1
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.03,
+     "cpu_cores_peak": 0.069,
+     "mem_mib_mean": 241.4,
+     "mem_mib_peak": 242.1
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.063,
+     "cpu_cores_peak": 0.317,
+     "mem_mib_mean": 49.8,
+     "mem_mib_peak": 58.8
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.032,
+     "cpu_cores_peak": 0.183,
+     "mem_mib_mean": 125.4,
+     "mem_mib_peak": 127.3
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.267,
+     "cpu_cores_peak": 0.386,
+     "mem_mib_mean": 518.5,
+     "mem_mib_peak": 523.6
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.056,
+     "cpu_cores_peak": 0.215,
+     "mem_mib_mean": 10.7,
+     "mem_mib_peak": 12.6
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.032,
+     "cpu_cores_peak": 0.086,
+     "mem_mib_mean": 4.7,
+     "mem_mib_peak": 5.5
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.093,
+     "cpu_cores_peak": 0.389,
+     "mem_mib_mean": 29.5,
+     "mem_mib_peak": 33.9
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.02,
+     "cpu_cores_peak": 0.039,
+     "mem_mib_mean": 90.9,
+     "mem_mib_peak": 93.0
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.072,
+     "cpu_cores_peak": 0.251,
+     "mem_mib_mean": 29.5,
+     "mem_mib_peak": 39.0
+    },
+    "_total": {
+     "cpu_cores_mean": 1.156,
+     "mem_mib_mean": 1226.3
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 31.2,
+    "healthy": true
+   },
+   "label": "near-saturation"
+  },
+  {
+   "run": 2,
+   "nodes": 35,
+   "node_prefix": "bench-r2-n035",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 120.1,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0,
+    "bench-rec-db5c03": 57782.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 265,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 5250,
+    "ground-truth": 5250
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 77,
+   "gateway_latency": {
+    "n": 4321,
+    "mean_ms": 846.87,
+    "p50_ms": 666.72,
+    "p95_ms": 2030.24,
+    "p99_ms": 2365.2,
+    "max_ms": 2565.41
+   },
+   "predictions_mqtt_in_window": 4253,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 4218,
+    "mean_s": 0.99,
+    "p50_s": 0.96,
+    "p95_s": 1.59,
+    "p99_s": 2.3,
+    "max_s": 2.69
+   },
+   "prediction_interval_over_1_5x_pct": 5.83,
+   "prediction_max_gap_s": 2.69,
+   "nodes_with_predictions": 35,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 70.0,
+   "inference_mean_ms": 21.510414,
+   "predictions_made": 4157.238564,
+   "bridge_msgs_per_s": 105.750165,
+   "controller_sample_age_p50_s": 0.765541,
+   "controller_sample_age_p95_s": 1.994427,
+   "command_ack_p50_s": 0.00284,
+   "command_ack_p95_s": 0.04262,
+   "commands_published": 8.68681,
+   "commands_deduplicated": 4194.176784,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.098326,
+   "persist_sensor_reading_p50_s": 0.511992,
+   "persist_sensor_reading_p95_s": 0.913572,
+   "persist_gas_ground_truth_p50_s": 0.514924,
+   "persist_gas_ground_truth_p95_s": 0.915683,
+   "persist_gas_prediction_p50_s": 1.273665,
+   "persist_gas_prediction_p95_s": 2.707224,
+   "consumer_lag": {
+    "bench-rec-db5c03": {
+     "n": 25,
+     "mean": 63890.4,
+     "peak": 68278.0,
+     "last": 68278.0
+    },
+    "influx-sink-v1": {
+     "n": 25,
+     "mean": 45.04,
+     "peak": 104.0,
+     "last": 9.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 25,
+     "mean": 446.6,
+     "peak": 508.0,
+     "last": 481.0
+    },
+    "safety-controller-v1": {
+     "n": 25,
+     "mean": 2.52,
+     "peak": 16.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 4235,
+      "mean_ms": 47.16,
+      "p50_ms": 40.07,
+      "p95_ms": 126.28,
+      "p99_ms": 216.3,
+      "max_ms": 407.86
+     },
+     "records": 5250,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4200,
+      "found": 4200,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 4235,
+      "mean_ms": 48.69,
+      "p50_ms": 41.46,
+      "p95_ms": 128.34,
+      "p99_ms": 219.83,
+      "max_ms": 410.87
+     },
+     "records": 5250,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4200,
+      "found": 4200,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 4321,
+      "mean_ms": 877.43,
+      "p50_ms": 691.8,
+      "p95_ms": 2082.13,
+      "p99_ms": 2390.42,
+      "max_ms": 2590.35
+     },
+     "records": 5250,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4200,
+      "found": 4200,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 4200,
+     "found": 4200,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 4200,
+     "found": 4200,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 4200,
+     "found": 4200,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 4200,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1741,
+    "edge-inference": 278,
+    "influx-sink": 172,
+    "safety-controller": 558
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.146,
+     "cpu_cores_peak": 0.53,
+     "mem_mib_mean": 77.4,
+     "mem_mib_peak": 87.6
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.44,
+     "cpu_cores_peak": 0.519,
+     "mem_mib_mean": 56.7,
+     "mem_mib_peak": 67.8
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.047,
+     "cpu_cores_peak": 0.104,
+     "mem_mib_mean": 241.4,
+     "mem_mib_peak": 242.0
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.064,
+     "cpu_cores_peak": 0.281,
+     "mem_mib_mean": 50.8,
+     "mem_mib_peak": 58.5
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.028,
+     "cpu_cores_peak": 0.122,
+     "mem_mib_mean": 138.6,
+     "mem_mib_peak": 139.5
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.266,
+     "cpu_cores_peak": 0.352,
+     "mem_mib_mean": 538.4,
+     "mem_mib_peak": 543.2
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.02,
+     "cpu_cores_peak": 0.121,
+     "mem_mib_mean": 11.0,
+     "mem_mib_peak": 13.0
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.025,
+     "cpu_cores_peak": 0.089,
+     "mem_mib_mean": 4.9,
+     "mem_mib_peak": 6.3
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.13,
+     "cpu_cores_peak": 0.519,
+     "mem_mib_mean": 30.4,
+     "mem_mib_peak": 40.2
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.018,
+     "cpu_cores_peak": 0.033,
+     "mem_mib_mean": 95.1,
+     "mem_mib_peak": 96.3
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.087,
+     "cpu_cores_peak": 0.25,
+     "mem_mib_mean": 29.8,
+     "mem_mib_peak": 40.6
+    },
+    "_total": {
+     "cpu_cores_mean": 1.271,
+     "mem_mib_mean": 1274.5
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 31.2,
+    "healthy": true
+   },
+   "label": "near-saturation"
+  },
+  {
+   "run": 3,
+   "nodes": 25,
+   "node_prefix": "bench-r3-n025",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 120.2,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0,
+    "bench-rec-db5c03": 68732.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 300,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 3750,
+    "ground-truth": 3750
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 58,
+   "gateway_latency": {
+    "n": 3048,
+    "mean_ms": 417.84,
+    "p50_ms": 456.07,
+    "p95_ms": 851.0,
+    "p99_ms": 1130.84,
+    "max_ms": 1336.01
+   },
+   "predictions_mqtt_in_window": 3006,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 2981,
+    "mean_s": 1.0,
+    "p50_s": 1.0,
+    "p95_s": 1.3,
+    "p99_s": 1.67,
+    "max_s": 1.69
+   },
+   "prediction_interval_over_1_5x_pct": 2.55,
+   "prediction_max_gap_s": 1.69,
+   "nodes_with_predictions": 25,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 50.0,
+   "inference_mean_ms": 19.561809,
+   "predictions_made": 2984.207747,
+   "bridge_msgs_per_s": 75.205232,
+   "controller_sample_age_p50_s": 0.466233,
+   "controller_sample_age_p95_s": 0.979228,
+   "command_ack_p50_s": 0.002946,
+   "command_ack_p95_s": 0.025182,
+   "commands_published": 6.750883,
+   "commands_deduplicated": 2966.815083,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.097975,
+   "persist_sensor_reading_p50_s": 0.468991,
+   "persist_sensor_reading_p95_s": 0.900999,
+   "persist_gas_ground_truth_p50_s": 0.473126,
+   "persist_gas_ground_truth_p95_s": 0.903653,
+   "persist_gas_prediction_p50_s": 0.902096,
+   "persist_gas_prediction_p95_s": 1.480116,
+   "consumer_lag": {
+    "bench-rec-db5c03": {
+     "n": 25,
+     "mean": 73550.12,
+     "peak": 76855.0,
+     "last": 76855.0
+    },
+    "influx-sink-v1": {
+     "n": 25,
+     "mean": 56.96,
+     "peak": 80.0,
+     "last": 57.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 25,
+     "mean": 358.64,
+     "peak": 377.0,
+     "last": 360.0
+    },
+    "safety-controller-v1": {
+     "n": 25,
+     "mean": 0.36,
+     "peak": 6.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 3034,
+      "mean_ms": 37.01,
+      "p50_ms": 28.44,
+      "p95_ms": 93.15,
+      "p99_ms": 164.67,
+      "max_ms": 278.68
+     },
+     "records": 3750,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3000,
+      "found": 3000,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 3034,
+      "mean_ms": 39.55,
+      "p50_ms": 30.39,
+      "p95_ms": 95.02,
+      "p99_ms": 169.38,
+      "max_ms": 282.87
+     },
+     "records": 3750,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3000,
+      "found": 3000,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 3050,
+      "mean_ms": 445.13,
+      "p50_ms": 481.23,
+      "p95_ms": 875.36,
+      "p99_ms": 1155.47,
+      "max_ms": 1362.73
+     },
+     "records": 3750,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3000,
+      "found": 3000,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 3000,
+     "found": 3000,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 3000,
+     "found": 3000,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 3000,
+     "found": 3000,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 3000,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1376,
+    "edge-inference": 224,
+    "influx-sink": 172,
+    "safety-controller": 424
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.129,
+     "cpu_cores_peak": 0.501,
+     "mem_mib_mean": 84.8,
+     "mem_mib_peak": 96.9
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.327,
+     "cpu_cores_peak": 0.51,
+     "mem_mib_mean": 56.0,
+     "mem_mib_peak": 66.0
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.052,
+     "cpu_cores_peak": 0.198,
+     "mem_mib_mean": 254.3,
+     "mem_mib_peak": 270.3
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.056,
+     "cpu_cores_peak": 0.447,
+     "mem_mib_mean": 50.0,
+     "mem_mib_peak": 61.5
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.02,
+     "cpu_cores_peak": 0.05,
+     "mem_mib_mean": 143.9,
+     "mem_mib_peak": 146.5
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.236,
+     "cpu_cores_peak": 0.438,
+     "mem_mib_mean": 555.2,
+     "mem_mib_peak": 561.4
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.049,
+     "cpu_cores_peak": 0.213,
+     "mem_mib_mean": 11.5,
+     "mem_mib_peak": 14.7
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.025,
+     "cpu_cores_peak": 0.093,
+     "mem_mib_mean": 4.7,
+     "mem_mib_peak": 5.4
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.108,
+     "cpu_cores_peak": 0.531,
+     "mem_mib_mean": 29.9,
+     "mem_mib_peak": 38.8
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.022,
+     "cpu_cores_peak": 0.038,
+     "mem_mib_mean": 100.4,
+     "mem_mib_peak": 102.9
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.064,
+     "cpu_cores_peak": 0.246,
+     "mem_mib_mean": 29.1,
+     "mem_mib_peak": 38.5
+    },
+    "_total": {
+     "cpu_cores_mean": 1.088,
+     "mem_mib_mean": 1319.8
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 32.6,
+    "healthy": true
+   },
+   "label": "near-saturation"
+  },
+  {
+   "run": 3,
+   "nodes": 30,
+   "node_prefix": "bench-r3-n030",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 120.1,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0,
+    "bench-rec-db5c03": 76982.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 325,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 4500,
+    "ground-truth": 4500
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 68,
+   "gateway_latency": {
+    "n": 3684,
+    "mean_ms": 574.26,
+    "p50_ms": 514.04,
+    "p95_ms": 1320.12,
+    "p99_ms": 1698.9,
+    "max_ms": 2102.43
+   },
+   "predictions_mqtt_in_window": 3626,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 3596,
+    "mean_s": 0.99,
+    "p50_s": 1.0,
+    "p95_s": 1.41,
+    "p99_s": 1.91,
+    "max_s": 2.5
+   },
+   "prediction_interval_over_1_5x_pct": 3.06,
+   "prediction_max_gap_s": 2.5,
+   "nodes_with_predictions": 30,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 60.0,
+   "inference_mean_ms": 21.404814,
+   "predictions_made": 3621.974865,
+   "bridge_msgs_per_s": 90.417344,
+   "controller_sample_age_p50_s": 0.691155,
+   "controller_sample_age_p95_s": 1.609375,
+   "command_ack_p50_s": 0.002642,
+   "command_ack_p95_s": 0.005395,
+   "commands_published": 9.644538,
+   "commands_deduplicated": 3575.298507,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.09792,
+   "persist_sensor_reading_p50_s": 0.505216,
+   "persist_sensor_reading_p95_s": 0.863959,
+   "persist_gas_ground_truth_p50_s": 0.512807,
+   "persist_gas_ground_truth_p95_s": 0.871652,
+   "persist_gas_prediction_p50_s": 1.033357,
+   "persist_gas_prediction_p95_s": 1.905208,
+   "consumer_lag": {
+    "bench-rec-db5c03": {
+     "n": 25,
+     "mean": 82744.36,
+     "peak": 86828.0,
+     "last": 86828.0
+    },
+    "influx-sink-v1": {
+     "n": 25,
+     "mean": 47.96,
+     "peak": 101.0,
+     "last": 75.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 25,
+     "mean": 381.96,
+     "peak": 411.0,
+     "last": 394.0
+    },
+    "safety-controller-v1": {
+     "n": 25,
+     "mean": 3.32,
+     "peak": 18.0,
+     "last": 0.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 3660,
+      "mean_ms": 51.58,
+      "p50_ms": 39.87,
+      "p95_ms": 150.48,
+      "p99_ms": 282.21,
+      "max_ms": 365.97
+     },
+     "records": 4500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3600,
+      "found": 3600,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 3660,
+      "mean_ms": 53.33,
+      "p50_ms": 41.34,
+      "p95_ms": 153.47,
+      "p99_ms": 272.78,
+      "max_ms": 365.97
+     },
+     "records": 4500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3600,
+      "found": 3600,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 3684,
+      "mean_ms": 605.97,
+      "p50_ms": 546.0,
+      "p95_ms": 1345.24,
+      "p99_ms": 1724.41,
+      "max_ms": 2127.39
+     },
+     "records": 4500,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 3600,
+      "found": 3600,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 3600,
+     "found": 3600,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 3600,
+     "found": 3600,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 3600,
+     "found": 3600,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 3600,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1601,
+    "edge-inference": 250,
+    "influx-sink": 172,
+    "safety-controller": 490
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.076,
+     "cpu_cores_peak": 0.275,
+     "mem_mib_mean": 89.2,
+     "mem_mib_peak": 95.7
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.41,
+     "cpu_cores_peak": 0.516,
+     "mem_mib_mean": 57.5,
+     "mem_mib_peak": 67.4
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.027,
+     "cpu_cores_peak": 0.047,
+     "mem_mib_mean": 269.4,
+     "mem_mib_peak": 281.2
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.071,
+     "cpu_cores_peak": 0.283,
+     "mem_mib_mean": 51.3,
+     "mem_mib_peak": 59.8
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.037,
+     "cpu_cores_peak": 0.121,
+     "mem_mib_mean": 162.5,
+     "mem_mib_peak": 165.4
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.259,
+     "cpu_cores_peak": 0.334,
+     "mem_mib_mean": 572.3,
+     "mem_mib_peak": 577.8
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.056,
+     "cpu_cores_peak": 0.221,
+     "mem_mib_mean": 11.0,
+     "mem_mib_peak": 16.5
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.031,
+     "cpu_cores_peak": 0.078,
+     "mem_mib_mean": 5.3,
+     "mem_mib_peak": 10.0
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.094,
+     "cpu_cores_peak": 0.482,
+     "mem_mib_mean": 29.8,
+     "mem_mib_peak": 42.0
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.022,
+     "cpu_cores_peak": 0.038,
+     "mem_mib_mean": 95.8,
+     "mem_mib_peak": 96.8
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.074,
+     "cpu_cores_peak": 0.265,
+     "mem_mib_mean": 29.6,
+     "mem_mib_peak": 39.3
+    },
+    "_total": {
+     "cpu_cores_mean": 1.157,
+     "mem_mib_mean": 1373.7
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 30.8,
+    "healthy": true
+   },
+   "label": "near-saturation"
+  },
+  {
+   "run": 3,
+   "nodes": 35,
+   "node_prefix": "bench-r3-n035",
+   "burst": true,
+   "warmup_s": 30,
+   "measure_s": 119.9,
+   "infer_every_s": 1,
+   "initial_consumer_lag": {
+    "influx-sink-v1": 0.0,
+    "kitchen-demo-ui-v1": 0.0,
+    "safety-controller-v1": 0.0,
+    "bench-rec-db5c03": 87182.0
+   },
+   "initial_metric_series": {
+    "mqtt-kafka-bridge": 355,
+    "edge-inference": 72,
+    "influx-sink": 92,
+    "safety-controller": 72
+   },
+   "published": {
+    "readings": 5250,
+    "ground-truth": 5250
+   },
+   "publisher_late_ticks": 0,
+   "commands_received_by_nodes": 77,
+   "gateway_latency": {
+    "n": 4279,
+    "mean_ms": 761.19,
+    "p50_ms": 690.7,
+    "p95_ms": 1710.78,
+    "p99_ms": 2099.62,
+    "max_ms": 2430.51
+   },
+   "predictions_mqtt_in_window": 4213,
+   "predictions_mqtt_duplicates": 0,
+   "prediction_interval": {
+    "n": 4178,
+    "mean_s": 0.99,
+    "p50_s": 0.99,
+    "p95_s": 1.57,
+    "p99_s": 1.97,
+    "max_s": 2.39
+   },
+   "prediction_interval_over_1_5x_pct": 5.98,
+   "prediction_max_gap_s": 2.39,
+   "nodes_with_predictions": 35,
+   "mosquitto_dropped": 0,
+   "events_per_s_published": 70.0,
+   "inference_mean_ms": 21.457543,
+   "predictions_made": 4158.222062,
+   "bridge_msgs_per_s": 105.708649,
+   "controller_sample_age_p50_s": 0.78057,
+   "controller_sample_age_p95_s": 1.868501,
+   "command_ack_p50_s": 0.002644,
+   "command_ack_p95_s": 0.007231,
+   "commands_published": 8.788638,
+   "commands_deduplicated": 4166.397078,
+   "errors": {
+    "ack_timeouts": 0.0,
+    "mqtt_invalid": 0.0,
+    "kafka_delivery_failures": 0.0,
+    "sink_invalid": 0.0,
+    "influx_write_failures": 0.0,
+    "dead_letter_records": 0.0
+   },
+   "influx_write_p95_s": 0.112187,
+   "persist_sensor_reading_p50_s": 0.52836,
+   "persist_sensor_reading_p95_s": 0.932359,
+   "persist_gas_ground_truth_p50_s": 0.529701,
+   "persist_gas_ground_truth_p95_s": 0.935638,
+   "persist_gas_prediction_p50_s": 1.231873,
+   "persist_gas_prediction_p95_s": 2.529634,
+   "consumer_lag": {
+    "bench-rec-db5c03": {
+     "n": 24,
+     "mean": 94215.33,
+     "peak": 99018.0,
+     "last": 99018.0
+    },
+    "influx-sink-v1": {
+     "n": 24,
+     "mean": 47.71,
+     "peak": 109.0,
+     "last": 97.0
+    },
+    "kitchen-demo-ui-v1": {
+     "n": 24,
+     "mean": 488.88,
+     "peak": 556.0,
+     "last": 532.0
+    },
+    "safety-controller-v1": {
+     "n": 24,
+     "mean": 0.88,
+     "peak": 8.0,
+     "last": 4.0
+    }
+   },
+   "kafka": {
+    "gas.sensor.readings.v1": {
+     "latency": {
+      "n": 4235,
+      "mean_ms": 50.39,
+      "p50_ms": 40.24,
+      "p95_ms": 109.96,
+      "p99_ms": 247.0,
+      "max_ms": 693.07
+     },
+     "records": 5250,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4200,
+      "found": 4200,
+      "pct": 100.0
+     }
+    },
+    "gas.ground-truth.v1": {
+     "latency": {
+      "n": 4235,
+      "mean_ms": 53.74,
+      "p50_ms": 42.24,
+      "p95_ms": 146.1,
+      "p99_ms": 254.51,
+      "max_ms": 720.86
+     },
+     "records": 5250,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4200,
+      "found": 4200,
+      "pct": 100.0
+     }
+    },
+    "gas.predictions.v1": {
+     "latency": {
+      "n": 4297,
+      "mean_ms": 796.29,
+      "p50_ms": 717.48,
+      "p95_ms": 1736.61,
+      "p99_ms": 2126.98,
+      "max_ms": 2455.34
+     },
+     "records": 5250,
+     "duplicates": 0,
+     "out_of_order": 0,
+     "completeness_in_window": {
+      "expected": 4200,
+      "found": 4200,
+      "pct": 100.0
+     }
+    }
+   },
+   "influx": {
+    "sensor_reading": {
+     "expected": 4200,
+     "found": 4200,
+     "pct": 100.0
+    },
+    "gas_ground_truth": {
+     "expected": 4200,
+     "found": 4200,
+     "pct": 100.0
+    },
+    "gas_prediction": {
+     "expected": 4200,
+     "found": 4200,
+     "pct": 100.0
+    }
+   },
+   "predictions_expected_by_schedule": 4200,
+   "final_metric_series": {
+    "mqtt-kafka-bridge": 1831,
+    "edge-inference": 278,
+    "influx-sink": 172,
+    "safety-controller": 558
+   },
+   "containers": {
+    "demo-ui": {
+     "samples": 17,
+     "cpu_cores_mean": 0.092,
+     "cpu_cores_peak": 0.325,
+     "mem_mib_mean": 94.6,
+     "mem_mib_peak": 97.7
+    },
+    "edge-inference": {
+     "samples": 17,
+     "cpu_cores_mean": 0.438,
+     "cpu_cores_peak": 0.509,
+     "mem_mib_mean": 57.4,
+     "mem_mib_peak": 66.4
+    },
+    "grafana": {
+     "samples": 17,
+     "cpu_cores_mean": 0.04,
+     "cpu_cores_peak": 0.101,
+     "mem_mib_mean": 252.7,
+     "mem_mib_peak": 254.5
+    },
+    "influx-sink": {
+     "samples": 17,
+     "cpu_cores_mean": 0.089,
+     "cpu_cores_peak": 0.495,
+     "mem_mib_mean": 50.0,
+     "mem_mib_peak": 59.4
+    },
+    "influxdb": {
+     "samples": 17,
+     "cpu_cores_mean": 0.029,
+     "cpu_cores_peak": 0.1,
+     "mem_mib_mean": 172.2,
+     "mem_mib_peak": 180.1
+    },
+    "kafka": {
+     "samples": 17,
+     "cpu_cores_mean": 0.284,
+     "cpu_cores_peak": 0.395,
+     "mem_mib_mean": 597.8,
+     "mem_mib_peak": 609.7
+    },
+    "kafka-exporter": {
+     "samples": 17,
+     "cpu_cores_mean": 0.063,
+     "cpu_cores_peak": 0.205,
+     "mem_mib_mean": 11.1,
+     "mem_mib_peak": 12.4
+    },
+    "mosquitto": {
+     "samples": 17,
+     "cpu_cores_mean": 0.033,
+     "cpu_cores_peak": 0.096,
+     "mem_mib_mean": 5.4,
+     "mem_mib_peak": 9.7
+    },
+    "mqtt-kafka-bridge": {
+     "samples": 17,
+     "cpu_cores_mean": 0.106,
+     "cpu_cores_peak": 0.492,
+     "mem_mib_mean": 29.7,
+     "mem_mib_peak": 30.7
+    },
+    "prometheus": {
+     "samples": 17,
+     "cpu_cores_mean": 0.021,
+     "cpu_cores_peak": 0.045,
+     "mem_mib_mean": 102.0,
+     "mem_mib_peak": 103.6
+    },
+    "safety-controller": {
+     "samples": 17,
+     "cpu_cores_mean": 0.075,
+     "cpu_cores_peak": 0.262,
+     "mem_mib_mean": 30.0,
+     "mem_mib_peak": 40.0
+    },
+    "_total": {
+     "cpu_cores_mean": 1.27,
+     "mem_mib_mean": 1402.9
+    }
+   },
+   "services_reset_before_step": {
+    "seconds": 29.8,
+    "healthy": true
+   },
+   "label": "near-saturation"
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+03:02:38 [default] run 1: 1 nodes, 30+120 s
+03:05:27 {"run": 1, "nodes": 1, "events/s": 2.0, "pred_made": 114.766339, "gw_p95_ms": 22.98, "kafka_p95_ms": 29.92, "persist_p95_s": 0.483259, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.042}
+03:05:57 [default] run 1: 10 nodes, 30+120 s
+03:08:46 {"run": 1, "nodes": 10, "events/s": 20.0, "pred_made": 1189.069792, "gw_p95_ms": 314.67, "kafka_p95_ms": 34.89, "persist_p95_s": 0.744651, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.154}
+03:09:16 [default] run 1: 20 nodes, 30+120 s
+03:12:05 {"run": 1, "nodes": 20, "events/s": 40.0, "pred_made": 2375.315853, "gw_p95_ms": 723.3, "kafka_p95_ms": 56.3, "persist_p95_s": 0.720693, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.233}
+03:12:35 [default] run 1: 40 nodes, 30+120 s
+03:15:24 {"run": 1, "nodes": 40, "events/s": 80.0, "pred_made": 4737.16924, "gw_p95_ms": 1440.26, "kafka_p95_ms": 244.72, "persist_p95_s": 0.804303, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.448}
+03:15:54 [default] run 1: 60 nodes, 30+120 s
+03:18:43 {"run": 1, "nodes": 60, "events/s": 120.0, "pred_made": 5429.971369, "gw_p95_ms": 23042.52, "kafka_p95_ms": 271.06, "persist_p95_s": 0.740436, "stored_read_%": 100.0, "stored_pred_%": 76.82, "dropped": 1109.0, "edge_cpu": 0.5}
+03:19:13 [default] run 1: 100 nodes, 30+120 s
+03:22:03 {"run": 1, "nodes": 100, "events/s": 200.0, "pred_made": 5198.418255, "gw_p95_ms": 24543.75, "kafka_p95_ms": 720.65, "persist_p95_s": 1.242816, "stored_read_%": 100.0, "stored_pred_%": 39.15, "dropped": 7259.0, "edge_cpu": 0.498}
+03:22:33 [default] run 2: 1 nodes, 30+120 s
+03:25:22 {"run": 2, "nodes": 1, "events/s": 2.0, "pred_made": 120.624477, "gw_p95_ms": 45.32, "kafka_p95_ms": 30.47, "persist_p95_s": 0.490278, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.047}
+03:25:52 [default] run 2: 10 nodes, 30+120 s
+03:28:40 {"run": 2, "nodes": 10, "events/s": 20.0, "pred_made": 1182.708338, "gw_p95_ms": 334.61, "kafka_p95_ms": 234.78, "persist_p95_s": 0.9225, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.151}
+03:29:10 [default] run 2: 20 nodes, 30+120 s
+03:31:59 {"run": 2, "nodes": 20, "events/s": 40.0, "pred_made": 2379.347497, "gw_p95_ms": 594.86, "kafka_p95_ms": 104.52, "persist_p95_s": 0.716521, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.249}
+03:32:29 [default] run 2: 40 nodes, 30+120 s
+03:35:18 {"run": 2, "nodes": 40, "events/s": 80.0, "pred_made": 4710.699967, "gw_p95_ms": 1482.32, "kafka_p95_ms": 272.82, "persist_p95_s": 0.894177, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.456}
+03:35:48 [default] run 2: 60 nodes, 30+120 s
+03:38:37 {"run": 2, "nodes": 60, "events/s": 120.0, "pred_made": 5291.929501, "gw_p95_ms": 23819.06, "kafka_p95_ms": 559.98, "persist_p95_s": 1.146465, "stored_read_%": 100.0, "stored_pred_%": 73.76, "dropped": 1269.0, "edge_cpu": 0.496}
+03:39:07 [default] run 2: 100 nodes, 30+120 s
+03:41:56 {"run": 2, "nodes": 100, "events/s": 200.0, "pred_made": 5002.329616, "gw_p95_ms": 25313.41, "kafka_p95_ms": 1733.99, "persist_p95_s": 2.084585, "stored_read_%": 100.0, "stored_pred_%": 37.88, "dropped": 7649.0, "edge_cpu": 0.499}
+03:42:26 [default] run 3: 1 nodes, 30+120 s
+03:45:15 {"run": 3, "nodes": 1, "events/s": 2.0, "pred_made": 120.443027, "gw_p95_ms": 44.7, "kafka_p95_ms": 69.61, "persist_p95_s": 0.489826, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.073}
+03:45:45 [default] run 3: 10 nodes, 30+120 s
+03:48:34 {"run": 3, "nodes": 10, "events/s": 20.0, "pred_made": 1189.826801, "gw_p95_ms": 323.94, "kafka_p95_ms": 224.61, "persist_p95_s": 0.830556, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.154}
+03:49:04 [default] run 3: 20 nodes, 30+120 s
+03:51:53 {"run": 3, "nodes": 20, "events/s": 40.0, "pred_made": 2369.016928, "gw_p95_ms": 699.78, "kafka_p95_ms": 630.82, "persist_p95_s": 1.038462, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.247}
+03:52:23 [default] run 3: 40 nodes, 30+120 s
+03:55:12 {"run": 3, "nodes": 40, "events/s": 80.0, "pred_made": 4719.435025, "gw_p95_ms": 1692.89, "kafka_p95_ms": 1179.43, "persist_p95_s": 1.458592, "stored_read_%": 100.0, "stored_pred_%": 100.0, "dropped": 0, "edge_cpu": 0.457}
+03:55:42 [default] run 3: 60 nodes, 30+120 s
+03:58:32 {"run": 3, "nodes": 60, "events/s": 120.0, "pred_made": 5047.197415, "gw_p95_ms": 24832.99, "kafka_p95_ms": 1956.68, "persist_p95_s": 2.389324, "stored_read_%": 100.0, "stored_pred_%": 70.01, "dropped": 1499.0, "edge_cpu": 0.502}
+03:59:02 [default] run 3: 100 nodes, 30+120 s
+04:01:51 {"run": 3, "nodes": 100, "events/s": 200.0, "pred_made": 4864.720667, "gw_p95_ms": 25913.08, "kafka_p95_ms": 3815.19, "persist_p95_s": 4.456579, "stored_read_%": 98.78, "stored_pred_%": 36.58, "dropped": 7961.0, "edge_cpu": 0.495}
+04:01:53 done; cleared 693 retained ACK topics

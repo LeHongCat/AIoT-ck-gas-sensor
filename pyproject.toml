@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aiot-gas-pipeline"
+version = "0.1.0"
+description = "MQTT, Kafka, InfluxDB and Grafana pipeline for the AIoT gas monitoring project"
+requires-python = ">=3.12"
+dependencies = [
+  "confluent-kafka==2.12.0",
+  "fastapi==0.143.3",
+  "influxdb-client==1.49.0",
+  "numpy==2.3.4",  # tabm_model: the INT8 kernels the ESP32 firmware also runs
+  "paho-mqtt==2.1.0",
+  "prometheus-client==0.26.0",
+  "pydantic==2.12.3",
+  "uvicorn==0.54.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.4.2",
+  "ruff==0.14.1",
+]
+
+[project.scripts]
+gas-simulator = "aiot_pipeline.simulator:main"
+edge-inference = "aiot_pipeline.edge_inference:main"
+mqtt-kafka-bridge = "aiot_pipeline.mqtt_kafka_bridge:main"
+influx-sink = "aiot_pipeline.influx_sink:main"
+kitchen-demo = "aiot_pipeline.demo_ui:main"
+safety-controller = "aiot_pipeline.safety_controller:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aiot_pipeline"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+exclude = [".uv-cache", ".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# Dashboard definitions embed long PromQL/Flux queries that read better unwrapped.
+"infra/grafana/build_dashboards.py" = ["E501"]
+# Benchmark harnesses embed long case descriptions and Markdown table rows.
+"scripts/bench/*.py" = ["E501"]
+

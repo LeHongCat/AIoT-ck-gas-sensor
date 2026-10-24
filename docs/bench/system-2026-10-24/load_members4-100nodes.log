@@ -1,0 +1,7 @@
+05:15:26 [members4-100nodes] run 1: 100 nodes, 30+120 s, reset={'seconds': 28.1, 'healthy': True}
+05:18:27 {"run": 1, "nodes": 100, "events/s": 200.0, "pred_made": 10415.481224, "gw_p95_ms": 12334.16, "kafka_p95_ms": 429.32, "persist_p95_s": 0.914625, "stored_read_%": 100.0, "stored_pred_%": 91.93, "dropped": 749.0, "edge_cpu": 0.501}
+05:19:25 [members4-100nodes] run 2: 100 nodes, 30+120 s, reset={'seconds': 27.8, 'healthy': True}
+05:22:26 {"run": 2, "nodes": 100, "events/s": 200.0, "pred_made": 10229.666798, "gw_p95_ms": 12722.85, "kafka_p95_ms": 488.5, "persist_p95_s": 0.955687, "stored_read_%": 100.0, "stored_pred_%": 90.6, "dropped": 949.0, "edge_cpu": 0.501}
+05:23:24 [members4-100nodes] run 3: 100 nodes, 30+120 s, reset={'seconds': 28.2, 'healthy': True}
+05:26:25 {"run": 3, "nodes": 100, "events/s": 200.0, "pred_made": 10419.674519, "gw_p95_ms": 12240.02, "kafka_p95_ms": 494.67, "persist_p95_s": 0.967971, "stored_read_%": 100.0, "stored_pred_%": 91.91, "dropped": 792.0, "edge_cpu": 0.504}
+05:26:26 done; cleared 300 retained ACK topics

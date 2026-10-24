@@ -1,0 +1,2573 @@
+{
+  "uid": "aiot-gas-monitoring",
+  "title": "AIoT Gas Monitoring",
+  "description": "CO/Ethylene, chất lượng model, alarm, actuator ACK, audit trail và 16 kênh MOX.",
+  "tags": [
+    "aiot",
+    "gas"
+  ],
+  "editable": true,
+  "graphTooltip": 1,
+  "fiscalYearStartMonth": 0,
+  "id": null,
+  "liveNow": false,
+  "refresh": "5s",
+  "schemaVersion": 42,
+  "version": 1,
+  "style": "dark",
+  "timezone": "browser",
+  "weekStart": "",
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m"
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "node",
+        "label": "Node",
+        "type": "query",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "influxdb-gas"
+        },
+        "query": "from(bucket: v.defaultBucket)\n  |> range(start: -30d)\n  |> filter(fn: (r) => r._measurement == \"sensor_reading\" and r._field == \"s1\")\n  |> last()\n  |> group()\n  |> map(fn: (r) => ({_value: r.node_id}))",
+        "definition": "node_id có reading trong 30 ngày",
+        "includeAll": true,
+        "allValue": ".*",
+        "multi": true,
+        "refresh": 2,
+        "sort": 1,
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "options": []
+      },
+      {
+        "name": "siren_node",
+        "label": "Node chuông",
+        "type": "query",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "influxdb-gas"
+        },
+        "query": "from(bucket: v.defaultBucket)\n  |> range(start: -30d)\n  |> filter(fn: (r) => r._measurement == \"sensor_reading\" and r._field == \"s1\")\n  |> last()\n  |> group()\n  |> sort(columns: [\"_time\"], desc: true)\n  |> map(fn: (r) => ({_value: r.node_id}))",
+        "definition": "node_id theo reading mới nhất",
+        "includeAll": false,
+        "multi": false,
+        "refresh": 2,
+        "sort": 0,
+        "options": []
+      }
+    ]
+  },
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Kitchen UI",
+      "tooltip": "Giao diện bếp công nghiệp",
+      "type": "link",
+      "url": "http://localhost:8080"
+    },
+    {
+      "asDropdown": false,
+      "icon": "dashboard",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Gas Monitoring",
+      "tooltip": "Khí, model, actuator",
+      "type": "link",
+      "url": "/d/aiot-gas-monitoring"
+    },
+    {
+      "asDropdown": false,
+      "icon": "dashboard",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Pipeline Operations",
+      "tooltip": "MQTT, Kafka, InfluxDB",
+      "type": "link",
+      "url": "/d/aiot-pipeline-operations"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Prometheus alerts",
+      "tooltip": "",
+      "type": "link",
+      "url": "http://localhost:9090/alerts"
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus-operations"
+        },
+        "enable": true,
+        "iconColor": "#ff6b62",
+        "name": "Gas DANGER",
+        "expr": "max by (node_id) (aiot_alarm_level) == 2",
+        "step": "5s",
+        "titleFormat": "DANGER · {{node_id}}",
+        "textFormat": "Van gas khóa, xả khí + còi bật",
+        "useValueForTime": false,
+        "hide": false
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus-operations"
+        },
+        "enable": true,
+        "iconColor": "#b595ff",
+        "name": "Direct override",
+        "expr": "max by (node_id) (aiot_direct_override_active) == 1",
+        "step": "5s",
+        "titleFormat": "Override · {{node_id}}",
+        "textFormat": "Operator can thiệp trực tiếp",
+        "useValueForTime": false,
+        "hide": false
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "row",
+      "title": "Trạng thái hiện tại",
+      "collapsed": false,
+      "id": 1,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "panels": []
+    },
+    {
+      "type": "stat",
+      "title": "CO dự đoán",
+      "description": "TabM: TB 5 s của CO ≥ 200 ppm → danger.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"gas_prediction\" and r._field == \"co_ppm\" and r.node_id =~ /^${node:regex}$/) |> keep(columns: [\"_time\", \"_value\", \"node_id\"]) |> group(columns: [\"node_id\"]) |> sort(columns: [\"_time\"]) |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "ppm",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 200
+              }
+            ]
+          },
+          "decimals": 1
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "id": 2,
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 0,
+        "y": 1
+      }
+    },
+    {
+      "type": "stat",
+      "title": "C₂H₄ dự đoán",
+      "description": "Thang dataset 0–20 ppm.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"gas_prediction\" and r._field == \"ethylene_ppm\" and r.node_id =~ /^${node:regex}$/) |> keep(columns: [\"_time\", \"_value\", \"node_id\"]) |> group(columns: [\"node_id\"]) |> sort(columns: [\"_time\"]) |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "ppm",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 3
+              }
+            ]
+          },
+          "decimals": 2
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "id": 3,
+      "gridPos": {
+        "h": 5,
+        "w": 5,
+        "x": 5,
+        "y": 1
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Alarm level",
+      "description": "",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"gas_prediction\" and r._field == \"co_ppm\" and r.node_id =~ /^${node:regex}$/) |> map(fn: (r) => ({_time: r._time, node_id: r.node_id, _value: if r.alarm_level == \"danger\" then 2 else if r.alarm_level == \"warning\" then 1 else 0})) |> group(columns: [\"node_id\"]) |> sort(columns: [\"_time\"]) |> last()",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "none",
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "NORMAL",
+                  "color": "green",
+                  "index": 0
+                },
+                "1": {
+                  "text": "WARNING",
+                  "color": "orange",
+                  "index": 1
+                },
+                "2": {
+                  "text": "DANGER",
+                  "color": "red",
+                  "index": 2
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 2
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "id": 4,
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 10,
+        "y": 1
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Actuator",
+      "description": "Trạng thái thiết bị đã xác nhận (ActuatorState), không phải lệnh.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: -30d) |> filter(fn: (r) => r._measurement == \"actuator_state\" and (r._field == \"fan_on\" or r._field == \"exhaust_on\" or r._field == \"gas_valve_closed\" or r._field == \"alarm_on\" or r._field == \"suppression_on\" or r._field == \"alarm_muted\") and r.node_id =~ /^${node:regex}$/) |> map(fn: (r) => ({_time: r._time, _value: if r._value then 1 else 0, _field: if r._field == \"fan_on\" then \"Quạt hút\" else if r._field == \"exhaust_on\" then \"Xả khí\" else if r._field == \"gas_valve_closed\" then \"Van gas\" else if r._field == \"suppression_on\" then \"Dập lửa\" else if r._field == \"alarm_muted\" then \"Chuông tắt tay\" else \"Còi\"})) |> group(columns: [\"_field\"]) |> sort(columns: [\"_time\"]) |> last()",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "none",
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Tắt",
+                  "color": "#5b6b67",
+                  "index": 0
+                },
+                "1": {
+                  "text": "Bật",
+                  "color": "#65e6b4",
+                  "index": 1
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#5b6b67",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Van gas"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "Mở",
+                        "color": "#65e6b4",
+                        "index": 0
+                      },
+                      "1": {
+                        "text": "Khóa",
+                        "color": "#ff6b62",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Dập lửa"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "Sẵn sàng",
+                        "color": "#5b6b67",
+                        "index": 0
+                      },
+                      "1": {
+                        "text": "PHUN",
+                        "color": "#67b8ff",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Chuông tắt tay"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "—",
+                        "color": "#5b6b67",
+                        "index": 0
+                      },
+                      "1": {
+                        "text": "TẮT TAY",
+                        "color": "#f4b860",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "textMode": "value_and_name",
+        "wideLayout": true,
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "id": 5,
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 14,
+        "y": 1
+      }
+    },
+    {
+      "type": "row",
+      "title": "Dự đoán",
+      "collapsed": false,
+      "id": 6,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "panels": []
+    },
+    {
+      "type": "timeseries",
+      "title": "CO (ppm)",
+      "description": "",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"gas_prediction\" and r._field == \"co_ppm\" and r.node_id =~ /^${node:regex}$/) |> keep(columns: [\"_time\", \"_value\", \"node_id\"]) |> group(columns: [\"node_id\"]) |> sort(columns: [\"_time\"]) |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false) |> map(fn: (r) => ({_time: r._time, _value: r._value, node_id: r.node_id, _field: \"Dự đoán\"})) |> group(columns: [\"node_id\", \"_field\"])",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "ppm",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "gradientMode": "opacity",
+            "lineInterpolation": "smooth",
+            "showPoints": "never",
+            "spanNulls": true,
+            "axisBorderShow": false,
+            "thresholdsStyle": {
+              "mode": "dashed+area"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              },
+              {
+                "color": "rgba(255,107,98,0.12)",
+                "value": 200
+              }
+            ]
+          },
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Dự đoán"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#65e6b4"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 7,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 7
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "C₂H₄ (ppm)",
+      "description": "",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"gas_prediction\" and r._field == \"ethylene_ppm\" and r.node_id =~ /^${node:regex}$/) |> keep(columns: [\"_time\", \"_value\", \"node_id\"]) |> group(columns: [\"node_id\"]) |> sort(columns: [\"_time\"]) |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false) |> map(fn: (r) => ({_time: r._time, _value: r._value, node_id: r.node_id, _field: \"Dự đoán\"})) |> group(columns: [\"node_id\", \"_field\"])",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "ppm",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 8,
+            "gradientMode": "opacity",
+            "lineInterpolation": "smooth",
+            "showPoints": "never",
+            "spanNulls": true,
+            "axisBorderShow": false,
+            "thresholdsStyle": {
+              "mode": "dashed+area"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              }
+            ]
+          },
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Dự đoán"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#65e6b4"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 8,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 7
+      }
+    },
+    {
+      "type": "row",
+      "title": "An toàn & điều khiển",
+      "collapsed": false,
+      "id": 9,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "panels": []
+    },
+    {
+      "type": "state-timeline",
+      "title": "Lịch sử alarm",
+      "description": "",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"gas_prediction\" and r._field == \"co_ppm\" and r.node_id =~ /^${node:regex}$/) |> map(fn: (r) => ({_time: r._time, node_id: r.node_id, _value: if r.alarm_level == \"danger\" then 2 else if r.alarm_level == \"warning\" then 1 else 0})) |> group(columns: [\"node_id\"]) |> sort(columns: [\"_time\"]) |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false)",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#5b6b67"
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "NORMAL",
+                  "color": "green",
+                  "index": 0
+                },
+                "1": {
+                  "text": "WARNING",
+                  "color": "orange",
+                  "index": 1
+                },
+                "2": {
+                  "text": "DANGER",
+                  "color": "red",
+                  "index": 2
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#5b6b67",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "fillOpacity": 85,
+            "lineWidth": 0
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "mergeValues": true,
+        "showValue": "auto",
+        "alignValue": "center",
+        "rowHeight": 0.7,
+        "legend": {
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "id": 10,
+      "gridPos": {
+        "h": 5,
+        "w": 16,
+        "x": 0,
+        "y": 17
+      }
+    },
+    {
+      "type": "canvas",
+      "title": "Chuông cảnh báo",
+      "description": "Tắt / bật còi của node đang chọn (biến Node chuông). Lệnh đi Kitchen UI → MQTT → Kafka → Safety Controller như công tắc trên màn hình bếp: chế độ vẫn AUTO, quạt và van gas vẫn theo alarm, model và log vẫn chạy. DANGER mới tự bật lại chuông. Cần quyền Editor.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-operations"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus-operations"
+          },
+          "expr": "max(aiot_siren_muted{node_id=\"${siren_node}\"})",
+          "legendFormat": "Chuông",
+          "refId": "A",
+          "range": false,
+          "instant": true
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus-operations"
+          },
+          "expr": "max(aiot_actuator_desired_output{node_id=\"${siren_node}\", output=\"alarm_on\"}) * 2 + max(aiot_siren_muted{node_id=\"${siren_node}\"})",
+          "legendFormat": "Trạng thái",
+          "refId": "B",
+          "range": false,
+          "instant": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#65e6b4",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Chuông"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "Công tắc BẬT",
+                        "color": "#65e6b4",
+                        "index": 0
+                      },
+                      "1": {
+                        "text": "Công tắc TẮT",
+                        "color": "#f4b860",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Trạng thái"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "Đèn tắt · chuông chờ",
+                        "color": "#5b6b67",
+                        "index": 0
+                      },
+                      "1": {
+                        "text": "Đèn & chuông TẮT TAY",
+                        "color": "#f4b860",
+                        "index": 1
+                      },
+                      "2": {
+                        "text": "Đèn chớp · chuông kêu",
+                        "color": "#ff6b62",
+                        "index": 2
+                      },
+                      "3": {
+                        "text": "Đèn chớp · chuông kêu",
+                        "color": "#ff6b62",
+                        "index": 3
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "inlineEditing": false,
+        "showAdvancedTypes": true,
+        "panZoom": false,
+        "infinitePan": false,
+        "root": {
+          "type": "frame",
+          "name": "Element root",
+          "elements": [
+            {
+              "type": "icon",
+              "name": "Đèn",
+              "config": {
+                "path": {
+                  "mode": "fixed",
+                  "fixed": "img/icons/unicons/lightbulb.svg"
+                },
+                "fill": {
+                  "field": "Trạng thái",
+                  "fixed": "#5b6b67"
+                }
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "width": 0
+              },
+              "constraint": {
+                "horizontal": "scale",
+                "vertical": "scale"
+              },
+              "placement": {
+                "left": 2,
+                "top": 6,
+                "right": 87,
+                "bottom": 54
+              }
+            },
+            {
+              "type": "icon",
+              "name": "Chuông",
+              "config": {
+                "path": {
+                  "mode": "fixed",
+                  "fixed": "img/icons/unicons/bell.svg"
+                },
+                "fill": {
+                  "field": "Trạng thái",
+                  "fixed": "#5b6b67"
+                }
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "width": 0
+              },
+              "constraint": {
+                "horizontal": "scale",
+                "vertical": "scale"
+              },
+              "placement": {
+                "left": 14,
+                "top": 6,
+                "right": 75,
+                "bottom": 54
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "Đèn & chuông · trạng thái",
+              "config": {
+                "text": {
+                  "mode": "field",
+                  "field": "Trạng thái",
+                  "fixed": ""
+                },
+                "color": {
+                  "field": "Trạng thái",
+                  "fixed": "#8da69f"
+                },
+                "size": 18,
+                "align": "center",
+                "valign": "middle"
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "width": 0
+              },
+              "constraint": {
+                "horizontal": "scale",
+                "vertical": "scale"
+              },
+              "placement": {
+                "left": 26,
+                "top": 4,
+                "right": 28,
+                "bottom": 52
+              }
+            },
+            {
+              "type": "metric-value",
+              "name": "Công tắc",
+              "config": {
+                "text": {
+                  "mode": "field",
+                  "field": "Chuông",
+                  "fixed": ""
+                },
+                "color": {
+                  "field": "Chuông",
+                  "fixed": "#8da69f"
+                },
+                "size": 13,
+                "align": "center",
+                "valign": "middle"
+              },
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "width": 0
+              },
+              "constraint": {
+                "horizontal": "scale",
+                "vertical": "scale"
+              },
+              "placement": {
+                "left": 72,
+                "top": 4,
+                "right": 2,
+                "bottom": 52
+              }
+            },
+            {
+              "type": "rectangle",
+              "name": "Nút tắt chuông",
+              "config": {
+                "text": {
+                  "mode": "fixed",
+                  "fixed": "TẮT CHUÔNG"
+                },
+                "color": {
+                  "fixed": "#061010"
+                },
+                "size": 14,
+                "align": "center",
+                "valign": "middle"
+              },
+              "background": {
+                "color": {
+                  "fixed": "#f4b860"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "#f4b860"
+                },
+                "width": 1,
+                "radius": 10
+              },
+              "constraint": {
+                "horizontal": "scale",
+                "vertical": "scale"
+              },
+              "placement": {
+                "left": 2,
+                "top": 54,
+                "right": 52,
+                "bottom": 8
+              },
+              "links": [],
+              "actions": [
+                {
+                  "title": "Tắt chuông",
+                  "type": "fetch",
+                  "oneClick": true,
+                  "confirmation": "Tắt chuông cảnh báo của node ${siren_node}? Model, dữ liệu và log vẫn chạy; DANGER mới sẽ tự bật lại chuông.",
+                  "fetch": {
+                    "method": "POST",
+                    "url": "http://localhost:8080/api/control",
+                    "body": "{\"node_id\": \"${siren_node}\", \"mode\": \"mute\"}",
+                    "headers": [
+                      [
+                        "Content-Type",
+                        "application/json"
+                      ]
+                    ],
+                    "queryParams": []
+                  }
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "name": "Nút bật chuông",
+              "config": {
+                "text": {
+                  "mode": "fixed",
+                  "fixed": "BẬT CHUÔNG"
+                },
+                "color": {
+                  "fixed": "#061010"
+                },
+                "size": 14,
+                "align": "center",
+                "valign": "middle"
+              },
+              "background": {
+                "color": {
+                  "fixed": "#65e6b4"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "#65e6b4"
+                },
+                "width": 1,
+                "radius": 10
+              },
+              "constraint": {
+                "horizontal": "scale",
+                "vertical": "scale"
+              },
+              "placement": {
+                "left": 52,
+                "top": 54,
+                "right": 2,
+                "bottom": 8
+              },
+              "links": [],
+              "actions": [
+                {
+                  "title": "Bật chuông",
+                  "type": "fetch",
+                  "oneClick": true,
+                  "confirmation": "Bật lại chuông cảnh báo của node ${siren_node}?",
+                  "fetch": {
+                    "method": "POST",
+                    "url": "http://localhost:8080/api/control",
+                    "body": "{\"node_id\": \"${siren_node}\", \"mode\": \"unmute\"}",
+                    "headers": [
+                      [
+                        "Content-Type",
+                        "application/json"
+                      ]
+                    ],
+                    "queryParams": []
+                  }
+                }
+              ]
+            }
+          ],
+          "background": {
+            "color": {
+              "fixed": "transparent"
+            }
+          },
+          "border": {
+            "color": {
+              "fixed": "transparent"
+            }
+          },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          }
+        }
+      },
+      "id": 11,
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 17
+      }
+    },
+    {
+      "type": "state-timeline",
+      "title": "Lịch sử actuator",
+      "description": "Mỗi đoạn là một ActuatorState ACK; giữ nguyên tới ACK kế tiếp. Chuông tắt tay: operator tắt còi, chế độ vẫn AUTO.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: -30d, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"actuator_state\" and (r._field == \"fan_on\" or r._field == \"exhaust_on\" or r._field == \"gas_valve_closed\" or r._field == \"alarm_on\" or r._field == \"suppression_on\" or r._field == \"alarm_muted\") and r.node_id =~ /^${node:regex}$/) |> map(fn: (r) => ({_time: r._time, _value: if r._value then 1 else 0, _field: if r._field == \"fan_on\" then \"Quạt hút\" else if r._field == \"exhaust_on\" then \"Xả khí\" else if r._field == \"gas_valve_closed\" then \"Van gas\" else if r._field == \"suppression_on\" then \"Dập lửa\" else if r._field == \"alarm_muted\" then \"Chuông tắt tay\" else \"Còi\"})) |> group(columns: [\"_field\"]) |> sort(columns: [\"_time\"])",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#5b6b67"
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "Tắt",
+                  "color": "#5b6b67",
+                  "index": 0
+                },
+                "1": {
+                  "text": "Bật",
+                  "color": "#65e6b4",
+                  "index": 1
+                }
+              }
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#5b6b67",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "fillOpacity": 85,
+            "lineWidth": 0
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Van gas"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "Mở",
+                        "color": "#65e6b4",
+                        "index": 0
+                      },
+                      "1": {
+                        "text": "Khóa",
+                        "color": "#ff6b62",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Dập lửa"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "Sẵn sàng",
+                        "color": "#5b6b67",
+                        "index": 0
+                      },
+                      "1": {
+                        "text": "PHUN",
+                        "color": "#67b8ff",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Chuông tắt tay"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "0": {
+                        "text": "—",
+                        "color": "#5b6b67",
+                        "index": 0
+                      },
+                      "1": {
+                        "text": "TẮT TAY",
+                        "color": "#f4b860",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "mergeValues": true,
+        "showValue": "auto",
+        "alignValue": "center",
+        "rowHeight": 0.8,
+        "legend": {
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "id": 12,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      }
+    },
+    {
+      "type": "table",
+      "title": "Audit trail lệnh",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "description": "Command do Safety Controller phát (auto hoặc direct override). alarm_muted = operator đã tắt chuông; lệnh vẫn ở chế độ AUTO.",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"actuator_command\" and r.node_id =~ /^${node:regex}$/) |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> group() |> sort(columns: [\"_time\"], desc: true) |> limit(n: 100) |> keep(columns: [\"_time\", \"node_id\", \"mode\", \"source\", \"reason\", \"fan_on\", \"exhaust_on\", \"gas_valve_closed\", \"alarm_on\", \"alarm_muted\", \"suppression_on\"])",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            }
+          },
+          "noValue": "Chưa có lệnh trong khung thời gian"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fan_on"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "true": {
+                        "text": "Bật",
+                        "color": "#65e6b4",
+                        "index": 0
+                      },
+                      "false": {
+                        "text": "Tắt",
+                        "color": "#5b6b67",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "exhaust_on"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "true": {
+                        "text": "Bật",
+                        "color": "#65e6b4",
+                        "index": 0
+                      },
+                      "false": {
+                        "text": "Tắt",
+                        "color": "#5b6b67",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "alarm_on"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "true": {
+                        "text": "Bật",
+                        "color": "#f4b860",
+                        "index": 0
+                      },
+                      "false": {
+                        "text": "Tắt",
+                        "color": "#5b6b67",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "alarm_muted"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "true": {
+                        "text": "Tắt tay",
+                        "color": "#f4b860",
+                        "index": 0
+                      },
+                      "false": {
+                        "text": "—",
+                        "color": "#5b6b67",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "gas_valve_closed"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "true": {
+                        "text": "Khóa",
+                        "color": "#ff6b62",
+                        "index": 0
+                      },
+                      "false": {
+                        "text": "Mở",
+                        "color": "#5b6b67",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "suppression_on"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "true": {
+                        "text": "PHUN",
+                        "color": "#67b8ff",
+                        "index": 0
+                      },
+                      "false": {
+                        "text": "—",
+                        "color": "#5b6b67",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mode"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "auto": {
+                        "text": "AUTO",
+                        "color": "#67b8ff",
+                        "index": 0
+                      },
+                      "manual": {
+                        "text": "DIRECT",
+                        "color": "#b595ff",
+                        "index": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "_time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {
+              "_time": 0,
+              "node_id": 1,
+              "mode": 2,
+              "source": 3,
+              "fan_on": 4,
+              "exhaust_on": 5,
+              "gas_valve_closed": 6,
+              "alarm_on": 7,
+              "alarm_muted": 8,
+              "suppression_on": 9,
+              "reason": 10
+            },
+            "renameByName": {
+              "_time": "Thời điểm",
+              "node_id": "Node",
+              "source": "Nguồn",
+              "reason": "Lý do"
+            }
+          }
+        }
+      ],
+      "id": 13,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      }
+    },
+    {
+      "type": "row",
+      "title": "Log",
+      "collapsed": false,
+      "id": 14,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "panels": []
+    },
+    {
+      "type": "table",
+      "title": "Log dự đoán",
+      "description": "Mỗi dòng là một lần model đọc cửa sổ 60 s của 16 kênh.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"gas_prediction\" and r.node_id =~ /^${node:regex}$/) |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> group() |> keep(columns: [\"_time\", \"node_id\", \"alarm_level\", \"sequence\", \"co_ppm\", \"ethylene_ppm\", \"inference_ms\", \"window_s\"]) |> sort(columns: [\"_time\"], desc: true) |> limit(n: 60)",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left",
+            "cellOptions": {
+              "type": "auto"
+            }
+          },
+          "noValue": "Chưa có dự đoán"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "alarm_level"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background",
+                  "mode": "basic"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "normal": {
+                        "text": "NORMAL",
+                        "color": "green",
+                        "index": 0
+                      },
+                      "warning": {
+                        "text": "WARNING",
+                        "color": "orange",
+                        "index": 1
+                      },
+                      "danger": {
+                        "text": "DANGER",
+                        "color": "red",
+                        "index": 2
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "co_ppm"
+            },
+            "properties": [
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "unit",
+                "value": "ppm"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 50
+                    },
+                    {
+                      "color": "red",
+                      "value": 200
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ethylene_ppm"
+            },
+            "properties": [
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "ppm"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 3
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "inference_ms"
+            },
+            "properties": [
+              {
+                "id": "decimals",
+                "value": 2
+              },
+              {
+                "id": "unit",
+                "value": "ms"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "window_s"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sequence"
+            },
+            "properties": [
+              {
+                "id": "decimals",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {
+              "_time": 0,
+              "sequence": 1,
+              "node_id": 2,
+              "co_ppm": 3,
+              "ethylene_ppm": 4,
+              "alarm_level": 5,
+              "inference_ms": 6,
+              "window_s": 7
+            },
+            "renameByName": {
+              "_time": "Thời điểm",
+              "sequence": "seq",
+              "node_id": "Node",
+              "co_ppm": "CO dự đoán",
+              "ethylene_ppm": "C₂H₄ dự đoán",
+              "alarm_level": "Alarm",
+              "inference_ms": "Suy luận",
+              "window_s": "Cửa sổ"
+            }
+          }
+        }
+      ],
+      "id": 15,
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 38
+      }
+    },
+    {
+      "type": "table",
+      "title": "Log cảm biến",
+      "description": "Giá trị MOX của từng kênh mỗi giây (sensor_reading). Màu càng nóng, độ dẫn càng cao do có khí.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"sensor_reading\" and r.node_id =~ /^${node:regex}$/) |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\") |> group() |> sort(columns: [\"_time\"], desc: true) |> limit(n: 40)",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "color-background",
+              "mode": "gradient"
+            }
+          },
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "min": 0,
+          "max": 9000,
+          "decimals": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "_time"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 170
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sequence"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 70
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "node_id"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false,
+          "reducer": [
+            "sum"
+          ],
+          "fields": ""
+        }
+      },
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_measurement": true,
+              "_start": true,
+              "_stop": true,
+              "schema_version": true
+            },
+            "indexByName": {
+              "_time": 0,
+              "sequence": 1,
+              "s1": 2,
+              "s2": 3,
+              "s3": 4,
+              "s4": 5,
+              "s5": 6,
+              "s6": 7,
+              "s7": 8,
+              "s8": 9,
+              "s9": 10,
+              "s10": 11,
+              "s11": 12,
+              "s12": 13,
+              "s13": 14,
+              "s14": 15,
+              "s15": 16,
+              "s16": 17,
+              "node_id": 18
+            },
+            "renameByName": {
+              "_time": "Thời điểm",
+              "sequence": "seq",
+              "node_id": "Node",
+              "s1": "S1",
+              "s2": "S2",
+              "s3": "S3",
+              "s4": "S4",
+              "s5": "S5",
+              "s6": "S6",
+              "s7": "S7",
+              "s8": "S8",
+              "s9": "S9",
+              "s10": "S10",
+              "s11": "S11",
+              "s12": "S12",
+              "s13": "S13",
+              "s14": "S14",
+              "s15": "S15",
+              "s16": "S16"
+            }
+          }
+        }
+      ],
+      "id": 16,
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 47
+      }
+    },
+    {
+      "type": "row",
+      "title": "Hiệu năng model",
+      "collapsed": false,
+      "id": 17,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 56
+      },
+      "panels": []
+    },
+    {
+      "type": "timeseries",
+      "title": "Inference latency",
+      "description": "Thời gian model suy luận một cửa sổ (đo trên chính tiến trình edge) và tần suất dự đoán, dùng để phát hiện node chậm hoặc tụt nhịp.",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"gas_prediction\" and r._field == \"inference_ms\" and r.node_id =~ /^${node:regex}$/) |> keep(columns: [\"_time\", \"_value\"]) |> sort(columns: [\"_time\"]) |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false) |> keep(columns: [\"_time\", \"_value\"]) |> set(key: \"_field\", value: \"mean\") |> group(columns: [\"_field\"])",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"gas_prediction\" and r._field == \"inference_ms\" and r.node_id =~ /^${node:regex}$/) |> keep(columns: [\"_time\", \"_value\"]) |> sort(columns: [\"_time\"]) |> aggregateWindow(every: v.windowPeriod, fn: max, createEmpty: false) |> keep(columns: [\"_time\", \"_value\"]) |> set(key: \"_field\", value: \"max\") |> group(columns: [\"_field\"])",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "ms",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "lineInterpolation": "smooth",
+            "showPoints": "never",
+            "spanNulls": true,
+            "axisBorderShow": false,
+            "thresholdsStyle": {
+              "mode": "off"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#65e6b4",
+                "value": null
+              }
+            ]
+          },
+          "min": 0
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "mean"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#65e6b4"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "max"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#f4b860"
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "mean",
+            "max",
+            "lastNotNull"
+          ],
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 18,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 57
+      }
+    },
+    {
+      "type": "row",
+      "title": "Cảm biến MOX",
+      "collapsed": false,
+      "id": 19,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 65
+      },
+      "panels": []
+    },
+    {
+      "type": "bargauge",
+      "title": "Giá trị hiện tại",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "from(bucket: v.defaultBucket) |> range(start: -2m) |> filter(fn: (r) => r._measurement == \"sensor_reading\" and r._field =~ /^s([1-9]|1[0-6])$/ and r.node_id =~ /^${node:regex}$/) |> last() |> keep(columns: [\"_measurement\", \"_field\", \"_value\"]) |> group() |> pivot(rowKey: [\"_measurement\"], columnKey: [\"_field\"], valueColumn: \"_value\")",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "unit": "none",
+          "decimals": 0,
+          "min": 0,
+          "max": 9000,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#65e6b4",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "valueMode": "color",
+        "namePlacement": "left",
+        "showUnfilled": true,
+        "sizing": "auto",
+        "minVizHeight": 8,
+        "maxVizHeight": 300,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_measurement": true
+            },
+            "indexByName": {
+              "s1": 0,
+              "s2": 1,
+              "s3": 2,
+              "s4": 3,
+              "s5": 4,
+              "s6": 5,
+              "s7": 6,
+              "s8": 7,
+              "s9": 8,
+              "s10": 9,
+              "s11": 10,
+              "s12": 11,
+              "s13": 12,
+              "s14": 13,
+              "s15": 14,
+              "s16": 15
+            },
+            "renameByName": {
+              "s1": "S1",
+              "s2": "S2",
+              "s3": "S3",
+              "s4": "S4",
+              "s5": "S5",
+              "s6": "S6",
+              "s7": "S7",
+              "s8": "S8",
+              "s9": "S9",
+              "s10": "S10",
+              "s11": "S11",
+              "s12": "S12",
+              "s13": "S13",
+              "s14": "S14",
+              "s15": "S15",
+              "s16": "S16"
+            }
+          }
+        }
+      ],
+      "id": 20,
+      "gridPos": {
+        "h": 15,
+        "w": 8,
+        "x": 0,
+        "y": 66
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Lịch sử 16 kênh",
+      "description": "",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "influxdb-gas"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "influxdb-gas"
+          },
+          "query": "import \"strings\"\nfrom(bucket: v.defaultBucket) |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"sensor_reading\" and r._field =~ /^s([1-9]|1[0-6])$/ and r.node_id =~ /^${node:regex}$/) |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false) |> keep(columns: [\"_time\", \"_value\", \"_field\"]) |> map(fn: (r) => ({r with _field: \"S\" + strings.trimPrefix(v: r._field, prefix: \"s\")})) |> group(columns: [\"_field\"])",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "none",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 1,
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "lineInterpolation": "smooth",
+            "showPoints": "never",
+            "spanNulls": true,
+            "axisBorderShow": false,
+            "thresholdsStyle": {
+              "mode": "off"
+            },
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#65e6b4",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "calcs": [],
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "id": 21,
+      "gridPos": {
+        "h": 15,
+        "w": 16,
+        "x": 8,
+        "y": 66
+      }
+    }
+  ]
+}

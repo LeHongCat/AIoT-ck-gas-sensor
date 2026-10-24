@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: uv sync --extra dev
+      - name: Lint
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+      - name: Tests (contracts, pipeline, UI backend + UI boot smoke test, dashboards in sync)
+        run: uv run pytest
+      - name: Compose file (both demo modes)
+        run: |
+          docker compose --profile demo config --quiet
+          docker compose --profile esp32 config --quiet
+      - name: Prometheus config and rules
+        run: |
+          docker run --rm -v "$PWD/infra/prometheus:/etc/prometheus:ro" --entrypoint promtool \
+            prom/prometheus:v3.14.0 check config /etc/prometheus/prometheus.yml

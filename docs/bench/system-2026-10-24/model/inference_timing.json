@@ -1,0 +1,18 @@
+{
+ "windows": 500,
+ "blas_threads": 1,
+ "members_32": {
+  "mean_ms": 9.636,
+  "p50_ms": 9.462,
+  "p95_ms": 11.676,
+  "max_ms": 14.907,
+  "windows_per_s": 103.8
+ },
+ "members_4": {
+  "mean_ms": 3.343,
+  "p50_ms": 2.95,
+  "p95_ms": 4.864,
+  "max_ms": 7.68,
+  "windows_per_s": 299.1
+ }
+}
