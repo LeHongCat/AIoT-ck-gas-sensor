@@ -21,14 +21,14 @@ PROM = {"type": "prometheus", "uid": "prometheus-operations"}
 FLUX = {"type": "influxdb", "uid": "influxdb-gas"}
 
 MINT, AMBER, RED, BLUE, PURPLE, GREY = (
-    "#65e6b4",
-    "#f4b860",
-    "#ff6b62",
-    "#67b8ff",
-    "#b595ff",
-    "#5b6b67",
+    "#10966a",
+    "#c48014",
+    "#d63b31",
+    "#2672c9",
+    "#7a55d6",
+    "#8a9995",
 )
-ORANGE = "#ff9f43"
+ORANGE = "#d9711a"
 CHANNEL_TEXT = {s.channel: f"{s.channel} · {s.sensor_type} · {s.target}" for s in SENSORS}
 TOPIC_TEXT = {
     "readings": "aiot/v1/nodes/+/readings  →  gas.sensor.readings.v1",
@@ -356,12 +356,12 @@ def canvas_map() -> dict:
             "name": name,
             "config": {
                 "text": {"mode": "fixed", "fixed": title},
-                "color": {"fixed": "#eaf7f2"},
+                "color": {"fixed": "#13241f"},
                 "size": 14,
                 "align": "center",
                 "valign": "top",
             },
-            "background": {"color": {"fixed": "#0d1c1a"}},
+            "background": {"color": {"fixed": "#ffffff"}},
             "border": {"color": {"field": metric, "fixed": accent}, "width": 3, "radius": 14},
             "constraint": scale,
             "placement": place(left, top, width, height),
@@ -392,7 +392,7 @@ def canvas_map() -> dict:
                 "name": f"{name} · mô tả",
                 "config": {
                     "text": {"mode": "fixed", "fixed": caption},
-                    "color": {"fixed": "#8da69f"},
+                    "color": {"fixed": "#52665f"},
                     "size": 11,
                     "align": "center",
                     "valign": "middle",
@@ -404,7 +404,7 @@ def canvas_map() -> dict:
             }
         )
 
-    def label(text, left, top, width=4, height=8, color="#8da69f"):
+    def label(text, left, top, width=4, height=8, color="#52665f"):
         elements.append(
             {
                 "type": "text",
@@ -440,7 +440,7 @@ def canvas_map() -> dict:
     lefts = [1, 15.25, 29.5, 43.75, 58, 72.25, 86.5]
     top_a, top_b = 6, 60
     node(
-        "Cảm biến + Edge", "Cảm biến + Edge model", "16 kênh → Ridge 60 s", "nodes", lefts[0], top_a
+        "Cảm biến + Edge", "Cảm biến + Edge model", "16 kênh → TabM INT8", "nodes", lefts[0], top_a
     )
     node(
         "MQTT",
@@ -517,13 +517,13 @@ def canvas_map() -> dict:
                 "align": "center",
                 "valign": "middle",
             },
-            "background": {"color": {"fixed": "#0d1c1a"}},
+            "background": {"color": {"fixed": "#ffffff"}},
             "border": {"color": {"field": "e2e", "fixed": MINT}, "width": 2, "radius": 12},
             "constraint": scale,
             "placement": place(lefts[5], top_b + 6, 24, 22),
         }
     )
-    label("Cảm biến → InfluxDB · p95", lefts[5], top_b - 2, width=24, height=8, color="#cfe0db")
+    label("Cảm biến → InfluxDB · p95", lefts[5], top_b - 2, width=24, height=8, color="#33463f")
 
     rate = steps((None, RED), (0.05, MINT))
     overrides = [
@@ -643,7 +643,7 @@ def siren_switch() -> dict:
             "bottom": round(100 - top - height, 2),
         }
 
-    def text(name, value, left, top, width, height, size=12, color="#8da69f", field=None):
+    def text(name, value, left, top, width, height, size=12, color="#52665f", field=None):
         return {
             "type": "metric-value" if field else "text",
             "name": name,
@@ -668,7 +668,7 @@ def siren_switch() -> dict:
             "name": name,
             "config": {
                 "text": {"mode": "fixed", "fixed": label},
-                "color": {"fixed": "#061010"},
+                "color": {"fixed": "#ffffff"},
                 "size": 14,
                 "align": "center",
                 "valign": "middle",
@@ -821,7 +821,7 @@ def dashboard(
         "refresh": refresh,
         "schemaVersion": 42,
         "version": 1,
-        "style": "dark",
+        "style": "light",
         "timezone": "browser",
         "weekStart": "",
         "time": {"from": time_from, "to": "now"},

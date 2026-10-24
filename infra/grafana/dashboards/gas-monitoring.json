@@ -14,7 +14,7 @@
   "refresh": "5s",
   "schemaVersion": 42,
   "version": 1,
-  "style": "dark",
+  "style": "light",
   "timezone": "browser",
   "weekStart": "",
   "time": {
@@ -146,7 +146,7 @@
           "uid": "prometheus-operations"
         },
         "enable": true,
-        "iconColor": "#ff6b62",
+        "iconColor": "#d63b31",
         "name": "Gas DANGER",
         "expr": "max by (node_id) (aiot_alarm_level) == 2",
         "step": "5s",
@@ -161,7 +161,7 @@
           "uid": "prometheus-operations"
         },
         "enable": true,
-        "iconColor": "#b595ff",
+        "iconColor": "#7a55d6",
         "name": "Direct override",
         "expr": "max by (node_id) (aiot_direct_override_active) == 1",
         "step": "5s",
@@ -445,12 +445,12 @@
               "options": {
                 "0": {
                   "text": "Tắt",
-                  "color": "#5b6b67",
+                  "color": "#8a9995",
                   "index": 0
                 },
                 "1": {
                   "text": "Bật",
-                  "color": "#65e6b4",
+                  "color": "#10966a",
                   "index": 1
                 }
               }
@@ -460,7 +460,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#5b6b67",
+                "color": "#8a9995",
                 "value": null
               }
             ]
@@ -481,12 +481,12 @@
                     "options": {
                       "0": {
                         "text": "Mở",
-                        "color": "#65e6b4",
+                        "color": "#10966a",
                         "index": 0
                       },
                       "1": {
                         "text": "Khóa",
-                        "color": "#ff6b62",
+                        "color": "#d63b31",
                         "index": 1
                       }
                     }
@@ -509,12 +509,12 @@
                     "options": {
                       "0": {
                         "text": "Sẵn sàng",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 0
                       },
                       "1": {
                         "text": "PHUN",
-                        "color": "#67b8ff",
+                        "color": "#2672c9",
                         "index": 1
                       }
                     }
@@ -537,12 +537,12 @@
                     "options": {
                       "0": {
                         "text": "—",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 0
                       },
                       "1": {
                         "text": "TẮT TAY",
-                        "color": "#f4b860",
+                        "color": "#c48014",
                         "index": 1
                       }
                     }
@@ -658,7 +658,7 @@
                 "id": "color",
                 "value": {
                   "mode": "fixed",
-                  "fixedColor": "#65e6b4"
+                  "fixedColor": "#10966a"
                 }
               },
               {
@@ -756,7 +756,7 @@
                 "id": "color",
                 "value": {
                   "mode": "fixed",
-                  "fixedColor": "#65e6b4"
+                  "fixedColor": "#10966a"
                 }
               },
               {
@@ -826,7 +826,7 @@
         "defaults": {
           "color": {
             "mode": "fixed",
-            "fixedColor": "#5b6b67"
+            "fixedColor": "#8a9995"
           },
           "mappings": [
             {
@@ -854,7 +854,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#5b6b67",
+                "color": "#8a9995",
                 "value": null
               }
             ]
@@ -928,7 +928,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#65e6b4",
+                "color": "#10966a",
                 "value": null
               }
             ]
@@ -949,12 +949,12 @@
                     "options": {
                       "0": {
                         "text": "Công tắc BẬT",
-                        "color": "#65e6b4",
+                        "color": "#10966a",
                         "index": 0
                       },
                       "1": {
                         "text": "Công tắc TẮT",
-                        "color": "#f4b860",
+                        "color": "#c48014",
                         "index": 1
                       }
                     }
@@ -977,22 +977,22 @@
                     "options": {
                       "0": {
                         "text": "Đèn tắt · chuông chờ",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 0
                       },
                       "1": {
                         "text": "Đèn & chuông TẮT TAY",
-                        "color": "#f4b860",
+                        "color": "#c48014",
                         "index": 1
                       },
                       "2": {
                         "text": "Đèn chớp · chuông kêu",
-                        "color": "#ff6b62",
+                        "color": "#d63b31",
                         "index": 2
                       },
                       "3": {
                         "text": "Đèn chớp · chuông kêu",
-                        "color": "#ff6b62",
+                        "color": "#d63b31",
                         "index": 3
                       }
                     }
@@ -1022,7 +1022,7 @@
                 },
                 "fill": {
                   "field": "Trạng thái",
-                  "fixed": "#5b6b67"
+                  "fixed": "#8a9995"
                 }
               },
               "background": {
@@ -1057,7 +1057,7 @@
                 },
                 "fill": {
                   "field": "Trạng thái",
-                  "fixed": "#5b6b67"
+                  "fixed": "#8a9995"
                 }
               },
               "background": {
@@ -1093,7 +1093,7 @@
                 },
                 "color": {
                   "field": "Trạng thái",
-                  "fixed": "#8da69f"
+                  "fixed": "#52665f"
                 },
                 "size": 18,
                 "align": "center",
@@ -1132,7 +1132,7 @@
                 },
                 "color": {
                   "field": "Chuông",
-                  "fixed": "#8da69f"
+                  "fixed": "#52665f"
                 },
                 "size": 13,
                 "align": "center",
@@ -1169,7 +1169,7 @@
                   "fixed": "TẮT CHUÔNG"
                 },
                 "color": {
-                  "fixed": "#061010"
+                  "fixed": "#ffffff"
                 },
                 "size": 14,
                 "align": "center",
@@ -1177,12 +1177,12 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#f4b860"
+                  "fixed": "#c48014"
                 }
               },
               "border": {
                 "color": {
-                  "fixed": "#f4b860"
+                  "fixed": "#c48014"
                 },
                 "width": 1,
                 "radius": 10
@@ -1228,7 +1228,7 @@
                   "fixed": "BẬT CHUÔNG"
                 },
                 "color": {
-                  "fixed": "#061010"
+                  "fixed": "#ffffff"
                 },
                 "size": 14,
                 "align": "center",
@@ -1236,12 +1236,12 @@
               },
               "background": {
                 "color": {
-                  "fixed": "#65e6b4"
+                  "fixed": "#10966a"
                 }
               },
               "border": {
                 "color": {
-                  "fixed": "#65e6b4"
+                  "fixed": "#10966a"
                 },
                 "width": 1,
                 "radius": 10
@@ -1325,7 +1325,7 @@
         "defaults": {
           "color": {
             "mode": "fixed",
-            "fixedColor": "#5b6b67"
+            "fixedColor": "#8a9995"
           },
           "mappings": [
             {
@@ -1333,12 +1333,12 @@
               "options": {
                 "0": {
                   "text": "Tắt",
-                  "color": "#5b6b67",
+                  "color": "#8a9995",
                   "index": 0
                 },
                 "1": {
                   "text": "Bật",
-                  "color": "#65e6b4",
+                  "color": "#10966a",
                   "index": 1
                 }
               }
@@ -1348,7 +1348,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#5b6b67",
+                "color": "#8a9995",
                 "value": null
               }
             ]
@@ -1373,12 +1373,12 @@
                     "options": {
                       "0": {
                         "text": "Mở",
-                        "color": "#65e6b4",
+                        "color": "#10966a",
                         "index": 0
                       },
                       "1": {
                         "text": "Khóa",
-                        "color": "#ff6b62",
+                        "color": "#d63b31",
                         "index": 1
                       }
                     }
@@ -1401,12 +1401,12 @@
                     "options": {
                       "0": {
                         "text": "Sẵn sàng",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 0
                       },
                       "1": {
                         "text": "PHUN",
-                        "color": "#67b8ff",
+                        "color": "#2672c9",
                         "index": 1
                       }
                     }
@@ -1429,12 +1429,12 @@
                     "options": {
                       "0": {
                         "text": "—",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 0
                       },
                       "1": {
                         "text": "TẮT TAY",
-                        "color": "#f4b860",
+                        "color": "#c48014",
                         "index": 1
                       }
                     }
@@ -1515,12 +1515,12 @@
                     "options": {
                       "true": {
                         "text": "Bật",
-                        "color": "#65e6b4",
+                        "color": "#10966a",
                         "index": 0
                       },
                       "false": {
                         "text": "Tắt",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 1
                       }
                     }
@@ -1553,12 +1553,12 @@
                     "options": {
                       "true": {
                         "text": "Bật",
-                        "color": "#65e6b4",
+                        "color": "#10966a",
                         "index": 0
                       },
                       "false": {
                         "text": "Tắt",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 1
                       }
                     }
@@ -1591,12 +1591,12 @@
                     "options": {
                       "true": {
                         "text": "Bật",
-                        "color": "#f4b860",
+                        "color": "#c48014",
                         "index": 0
                       },
                       "false": {
                         "text": "Tắt",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 1
                       }
                     }
@@ -1629,12 +1629,12 @@
                     "options": {
                       "true": {
                         "text": "Tắt tay",
-                        "color": "#f4b860",
+                        "color": "#c48014",
                         "index": 0
                       },
                       "false": {
                         "text": "—",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 1
                       }
                     }
@@ -1667,12 +1667,12 @@
                     "options": {
                       "true": {
                         "text": "Khóa",
-                        "color": "#ff6b62",
+                        "color": "#d63b31",
                         "index": 0
                       },
                       "false": {
                         "text": "Mở",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 1
                       }
                     }
@@ -1705,12 +1705,12 @@
                     "options": {
                       "true": {
                         "text": "PHUN",
-                        "color": "#67b8ff",
+                        "color": "#2672c9",
                         "index": 0
                       },
                       "false": {
                         "text": "—",
-                        "color": "#5b6b67",
+                        "color": "#8a9995",
                         "index": 1
                       }
                     }
@@ -1744,12 +1744,12 @@
                     "options": {
                       "auto": {
                         "text": "AUTO",
-                        "color": "#67b8ff",
+                        "color": "#2672c9",
                         "index": 0
                       },
                       "manual": {
                         "text": "DIRECT",
-                        "color": "#b595ff",
+                        "color": "#7a55d6",
                         "index": 1
                       }
                     }
@@ -2306,7 +2306,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#65e6b4",
+                "color": "#10966a",
                 "value": null
               }
             ]
@@ -2324,7 +2324,7 @@
                 "id": "color",
                 "value": {
                   "mode": "fixed",
-                  "fixedColor": "#65e6b4"
+                  "fixedColor": "#10966a"
                 }
               }
             ]
@@ -2339,7 +2339,7 @@
                 "id": "color",
                 "value": {
                   "mode": "fixed",
-                  "fixedColor": "#f4b860"
+                  "fixedColor": "#c48014"
                 }
               },
               {
@@ -2417,7 +2417,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#65e6b4",
+                "color": "#10966a",
                 "value": null
               }
             ]
@@ -2541,7 +2541,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#65e6b4",
+                "color": "#10966a",
                 "value": null
               }
             ]
