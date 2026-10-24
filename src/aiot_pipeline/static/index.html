@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Bếp công nghiệp: giám sát khí gas AIoT realtime, pipeline MQTT → Kafka và điều khiển an toàn" />
     <title>Bếp công nghiệp · AIoT Gas Safety</title>
+    <script>
+      // Apply the saved theme before the first paint (light by default).
+      try { if (localStorage.getItem("theme") === "dark") document.documentElement.dataset.theme = "dark"; } catch (error) {}
+    </script>
     <link rel="stylesheet" href="/assets/styles.css" />
   </head>
   <body>
@@ -39,6 +43,10 @@
       </div>
       <div class="top-actions">
         <div class="live-badge" id="transportBadge"><span></span><b id="transportText">ĐANG KẾT NỐI</b></div>
+        <button class="theme-toggle" id="themeToggle" type="button" title="Chuyển giao diện sáng / tối" aria-pressed="false">
+          <span class="tt-to-dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" /></svg>Tối</span>
+          <span class="tt-to-light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" /><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" /></svg>Sáng</span>
+        </button>
         <a class="button secondary" id="linkPipeline" href="http://localhost:3000/d/aiot-pipeline-operations" target="_blank" rel="noreferrer">Grafana · Pipeline</a>
         <a class="button" id="linkGas" href="http://localhost:3000/d/aiot-gas-monitoring" target="_blank" rel="noreferrer">Grafana · Khí gas</a>
       </div>

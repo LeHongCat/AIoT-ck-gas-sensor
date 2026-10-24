@@ -52,6 +52,13 @@ button { font-family: inherit; }
 .button { color: #fff; background: var(--mint); padding: 10px 14px; text-decoration: none; font-size: 12px; font-weight: 750; border-radius: 10px; transition: transform .2s, filter .2s; white-space: nowrap; }
 .button:hover { transform: translateY(-1px); filter: brightness(1.08); }
 .button.secondary { color: var(--text); background: transparent; border: 1px solid var(--line-strong); }
+.theme-toggle { color: var(--text); background: transparent; border: 1px solid var(--line-strong); padding: 9px 12px; border-radius: 10px; font-family: inherit; font-size: 12px; font-weight: 750; white-space: nowrap; cursor: pointer; transition: border-color .2s; }
+.theme-toggle:hover { border-color: var(--mint); }
+.theme-toggle span { display: inline-flex; align-items: center; gap: 6px; }
+.theme-toggle svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle .tt-to-light { display: none; }
+:root[data-theme="dark"] .theme-toggle .tt-to-dark { display: none; }
+:root[data-theme="dark"] .theme-toggle .tt-to-light { display: inline-flex; }
 
 /* ---------------------------------------------------------------- layout */
 /* The first screen holds gas status, the kitchen plan and the command center. The plan is sized
@@ -830,3 +837,228 @@ footer strong { color: var(--mint); }
 @keyframes strobeBg { 0% { background: #ff3b2f; } 100% { background: #4a2522; } }
 .siren-badge[data-state="muted"] { color: var(--amber); border-color: rgba(196,128,20,0.6); background: rgba(196,128,20,0.1); }
 .siren-badge[data-state="muted"] .sb-light { background: linear-gradient(135deg, transparent 42%, var(--amber) 42% 58%, transparent 58%), #6b5418; }
+
+/* ---- Dark theme (toggle in the top bar; values of the original dark design) ---- */
+:root[data-theme="dark"] {
+  --bg: #061010;
+  --surface: #0c1918;
+  --surface-2: #091412;
+  --surface-3: #0f201d;
+  --line: rgba(186, 230, 218, 0.12);
+  --line-strong: rgba(186, 230, 218, 0.22);
+  --text: #eaf7f2;
+  --muted: #8da69f;
+  --faint: #5f7771;
+  --mint: #65e6b4;
+  --mint-dark: #163a2f;
+  --amber: #f4b860;
+  --red: #ff6b62;
+  --blue: #67b8ff;
+  --purple: #b595ff;
+  --orange: #ff9f43;
+  --cyan: #7cf7ff;
+  --ice: #bfe8ff;
+}
+:root[data-theme="dark"] { color-scheme: dark; }
+:root[data-theme="dark"] body { background: radial-gradient(1200px 600px at 15% -10%, rgba(101,230,180,.07), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(103,184,255,.05), transparent 60%), var(--bg); }
+:root[data-theme="dark"] .topbar { background: rgba(6,16,16,.88); }
+:root[data-theme="dark"] .brand-mark { border: 1px solid rgba(101,230,180,.35); background: rgba(101,230,180,.07); }
+:root[data-theme="dark"] .brand-mark i { box-shadow: 0 0 12px rgba(101,230,180,.5); }
+:root[data-theme="dark"] .live-badge { background: rgba(255,255,255,.04); }
+:root[data-theme="dark"] .live-badge[data-state="sse"], :root[data-theme="dark"] .live-badge[data-state="polling"] { background: rgba(101,230,180,.08); border-color: rgba(101,230,180,.2); }
+:root[data-theme="dark"] .button { color: #07100f; }
+:root[data-theme="dark"] .button.secondary { color: var(--text); }
+:root[data-theme="dark"] .card { background: linear-gradient(180deg, rgba(15,32,29,.94), rgba(10,22,20,.94)); box-shadow: 0 18px 50px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.03); }
+:root[data-theme="dark"] .gas-hero { --hero-glow: rgba(141,166,159,.06); }
+:root[data-theme="dark"] .gas-hero[data-level="normal"] { --hero-glow: rgba(101,230,180,.10); }
+:root[data-theme="dark"] .gas-hero[data-level="warning"] { --hero-glow: rgba(244,184,96,.16); border-color: rgba(244,184,96,.45); }
+:root[data-theme="dark"] .gas-hero[data-level="danger"] { --hero-glow: rgba(255,107,98,.24); border-color: rgba(255,107,98,.65); }
+:root[data-theme="dark"] .gh-meaning { color: #cfe0db; }
+:root[data-theme="dark"] .gh-actions .mode { border-color: rgba(103,184,255,.4); }
+:root[data-theme="dark"] .gh-actions .mode.manual { border-color: rgba(181,149,255,.5); }
+:root[data-theme="dark"] .gh-actions .on { border-color: rgba(101,230,180,.45); background: rgba(101,230,180,.08); }
+:root[data-theme="dark"] .gh-actions .on.gas_valve_closed { border-color: rgba(255,107,98,.6); }
+:root[data-theme="dark"] .gh-actions .on.alarm_on { border-color: rgba(244,184,96,.5); background: rgba(244,184,96,.08); }
+:root[data-theme="dark"] .gh-actions .on.suppression_on { color: #04202f; border-color: #e8f6ff; }
+:root[data-theme="dark"] .gh-scenario span { color: #cfe0db; }
+:root[data-theme="dark"] .gh-scenario[data-tone="danger"] { border-color: rgba(255,107,98,.55); background: rgba(255,107,98,.08); }
+:root[data-theme="dark"] .gh-scenario[data-tone="warn"] { border-color: rgba(244,184,96,.5); background: rgba(244,184,96,.07); }
+:root[data-theme="dark"] .gh-scenario[data-tone="ok"] { border-color: rgba(101,230,180,.45); background: rgba(101,230,180,.07); }
+:root[data-theme="dark"] .freshness span:first-child { background: #40534e; }
+:root[data-theme="dark"] .chip-toggle[aria-pressed="true"] { border-color: rgba(101,230,180,.35); background: rgba(101,230,180,.07); }
+:root[data-theme="dark"] .crew-count { color: #cfe0db; }
+:root[data-theme="dark"] .crew-count.evac { border-color: rgba(255,107,98,.6); }
+:root[data-theme="dark"] .scene { background: #14181a; border: 1px solid rgba(255,255,255,.06); }
+:root[data-theme="dark"] .scene::after { box-shadow: inset 0 0 60px rgba(255,80,60,.42), inset 0 0 0 3px rgba(255,107,98,.6); }
+:root[data-theme="dark"] .mode-hud { box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+:root[data-theme="dark"] .mode-hud.purge { background: rgba(10,48,56,.9); border: 1px solid rgba(124,247,255,.6); }
+:root[data-theme="dark"] .mode-hud.suppression { background: rgba(18,52,78,.92); border: 1px solid rgba(191,232,255,.7); }
+:root[data-theme="dark"] .mode-hud em { color: var(--cyan); }
+:root[data-theme="dark"] .mode-hud.suppression em { color: var(--ice); }
+:root[data-theme="dark"] .mode-bar { background: rgba(255,255,255,.12); }
+:root[data-theme="dark"] .mode-bar i { background: var(--cyan); }
+:root[data-theme="dark"] .mode-hud.suppression .mode-bar i { background: var(--ice); }
+:root[data-theme="dark"] .evac-banner { box-shadow: 0 18px 50px rgba(0,0,0,.45); }
+:root[data-theme="dark"] .enose-board { border: 1px solid rgba(201,178,106,.35); background: radial-gradient(circle at 1px 1px, rgba(255,255,255,.05) 1px, transparent 1.5px) 0 0 / 8px 8px, #0d2a1f; box-shadow: inset 0 0 0 3px rgba(0,0,0,.25); }
+:root[data-theme="dark"] .sensor-node { --core: #2b3437; }
+:root[data-theme="dark"] .sn-track { fill: rgba(6,14,13,.86); stroke: rgba(255,255,255,.14); }
+:root[data-theme="dark"] .sensor-node b { background: rgba(6,14,13,.9); }
+:root[data-theme="dark"] .sensor-node[data-level="high"] { filter: drop-shadow(0 0 7px rgba(255,107,98,.85)); }
+:root[data-theme="dark"] .sc-pcb { fill: color-mix(in srgb, currentColor 22%, #0b1513); }
+:root[data-theme="dark"] .sc-core { fill: var(--core, #2b3437); }
+:root[data-theme="dark"] .crew-chip i { box-shadow: 0 0 0 2px rgba(255,255,255,.12); }
+:root[data-theme="dark"] .crew-chip span { color: #cfe0db; }
+:root[data-theme="dark"] .crew-chip[data-state="blocked"] { border-color: rgba(244,184,96,.35); }
+:root[data-theme="dark"] .crew-chip[data-state="safe"] { border-color: rgba(101,230,180,.4); background: rgba(101,230,180,.07); }
+:root[data-theme="dark"] .k-zone { fill: rgba(220,235,230,.28); }
+:root[data-theme="dark"] .k-dim { fill: rgba(220,235,230,.2); }
+:root[data-theme="dark"] .k-muster-text { fill: rgba(101,230,180,.75); }
+:root[data-theme="dark"] .k-tag { fill: rgba(230,240,236,.55); }
+:root[data-theme="dark"] .k-tag-dark { fill: rgba(25,33,36,.75); }
+:root[data-theme="dark"] .k-panel-title { fill: #9fb3bd; }
+:root[data-theme="dark"] .k-panel-value { fill: #7fe0ff; }
+:root[data-theme="dark"] .k-gas-label { fill: #e8b83a; }
+:root[data-theme="dark"] .k-door { stroke: #c9d3d8; }
+:root[data-theme="dark"] .k-exit-arrow { stroke: rgba(101,230,180,.65); }
+:root[data-theme="dark"] .k-muster { fill: rgba(101,230,180,.05); stroke: rgba(101,230,180,.55); }
+:root[data-theme="dark"] .k-led { fill: #3a4246; }
+:root[data-theme="dark"] .k-bubble { fill: rgba(255,240,190,.75); }
+:root[data-theme="dark"] .k-hood { fill: rgba(214,226,232,.06); stroke: rgba(214,226,232,.4); }
+:root[data-theme="dark"] .scene.purge .k-duct-flow { stroke: #c6fff0; }
+:root[data-theme="dark"] .scene.suppression-on .k-hood { fill: rgba(190,230,255,.16); }
+:root[data-theme="dark"] .scene.fan-on .k-hood { stroke: rgba(101,230,180,.55); }
+:root[data-theme="dark"] .k-duct-flow { stroke: #9fe9cb; }
+:root[data-theme="dark"] .k-shadow { fill: rgba(0,0,0,.32); }
+:root[data-theme="dark"] .k-label rect { fill: rgba(7,16,15,.82); stroke: rgba(255,255,255,.14); }
+:root[data-theme="dark"] .k-label text { fill: #dce9e5; }
+:root[data-theme="dark"] .k-label .k-label-name { fill: #fff; }
+:root[data-theme="dark"] .k-label .k-label-act { fill: #a9c1ba; }
+:root[data-theme="dark"] .k-label.evac .k-label-act { fill: #ffd9d4; }
+:root[data-theme="dark"] .k-steam { fill: #e6eef0; }
+:root[data-theme="dark"] .k-smoke { fill: #9aa3a6; }
+:root[data-theme="dark"] .k-beacon-glint { fill: rgba(255,255,255,.28); }
+:root[data-theme="dark"] .k-spray-jet { stroke: #ffffff; }
+:root[data-theme="dark"] .ack-badge.live { border-color: rgba(101,230,180,.3); }
+:root[data-theme="dark"] .automation-banner { border: 1px solid rgba(101,230,180,.25); background: rgba(101,230,180,.06); }
+:root[data-theme="dark"] .automation-banner.override { border-color: rgba(181,149,255,.4); background: rgba(181,149,255,.07); }
+:root[data-theme="dark"] .override-ring circle { stroke: rgba(181,149,255,.18); }
+:root[data-theme="dark"] .section-title b { color: #cfe0db; }
+:root[data-theme="dark"] .emergency-btn.suppress { border-color: rgba(160,215,255,.55); }
+:root[data-theme="dark"] .em-icon { background: rgba(255,255,255,.14); box-shadow: inset 0 0 0 2px rgba(255,255,255,.35); }
+:root[data-theme="dark"] .suppress .em-icon { background: radial-gradient(circle at 50% 28%, #fff 0 17%, transparent 18%), radial-gradient(circle at 26% 66%, #dff3ff 0 15%, transparent 16%), radial-gradient(circle at 74% 66%, #dff3ff 0 15%, transparent 16%), rgba(255,255,255,.12); }
+:root[data-theme="dark"] .em-progress { background: rgba(0,0,0,.25); }
+:root[data-theme="dark"] .emergency-btn.running { box-shadow: 0 0 0 2px #fff inset, 0 0 26px rgba(255,255,255,.25); }
+:root[data-theme="dark"] .actuator-control:not(:disabled):hover { border-color: rgba(101,230,180,.35); }
+:root[data-theme="dark"] .actuator-control.active { background: rgba(101,230,180,.09); border-color: rgba(101,230,180,.45); }
+:root[data-theme="dark"] .actuator-control[data-actuator="gas_valve_closed"].active { background: rgba(255,107,98,.1); border-color: rgba(255,107,98,.5); }
+:root[data-theme="dark"] .actuator-control[data-actuator="alarm_on"].active { background: rgba(244,184,96,.08); border-color: rgba(244,184,96,.45); }
+:root[data-theme="dark"] .cancel-override:hover:not(:disabled) { border-color: rgba(101,230,180,.4); }
+:root[data-theme="dark"] .scenario { border: 1px solid rgba(244,184,96,.3); background: rgba(244,184,96,.06); }
+:root[data-theme="dark"] .scenario.danger { border-color: rgba(255,107,98,.35); background: rgba(255,107,98,.06); }
+:root[data-theme="dark"] .scenario.eth { border-color: rgba(181,149,255,.35); background: rgba(181,149,255,.06); }
+:root[data-theme="dark"] .scenario-progress i { background: rgba(244,184,96,.12); }
+:root[data-theme="dark"] .scenario-clear { border: 1px solid rgba(101,230,180,.3); }
+:root[data-theme="dark"] .fl-box { fill: #0d1c1a; stroke: rgba(186,230,218,.2); }
+:root[data-theme="dark"] .fl-node.ok .fl-box { stroke: rgba(101,230,180,.55); }
+:root[data-theme="dark"] .fl-node.warn .fl-box { stroke: rgba(244,184,96,.7); fill: rgba(244,184,96,.05); }
+:root[data-theme="dark"] .fl-node.down .fl-box { stroke: rgba(255,107,98,.85); fill: rgba(255,107,98,.08); }
+:root[data-theme="dark"] .fl-box.broker { fill: rgba(181,149,255,.06); stroke: rgba(181,149,255,.5); }
+:root[data-theme="dark"] .fl-box.kafka { fill: rgba(103,184,255,.05); stroke: rgba(103,184,255,.45); }
+:root[data-theme="dark"] .fl-broker .fl-title { fill: #e6dcff; }
+:root[data-theme="dark"] .fl-kafka .fl-title { fill: #d7ebff; }
+:root[data-theme="dark"] .fl-row-bg { fill: rgba(255,255,255,.03); stroke: rgba(255,255,255,.07); }
+:root[data-theme="dark"] .fl-row-title { fill: #e1f1ec; }
+:root[data-theme="dark"] .fl-row-sub { fill: #7f9892; }
+:root[data-theme="dark"] .fl-row.demo .fl-row-title { fill: #ffb3dc; }
+:root[data-theme="dark"] .fl-edge { stroke: rgba(186,230,218,.14); }
+:root[data-theme="dark"] .fl-flow { stroke: rgba(101,230,180,.55); }
+:root[data-theme="dark"] .fl-flow.control { stroke: rgba(255,159,67,.65); }
+:root[data-theme="dark"] .fl-flow.operator { stroke: rgba(181,149,255,.6); }
+:root[data-theme="dark"] .fl-flow.demo { stroke: rgba(255,122,198,.45); }
+:root[data-theme="dark"] .fl-packet { stroke: #061010; }
+:root[data-theme="dark"] .mqtt-inspector { background: linear-gradient(180deg, rgba(181,149,255,.07), rgba(9,20,18,.6)); border: 1px solid rgba(181,149,255,.3); }
+:root[data-theme="dark"] .inspector-head b { color: #e6dcff; }
+:root[data-theme="dark"] .mqtt-state[data-state="live"] { border-color: rgba(181,149,255,.45); }
+:root[data-theme="dark"] .mqtt-state[data-state="down"] { border-color: rgba(255,107,98,.5); }
+:root[data-theme="dark"] .broker-stats span { background: rgba(6,14,13,.6); }
+:root[data-theme="dark"] .topic-item { background: rgba(6,14,13,.72); }
+:root[data-theme="dark"] .ti-route { color: #a9bfb9; }
+:root[data-theme="dark"] .ti-payload { background: #040b0a; color: #bfe9d9; }
+:root[data-theme="dark"] .model-flow li:nth-child(4) { border-color: rgba(101,230,180,.45); background: rgba(101,230,180,.06); }
+:root[data-theme="dark"] .model-flow[data-alarm="warning"] li:nth-child(5) { border-color: rgba(244,184,96,.55); }
+:root[data-theme="dark"] .model-flow[data-alarm="danger"] li:nth-child(5) { border-color: rgba(255,107,98,.65); background: rgba(255,107,98,.07); }
+:root[data-theme="dark"] .sl-row, :root[data-theme="dark"] .pl-row { border-bottom: 1px solid rgba(186,230,218,.06); }
+:root[data-theme="dark"] .sl-row .cells i { color: #dff3ec; background: color-mix(in srgb, #ff6b62 calc(var(--h) * 100%), #17382f); }
+:root[data-theme="dark"] .alarm-chip { background: rgba(101,230,180,.1); }
+:root[data-theme="dark"] .alarm-chip.warning { background: rgba(244,184,96,.12); }
+:root[data-theme="dark"] .pl-row .channels i { color: #061010; }
+:root[data-theme="dark"] .sg-chip { color: #061010; }
+:root[data-theme="dark"] .sensor-item[data-level="mid"] { border-color: rgba(244,184,96,.45); }
+:root[data-theme="dark"] .sensor-item[data-level="high"] { border-color: rgba(255,107,98,.6); background: rgba(255,107,98,.06); }
+:root[data-theme="dark"] .si-bar { background: rgba(255,255,255,.05); }
+:root[data-theme="dark"] .sensor-tip { background: rgba(8,18,17,.97); box-shadow: 0 18px 50px rgba(0,0,0,.5); }
+:root[data-theme="dark"] .sensor-tip p { color: #cfe0db; }
+:root[data-theme="dark"] .sensor-tip dl div { background: rgba(255,255,255,.04); }
+:root[data-theme="dark"] .presence-tag { border: 1px solid rgba(101,230,180,.35); background: rgba(101,230,180,.07); }
+:root[data-theme="dark"] .presence-tag[data-kind="CO"] { border-color: rgba(244,184,96,.45); background: rgba(244,184,96,.08); }
+:root[data-theme="dark"] .presence-tag[data-kind="ETH"] { border-color: rgba(181,149,255,.45); background: rgba(181,149,255,.08); }
+:root[data-theme="dark"] .presence-tag[data-kind="MIX"] { border-color: rgba(255,107,98,.5); background: rgba(255,107,98,.08); }
+:root[data-theme="dark"] .gas-reading .scale { color: rgba(141,166,159,.7); }
+:root[data-theme="dark"] .meter { background: #1b2b27; }
+:root[data-theme="dark"] .meter .tick { background: rgba(6,16,16,.75); }
+:root[data-theme="dark"] .trend .band.danger { fill: rgba(255,107,98,.08); }
+:root[data-theme="dark"] .trend .band.warning { fill: rgba(244,184,96,.06); }
+:root[data-theme="dark"] .trend .threshold.warning { stroke: rgba(244,184,96,.6); }
+:root[data-theme="dark"] .trend .threshold.danger { stroke: rgba(255,107,98,.6); }
+:root[data-theme="dark"] .safety-log li.danger { background: rgba(255,107,98,.06); }
+:root[data-theme="dark"] .stream-row i { background: #40534e; }
+:root[data-theme="dark"] .toast { background: rgba(9,20,18,.97); box-shadow: 0 16px 40px rgba(0,0,0,.45); }
+:root[data-theme="dark"] .k-leak-ring { stroke: #ffd166; }
+:root[data-theme="dark"] .k-leak-text { fill: #ffd166; }
+:root[data-theme="dark"] .k-gas { fill: #ffd166; }
+:root[data-theme="dark"] .k-enose-box { fill: #0d2a1f; }
+:root[data-theme="dark"] .k-enose-ray { stroke: #ffd166; }
+:root[data-theme="dark"] .k-enose-dist { fill: #ffd166; stroke: rgba(0,0,0,.75); }
+:root[data-theme="dark"] .scenario-progress[data-tone="danger"] i { background: rgba(255,107,98,.14); }
+:root[data-theme="dark"] .scenario-progress[data-tone="ok"] i { background: rgba(101,230,180,.12); }
+:root[data-theme="dark"] .actuator-state-list li.on { border-color: rgba(101,230,180,.4); background: rgba(101,230,180,.07); }
+:root[data-theme="dark"] .gas-ref div + div dd { color: #cfe0db; }
+:root[data-theme="dark"] .meter .mark.truth { box-shadow: 0 0 6px rgba(103,184,255,.7); }
+:root[data-theme="dark"] .meter.ethylene .mark.truth { background: #dccbff; box-shadow: 0 0 6px rgba(220,203,255,.7); }
+:root[data-theme="dark"] .trend-legend i.eth-truth { background: repeating-linear-gradient(90deg, #dccbff 0 4px, transparent 4px 7px); }
+:root[data-theme="dark"] .trend .series.eth-truth { stroke: #dccbff; }
+:root[data-theme="dark"] .fl-flow.truth { stroke: rgba(103,184,255,.55); }
+:root[data-theme="dark"] .siren-visual { background: rgba(0,0,0,.25); }
+:root[data-theme="dark"] .sv-glint { fill: rgba(255,255,255,.3); }
+:root[data-theme="dark"] .siren-switch { border: 1px solid rgba(101,230,180,.45); background: rgba(101,230,180,.1); }
+:root[data-theme="dark"] .siren-switch[aria-checked="false"] { border-color: rgba(244,184,96,.55); background: rgba(244,184,96,.1); }
+:root[data-theme="dark"] .siren-card[data-state="sounding"] { border-color: rgba(255,107,98,.7); background: rgba(255,107,98,.1); }
+:root[data-theme="dark"] .siren-card[data-state="sounding"] .siren-text small { color: #ffd9d4; }
+:root[data-theme="dark"] .siren-card[data-state="muted"] { border-color: rgba(244,184,96,.5); background: repeating-linear-gradient(135deg, rgba(244,184,96,.07) 0 8px, transparent 8px 16px), var(--surface-2); }
+:root[data-theme="dark"] .gh-actions .muted { border-color: rgba(244,184,96,.55); background: repeating-linear-gradient(135deg, rgba(244,184,96,.12) 0 4px, transparent 4px 8px); }
+:root[data-theme="dark"] .siren-badge .sb-light { box-shadow: inset 0 0 0 1px rgba(255,255,255,.15); }
+:root[data-theme="dark"] .siren-badge[data-state="sounding"] { border-color: rgba(255,107,98,.8); }
+:root[data-theme="dark"] .siren-badge[data-state="muted"] { border-color: rgba(244,184,96,.6); background: rgba(244,184,96,.1); }
+
+/* Kitchen floor in the dark theme (kitchen.js sets the light colors as attributes). */
+:root[data-theme="dark"] .kt-tile { fill: #3a4144; }
+:root[data-theme="dark"] .kt-tile-line { stroke: #30373a; }
+:root[data-theme="dark"] .kt-mat { fill: #22282a; }
+:root[data-theme="dark"] .kt-mat-dot { fill: #2e3538; }
+:root[data-theme="dark"] .kt-grate { fill: #2b3134; }
+:root[data-theme="dark"] .kt-grate-line { stroke: #40484c; }
+:root[data-theme="dark"] .kt-asphalt { fill: #1a1f21; }
+:root[data-theme="dark"] .kt-asphalt-dot { fill: #252b2e; }
+:root[data-theme="dark"] .kt-drop { flood-color: #000; flood-opacity: .38; }
+:root[data-theme="dark"] .k-outer { fill: #14181a; }
+:root[data-theme="dark"] .k-grate-edge { stroke: #262c2f; }
+:root[data-theme="dark"] .k-wall { fill: #0c0f10; }
+:root[data-theme="dark"] .k-floor-edge { stroke: #566064; }
+/* State variants that must still win over the dark base rules above. */
+:root[data-theme="dark"] .gh-actions .on.gas_valve_closed { background: rgba(150,30,25,.85); }
+:root[data-theme="dark"] .gh-actions .on.suppression_on { background: var(--ice); }
+:root[data-theme="dark"] .crew-count.evac { color: #fff; }
+:root[data-theme="dark"] .sensor-node[data-level="mid"] { --core: var(--amber); }
+:root[data-theme="dark"] .sensor-node[data-level="high"] { --core: var(--red); }
+:root[data-theme="dark"] .k-led.on { fill: #5ff09a; }
+:root[data-theme="dark"] .alarm-chip.danger { background: rgba(200,40,32,.85); }

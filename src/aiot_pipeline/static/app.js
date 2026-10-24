@@ -923,6 +923,35 @@ async function seedHistory() {
   }
 }
 
+// Light / dark theme, remembered per browser (index.html applies it before the first paint).
+// The Grafana links open in the same theme.
+function currentTheme() {
+  return document.documentElement?.dataset.theme === "dark" ? "dark" : "light";
+}
+
+function applyTheme(theme) {
+  const root = document.documentElement;
+  if (root) {
+    if (theme === "dark") root.dataset.theme = "dark";
+    else delete root.dataset.theme;
+  }
+  $("themeToggle").setAttribute("aria-pressed", String(theme === "dark"));
+  for (const id of ["linkPipeline", "linkGas"]) {
+    const link = $(id);
+    link.href = `${String(link.href || "").split("?")[0]}?theme=${theme}`;
+  }
+}
+
+$("themeToggle").addEventListener("click", () => {
+  const next = currentTheme() === "dark" ? "light" : "dark";
+  try {
+    localStorage.setItem("theme", next);
+  } catch (error) {
+    // Private mode or blocked storage: the theme still switches for this page.
+  }
+  applyTheme(next);
+});
+
 async function boot() {
   renderLog();
   setTransport("connecting");
@@ -939,6 +968,7 @@ async function boot() {
   } catch (error) {
     // Older backend without /api/config: keep defaults.
   }
+  applyTheme(currentTheme());
   sensorNodes.forEach((node, index) => node.setAttribute("aria-label", `Cảm biến ${sensors[index].channel} ${sensors[index].sensor_type} · ${sensors[index].location}`));
   buildSensorGroups();
   bindSensorTips();

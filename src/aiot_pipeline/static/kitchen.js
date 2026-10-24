@@ -195,22 +195,22 @@
   const defs = el("defs", {}, svg);
   defs.innerHTML = `
     <pattern id="kTile" width="40" height="40" patternUnits="userSpaceOnUse">
-      <rect width="40" height="40" fill="#e6ebe9"/>
-      <path d="M40 0H0V40" fill="none" stroke="#d2d9d6" stroke-width="2"/>
+      <rect class="kt-tile" width="40" height="40" fill="#e6ebe9"/>
+      <path class="kt-tile-line" d="M40 0H0V40" fill="none" stroke="#d2d9d6" stroke-width="2"/>
       <rect x="2" y="2" width="36" height="36" fill="#ffffff" opacity=".015"/>
     </pattern>
     <pattern id="kMat" width="12" height="12" patternUnits="userSpaceOnUse">
-      <rect width="12" height="12" fill="#c6cecb"/>
-      <circle cx="6" cy="6" r="2.2" fill="#b3bcb9"/>
+      <rect class="kt-mat" width="12" height="12" fill="#c6cecb"/>
+      <circle class="kt-mat-dot" cx="6" cy="6" r="2.2" fill="#b3bcb9"/>
     </pattern>
     <pattern id="kHatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <rect width="10" height="10" fill="#e3b33b"/><rect width="5" height="10" fill="#26292b"/>
     </pattern>
     <pattern id="kGrate" width="8" height="8" patternUnits="userSpaceOnUse">
-      <rect width="8" height="8" fill="#a9b3b0"/><path d="M0 4H8M4 0V8" stroke="#8b9693" stroke-width="1.4"/>
+      <rect class="kt-grate" width="8" height="8" fill="#a9b3b0"/><path class="kt-grate-line" d="M0 4H8M4 0V8" stroke="#8b9693" stroke-width="1.4"/>
     </pattern>
     <pattern id="kAsphalt" width="22" height="22" patternUnits="userSpaceOnUse">
-      <rect width="22" height="22" fill="#d5dad8"/><circle cx="5" cy="7" r="1" fill="#c4cac8"/><circle cx="15" cy="16" r="1.2" fill="#c0c6c4"/>
+      <rect class="kt-asphalt" width="22" height="22" fill="#d5dad8"/><circle class="kt-asphalt-dot" cx="5" cy="7" r="1" fill="#c4cac8"/><circle class="kt-asphalt-dot" cx="15" cy="16" r="1.2" fill="#c0c6c4"/>
     </pattern>
     <linearGradient id="kSteel" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#d4dbdf"/><stop offset="1" stop-color="#9ea8ae"/>
@@ -246,7 +246,7 @@
     </marker>
     <radialGradient id="kHazeDanger"><stop offset="0" stop-color="#ff6b62" stop-opacity="1"/><stop offset="1" stop-color="#ff6b62" stop-opacity="0"/></radialGradient>
     <filter id="kDrop" x="-10%" y="-10%" width="130%" height="140%">
-      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#1d3a33" flood-opacity=".2"/>
+      <feDropShadow class="kt-drop" dx="0" dy="4" stdDeviation="4" flood-color="#1d3a33" flood-opacity=".2"/>
     </filter>
   `;
 
@@ -270,12 +270,12 @@
 
   // Outside strip, floor, mats, walls
   el("rect", { x: 1580, y: 0, width: 140, height: 1000, fill: "url(#kAsphalt)" }, L.floor);
-  el("rect", { x: 0, y: 0, width: 1580, height: 1000, fill: "#dde3e1" }, L.floor);
+  el("rect", { x: 0, y: 0, width: 1580, height: 1000, fill: "#dde3e1", class: "k-outer" }, L.floor);
   el("rect", { x: 40, y: 40, width: 1520, height: 920, fill: "url(#kTile)" }, L.floor);
   el("rect", { x: 372, y: 216, width: 876, height: 64, rx: 6, fill: "url(#kMat)", opacity: ".95" }, L.floor);
   el("rect", { x: 1440, y: 405, width: 100, height: 40, rx: 5, fill: "url(#kMat)" }, L.floor);
   for (const [x, y] of [[820, 300], [790, 470], [1380, 520], [230, 720]]) {
-    el("rect", { x: x - 14, y: y - 14, width: 28, height: 28, rx: 3, fill: "url(#kGrate)", stroke: "#7f8a87" }, L.floor);
+    el("rect", { x: x - 14, y: y - 14, width: 28, height: 28, rx: 3, fill: "url(#kGrate)", stroke: "#7f8a87", class: "k-grate-edge" }, L.floor);
   }
   const evacRoute = el("path", {
     class: "k-evac-route",
@@ -283,9 +283,9 @@
   }, L.floor);
   evacRoute.setAttribute("fill", "none");
   for (const [x, y, w, h] of [[20, 20, 1560, 20], [20, 20, 20, 960], [20, 960, 740, 20], [880, 960, 700, 20], [1560, 20, 20, 800], [1560, 900, 20, 80]]) {
-    el("rect", { x, y, width: w, height: h, fill: "#5d686c" }, L.floor);
+    el("rect", { x, y, width: w, height: h, fill: "#5d686c", class: "k-wall" }, L.floor);
   }
-  el("rect", { x: 40, y: 40, width: 1520, height: 920, fill: "none", stroke: "#8a9599", "stroke-width": 2 }, L.floor);
+  el("rect", { x: 40, y: 40, width: 1520, height: 920, fill: "none", stroke: "#8a9599", "stroke-width": 2, class: "k-floor-edge" }, L.floor);
 
   floorText(1650, 760, "ĐIỂM TẬP TRUNG", L.floor, { class: "k-zone k-muster-text" });
   el("circle", { cx: MUSTER.x, cy: MUSTER.y, r: 66, class: "k-muster" }, L.floor);
