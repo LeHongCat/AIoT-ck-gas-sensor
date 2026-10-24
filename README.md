@@ -7,7 +7,7 @@ và màn hình bếp. Dữ liệu demo là `demo_data/demo_1hz.csv` (20% cuối 
 
 ## Sơ đồ kiến trúc
 
-<!-- Chèn ảnh: ![Sơ đồ kiến trúc](docs/images/architecture.png) -->
+![Sơ đồ kiến trúc](docs/images/architecture.png)
 
 ## Quickstart
 

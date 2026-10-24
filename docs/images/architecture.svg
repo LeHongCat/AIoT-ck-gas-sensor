@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="725" viewBox="0 0 1600 725" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f5d8a"/>
+    </marker>
+    <marker id="a-ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c8641e"/>
+    </marker>
+    <marker id="a-mon" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7a7f87"/>
+    </marker>
+    <style>
+      .box { stroke-width: 1.6; rx: 10; }
+      .dev { fill: #eaf5ec; stroke: #3d8b56; }
+      .lane { fill: #f7fbf8; stroke: #9cc7a9; stroke-width: 1.2; rx: 10; }
+      .msg { fill: #e8f0f9; stroke: #2f5d8a; }
+      .ai  { fill: #f1ebf8; stroke: #6b4c9a; }
+      .proc { fill: #fdf1e6; stroke: #c8641e; }
+      .store { fill: #e6f4f3; stroke: #2a7f7a; }
+      .mon { fill: #f2f3f5; stroke: #7a7f87; }
+      .t { font-size: 16px; font-weight: 600; fill: #1d2733; }
+      .h { font-size: 13.5px; font-weight: 700; fill: #2e6b43; }
+      .s { font-size: 12.5px; fill: #4a5563; }
+      .lbl { font-size: 12px; fill: #2f5d8a; }
+      .lblc { font-size: 12px; fill: #c8641e; }
+      .lblm { font-size: 12px; fill: #7a7f87; }
+      .data { fill: none; stroke: #2f5d8a; stroke-width: 1.8; marker-end: url(#a-data); }
+      .join { fill: none; stroke: #2f5d8a; stroke-width: 1.8; }
+      .ctrl { fill: none; stroke: #c8641e; stroke-width: 1.8; marker-end: url(#a-ctrl); }
+      .monl { fill: none; stroke: #7a7f87; stroke-width: 1.6; stroke-dasharray: 6 5; marker-end: url(#a-mon); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="725" fill="#ffffff"/>
+  <text x="30" y="38" font-size="22" font-weight="700" fill="#1d2733">Kiến trúc hệ thống AIoT giám sát khí gas</text>
+
+  <!-- Edge AI: two interchangeable modes, same input and same model -->
+  <rect x="22" y="80" width="538" height="425" rx="14" fill="none" stroke="#3d8b56" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <text x="38" y="103" font-size="13" font-weight="700" fill="#3d8b56">EDGE AI · 2 MODE (CHẠY MỘT TRONG HAI)</text>
+
+  <rect class="box dev" x="40" y="116" width="500" height="50"/>
+  <text class="t" x="56" y="139">Đầu vào chung: 16 cảm biến MOX · 1 Hz</text>
+  <text class="s" x="56" y="157">demo_1hz.csv (UCI 322)</text>
+
+  <rect class="lane" x="58" y="184" width="482" height="132"/>
+  <text class="h" x="72" y="205">Mode 1 · Edge AI trong Docker</text>
+  <text class="s" x="300" y="205">node virtual-gas-01</text>
+  <rect class="box dev" x="72" y="218" width="160" height="86"/>
+  <text class="t" x="86" y="244">Simulator</text>
+  <text class="s" x="86" y="266">phát lại CSV</text>
+  <text class="s" x="86" y="286">container</text>
+  <rect class="box ai" x="328" y="218" width="200" height="86"/>
+  <text class="t" x="342" y="244">edge-inference</text>
+  <text class="s" x="342" y="266">TabM INT8 · 32 thành viên</text>
+  <text class="s" x="342" y="286">dự đoán mỗi 1 s</text>
+  <path class="data" d="M232 261 H326"/>
+  <text class="lbl" x="242" y="254">readings</text>
+  <text class="lbl" x="242" y="278">(qua MQTT)</text>
+
+  <rect class="lane" x="58" y="328" width="482" height="132"/>
+  <text class="h" x="72" y="349">Mode 2 · Edge AI trên ESP32-S3</text>
+  <text class="s" x="300" y="349">node esp32-edge-01 · Wokwi</text>
+  <rect class="box dev" x="72" y="362" width="160" height="86"/>
+  <text class="t" x="86" y="388">Thẻ microSD</text>
+  <text class="s" x="86" y="410">cùng file CSV</text>
+  <text class="s" x="86" y="430">trên board</text>
+  <rect class="box ai" x="328" y="362" width="200" height="86"/>
+  <text class="t" x="342" y="388">ESP32-S3</text>
+  <text class="s" x="342" y="410">TabM INT8 · 4 thành viên</text>
+  <text class="s" x="342" y="430">dự đoán mỗi 5 s, trên chip</text>
+  <path class="data" d="M232 405 H326"/>
+  <text class="lbl" x="242" y="398">readings</text>
+
+  <path class="data" d="M44 166 V261 H70"/>
+  <path class="data" d="M44 261 V405 H70"/>
+
+  <text class="s" x="40" y="481">Cả hai mode: cửa sổ 60 s → 144 đặc trưng → TabM INT8 (cùng blob, cùng kernel số nguyên)</text>
+  <text class="s" x="40" y="497">→ nồng độ CO, C₂H₄ và mức cảnh báo</text>
+
+  <!-- Safety devices -->
+  <rect class="box dev" x="40" y="530" width="270" height="118"/>
+  <text class="t" x="56" y="556">Thiết bị an toàn</text>
+  <text class="s" x="56" y="580">quạt chụp hút · quạt mái</text>
+  <text class="s" x="56" y="600">van gas · còi · dập lửa</text>
+  <text class="s" x="56" y="620">nhận lệnh, trả ACK</text>
+
+  <!-- MQTT broker -->
+  <rect class="box msg" x="630" y="280" width="170" height="110"/>
+  <text class="t" x="644" y="308">MQTT Broker</text>
+  <text class="s" x="644" y="332">Eclipse Mosquitto</text>
+  <text class="s" x="644" y="352">QoS 1</text>
+  <text class="s" x="644" y="372">aiot/v1/nodes/…</text>
+
+  <!-- Bridge -->
+  <rect class="box msg" x="870" y="280" width="170" height="110"/>
+  <text class="t" x="884" y="308">MQTT → Kafka</text>
+  <text class="t" x="884" y="328">Bridge</text>
+  <text class="s" x="884" y="352">kiểm tra contract</text>
+  <text class="s" x="884" y="372">bản tin lỗi → DLQ</text>
+
+  <!-- Kafka -->
+  <rect class="box msg" x="1110" y="245" width="190" height="180"/>
+  <text class="t" x="1124" y="273">Apache Kafka</text>
+  <text class="s" x="1124" y="297">gas.sensor.readings</text>
+  <text class="s" x="1124" y="317">gas.predictions</text>
+  <text class="s" x="1124" y="337">gas.ground-truth</text>
+  <text class="s" x="1124" y="357">gas.control-requests</text>
+  <text class="s" x="1124" y="377">gas.actuator-commands</text>
+  <text class="s" x="1124" y="397">gas.actuator-state · DLQ</text>
+
+  <!-- Safety controller -->
+  <rect class="box proc" x="1370" y="100" width="210" height="110"/>
+  <text class="t" x="1384" y="128">Safety Controller</text>
+  <text class="s" x="1384" y="152">chính sách auto / thủ công</text>
+  <text class="s" x="1384" y="172">tắt chuông · chống lặp lệnh</text>
+  <text class="s" x="1384" y="192">theo dõi ACK</text>
+
+  <!-- Storage and dashboards -->
+  <rect class="box store" x="1370" y="300" width="210" height="80"/>
+  <text class="t" x="1384" y="328">Influx Sink</text>
+  <text class="s" x="1384" y="352">ghi theo lô · commit offset</text>
+
+  <rect class="box store" x="1370" y="430" width="210" height="80"/>
+  <text class="t" x="1384" y="458">InfluxDB</text>
+  <text class="s" x="1384" y="482">chuỗi thời gian · 30 ngày</text>
+
+  <rect class="box store" x="1370" y="590" width="210" height="90"/>
+  <text class="t" x="1384" y="618">Grafana</text>
+  <text class="s" x="1384" y="642">dashboard pipeline, khí gas</text>
+  <text class="s" x="1384" y="662">nút tắt / bật chuông</text>
+
+  <rect class="box store" x="870" y="510" width="170" height="100"/>
+  <text class="t" x="884" y="538">Kitchen UI</text>
+  <text class="s" x="884" y="562">màn hình bếp · SSE</text>
+  <text class="s" x="884" y="582">yêu cầu điều khiển</text>
+
+  <rect class="box mon" x="1110" y="600" width="190" height="70"/>
+  <text class="t" x="1124" y="628">Prometheus</text>
+  <text class="s" x="1124" y="652">metrics · alert rules</text>
+
+  <!-- Edge AI -> broker -->
+  <path class="join" d="M528 261 H578 V405 H528"/>
+  <path class="data" d="M578 335 H628"/>
+  <text class="lbl" x="630" y="270">readings + predictions</text>
+
+  <!-- Broker -> bridge -> Kafka -->
+  <path class="data" d="M800 335 H868"/>
+  <text class="lbl" x="812" y="328">6 topic</text>
+  <path class="data" d="M1040 335 H1108"/>
+  <text class="lbl" x="1052" y="328">produce</text>
+
+  <!-- Kafka -> consumers -->
+  <path class="data" d="M1300 275 H1330 V155 H1368"/>
+  <text class="lbl" x="1353" y="262" transform="rotate(-90 1353 262)">predictions</text>
+  <path class="data" d="M1300 340 H1368"/>
+  <path class="data" d="M1475 380 V428"/>
+  <path class="data" d="M1475 510 V588"/>
+  <path class="data" d="M1170 425 V560 H1042"/>
+  <text class="lbl" x="1052" y="552">live + 10 phút lịch sử</text>
+
+  <!-- Control path -->
+  <path class="ctrl" d="M1370 122 H1350 V66 H835 V300 H802"/>
+  <text class="lblc" x="1010" y="58">commands (MQTT)</text>
+  <path class="ctrl" d="M660 392 V570 H312"/>
+  <text class="lblc" x="330" y="562">commands</text>
+  <path class="ctrl" d="M310 620 H700 V392"/>
+  <text class="lblc" x="330" y="638">ACK (actuator-state)</text>
+  <path class="ctrl" d="M870 580 H740 V392"/>
+  <text class="lblc" x="752" y="600">control-requests</text>
+
+  <!-- Monitoring -->
+  <path class="monl" d="M1300 635 H1368"/>
+  <text class="lblm" x="1110" y="692">thu metrics: bridge, edge, sink, controller, Kafka</text>
+
+  <!-- Legend -->
+  <g transform="translate(40,690)">
+    <line x1="0" y1="8" x2="34" y2="8" stroke="#2f5d8a" stroke-width="1.8" marker-end="url(#a-data)"/>
+    <text class="s" x="44" y="12">luồng dữ liệu</text>
+    <line x1="160" y1="8" x2="194" y2="8" stroke="#c8641e" stroke-width="1.8" marker-end="url(#a-ctrl)"/>
+    <text class="s" x="204" y="12">luồng điều khiển</text>
+    <line x1="340" y1="8" x2="374" y2="8" stroke="#7a7f87" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a-mon)"/>
+    <text class="s" x="384" y="12">giám sát</text>
+  </g>
+</svg>
